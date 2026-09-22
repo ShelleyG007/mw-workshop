@@ -34,25 +34,27 @@ const INBOUND_TRAVEL = {
           fields: [{ id: "calc", type: "calc" }],
         },
         {
-          id: "diary",
-          kind: "diary",
+          id: "time-block",
           title: "Time & Diary Management",
-          body: "Having a plan leaves no time for procrastination. Block your day around revenue-generating work, not admin, and lock your high-energy hours for selling.",
-          fields: [{ id: "grid", type: "diary" }],
+          body: "Time and diary management can lift your productivity 20 to 50%. First, acknowledge what is stealing your time. With discipline comes structure, and with structure comes freedom.",
+          fields: [
+            { id: "procrastination", label: "What do you acknowledge in regard to procrastination?", type: "long" },
+            { id: "todo", label: "Create a to do list for the next 5 days", type: "long" },
+            { id: "prioritise", label: "Now prioritise from most to least important", type: "long" },
+            { id: "chunk", label: "Chunk down your first task below (Element 1, Element 2, etc.)", type: "long" },
+          ],
         },
         {
-          id: "time-block",
-          title: "The Anti-Procrastination Time Block",
-          body: "Look at your week and cut the low-value work that eats your selling time.",
-          fields: [
-            { id: "todo", label: "My to-do list for the next 5 days (I will prioritise these in my diary)", type: "long" },
-            { id: "cut", label: "One low-value task I will cut this week", type: "long" },
-          ],
+          id: "diary",
+          kind: "diary",
+          title: "Your 5-Day Diary",
+          body: "Complete your diary for the next 5 days with every appointment, meeting or personal time in its specific slot. Your diary is action-orientated, only time-lined tasks belong here. There is no grey area, it is black or white.",
+          fields: [{ id: "grid", type: "diary" }],
         },
         {
           id: "commit1",
           title: "My commitment this week",
-          body: "Write the one action you will take, then report back next session.",
+          body: "Information without implementation is just information. Write the one action you will take this week, then report back next session.",
           fields: [{ id: "commit", label: "This week I will…", type: "long" }],
         },
       ],
@@ -66,24 +68,18 @@ const INBOUND_TRAVEL = {
           id: "prospect-suspect",
           title: "Prospect vs Suspect",
           body: "A prospect has budget clarity, a real timeline, responds within 24 hours, and the decision-makers are present. A suspect is vague, ghosts you, and is just looking. If a lead fails 3 of those 4 within 72 hours, move them to nurture.",
-          fields: [{ id: "archive", label: "A lead I need to move to nurture, and why", type: "long" }],
+          fields: [],
         },
         {
           id: "backtracking",
           title: "The Backtracking Framework",
           body: "Never send a quote without repeating the client's needs back in their own words. For example: just to make sure I've captured your vision, you want to celebrate your 25th anniversary with a private safari, no crowds, avoiding long internal flights. Is that right?",
-          fields: [{ id: "summary", label: "A backtracking summary for my most recent enquiry", type: "long" }],
-        },
-        {
-          id: "tracker-start",
-          title: "Start your Pipeline Tracker",
-          body: "Open your Sales Diary & Pipeline Tracker. Log your current leads and mark each one Prospect or Suspect. Anything that trips the 72-hour flag, act on it now.",
-          fields: [{ id: "counts", label: "How many active prospects vs suspects do I have right now?", type: "short" }],
+          fields: [{ id: "summary", label: "Draft a backtracking summary for your most recent enquiry", type: "long" }],
         },
         {
           id: "roleplay2",
           kind: "score",
-          title: "Role-play: the Discovery Call · Brief 1",
+          title: "Role-play: the Discovery Call \u00B7 Brief 1",
           body: "You are the travel designer qualifying an enthusiastic but budget-defensive traveller. Score yourself honestly after the role-play.",
           fields: [{ id: "score", type: "score", criteria: [
             "Uncovered \u201CWhy now?\u201D",
@@ -95,7 +91,7 @@ const INBOUND_TRAVEL = {
         {
           id: "roleplay2b",
           kind: "score",
-          title: "Role-play: the Discovery Call · Brief 2",
+          title: "Role-play: the Discovery Call \u00B7 Brief 2",
           body: "You are the travel designer qualifying a slow, laid-back traveller enquiring about a 15-day Botswana and Kruger trip. He is vague on dates and traveller numbers, has a budget of about R150k, and says he will call you back. Score yourself honestly after the role-play.",
           fields: [{ id: "score", type: "score", criteria: [
             "Uncovered \u201CWhy now?\u201D",
@@ -104,38 +100,24 @@ const INBOUND_TRAVEL = {
             "Deep listening, backtracking, pace and tone matching",
           ] }],
         },
-        {
-          id: "reflect2",
-          title: "After the role-play",
-          fields: [{ id: "learned", label: "What I learned from the discovery call", type: "long" }],
-        },
-        { id: "commit2", title: "My commitment this week", fields: [{ id: "commit", label: "This week I will…", type: "long" }] },
+        { id: "commit2", title: "My commitment this week", fields: [{ id: "commit", label: "This week I will\u2026", type: "long" }] },
       ],
     },
     {
       id: "w3",
       title: "Pipeline & Closing Mastery",
-      intro: "Forecasting, natural closing and reframing local objections.",
+      intro: "Natural closing and reframing local objections.",
       sections: [
-        {
-          id: "forecast",
-          title: "Pipeline Forecasting",
-          body: "In your tracker, each open deal has a weighted value (quote value times win chance). Open the Dashboard tab and read your weighted forecast for the month.",
-          fields: [
-            { id: "weighted", label: "My weighted pipeline forecast this month (R)", type: "short" },
-            { id: "means", label: "What that tells me about my month", type: "long" },
-          ],
-        },
         {
           id: "objections",
           title: "The Objection Reframing Playbook",
           body: "Do not dump your toolbox and do not discount on reflex. Reframe the partner delay, over-research, safety anxiety, and shopping around. Match the need and the close is natural.",
-          fields: [{ id: "hardest", label: "The objection I struggle with most, and my reframe", type: "long" }],
+          fields: [],
         },
         {
           id: "roleplay3",
           kind: "score",
-          title: "Role-play: the Itinerary Review · Brief 1",
+          title: "Role-play: the Itinerary Review \u00B7 Brief 1",
           body: "You presented a premium itinerary against a cheaper online quote, with a partner delay in play. Score yourself after the role-play.",
           fields: [{ id: "score", type: "score", criteria: [
             "Avoided panic discounting",
@@ -148,7 +130,7 @@ const INBOUND_TRAVEL = {
         {
           id: "roleplay3b",
           kind: "score",
-          title: "Role-play: the Itinerary Review · Brief 2",
+          title: "Role-play: the Itinerary Review \u00B7 Brief 2",
           body: "You are presenting a premium, customised R250,000 itinerary. The client loves the plan but thinks their partner will object that Africa is too hot, says they found a similar route online 15% cheaper, and wants to think it over with friends. Score yourself after the role-play.",
           fields: [{ id: "score", type: "score", criteria: [
             "Avoided panic discounting",
@@ -158,12 +140,7 @@ const INBOUND_TRAVEL = {
             "Secured a firm next step",
           ] }],
         },
-        {
-          id: "reflect3",
-          title: "After the role-play",
-          fields: [{ id: "defend", label: "How I defended my premium price", type: "long" }],
-        },
-        { id: "commit3", title: "My commitment this week", fields: [{ id: "commit", label: "This week I will…", type: "long" }] },
+        { id: "commit3", title: "My commitment this week", fields: [{ id: "commit", label: "This week I will\u2026", type: "long" }] },
       ],
     },
     {
@@ -186,15 +163,17 @@ const INBOUND_TRAVEL = {
           title: "Rewrite your value",
           body: "Stop saying I book hotels and safaris. Try: I design secure, end-to-end luxury travel experiences for families who want Southern Africa without any logistical stress.",
           fields: [
-            { id: "valueprop", label: "My rewritten value proposition", type: "long" },
-            { id: "beliefs", label: "My three top limiting beliefs, reframed positively", type: "long" },
+            { id: "valueprop", label: "Rewrite your value proposition", type: "long" },
+            { id: "beliefs", label: "Write your 3 top limiting beliefs below", type: "long" },
+            { id: "reframe", label: "Now re-frame those limiting beliefs positively", type: "long" },
+            { id: "writeclient", label: "Write to a client who has ONE of your 3 limiting beliefs above and reframe to overcome this client's limiting beliefs", type: "long" },
           ],
         },
         {
           id: "followup",
           title: "The High-Conversion Follow-Up",
           body: "Replace just checking in with value. Day 2: a genuine update, a lodge note or a local insight. Day 5: real scarcity, the final rooms over their dates.",
-          fields: [{ id: "day2", label: "My Day 2 value-add message for a live client", type: "long" }],
+          fields: [{ id: "day2", label: "Draft your own Day 2 value-add message for a live client", type: "long" }],
         },
         {
           id: "roleplay4",
@@ -204,7 +183,7 @@ const INBOUND_TRAVEL = {
           fields: [{ id: "score", type: "score", criteria: [
             "Protected the margin with confidence",
             "Shifted price to peace of mind",
-            "Avoided cliché sales pitches",
+            "Avoided clich\u00E9 sales pitches",
             "Secured firm next steps",
           ] }],
         },
@@ -213,11 +192,23 @@ const INBOUND_TRAVEL = {
           title: "My 90-Day Action Plan",
           body: "This is your commitment to yourself. Keep it where you will see it every day.",
           fields: [
-            { id: "learned", label: "Three things I have learned from this workshop", type: "long" },
-            { id: "habits", label: "The three new daily activities I am adding to increase sales", type: "long" },
-            { id: "target", label: "My monthly target, my current average, and my shortfall", type: "long" },
-            { id: "routine", label: "My follow-up routine (when a proposal goes out, I follow up on…)", type: "long" },
-            { id: "accountable", label: "Who will hold me to this, and when I will check in", type: "long" },
+            { id: "learned", label: "Name 3 things you have learned from this workshop", type: "long" },
+            { id: "implement", label: "Now list how you intend to implement each of those 3 above", type: "long" },
+            { id: "target", label: "What is your monthly target?", type: "short" },
+            { id: "currentavg", label: "Write down your current sales per month average (YTD)", type: "short" },
+            { id: "shortfall", label: "What is your shortfall if any?", type: "short" },
+            { id: "habits", label: "What 3 new activities are you going to implement on a daily basis to increase your sales?", type: "long" },
+            { id: "routine", label: "When a proposal goes out, I will follow up on:", type: "long" },
+          ],
+        },
+        {
+          id: "checkin90",
+          title: "My 90-Day Check-In",
+          body: "Come back to this 90 days after the workshop and fill it in honestly.",
+          fields: [
+            { id: "implemented", label: "Name 3 things you have implemented in the last 90 days", type: "long" },
+            { id: "changes", label: "What changes have you seen improved?", type: "long" },
+            { id: "avgsales", label: "My average monthly sales over the last 90 days are?", type: "short" },
           ],
         },
       ],
@@ -598,30 +589,46 @@ function CalcField({ value, onChange }) {
   );
 }
 
-const DIARY_SLOTS = ["07h00 – 07h30","07h30 – 08h00","08h00 – 08h30","08h30 – 09h00","09h00 – 09h30","09h30 – 10h00","10h00 – 10h30","10h30 – 11h00","11h00 – 11h30","11h30 – 12h00","12h00 – 12h30","12h30 – 13h00","13h00 – 13h30","13h30 – 14h00","14h00 – 14h30","14h30 – 15h00","15h00 – 15h30","15h30 – 16h00","16h00 – 16h30","16h30 – 17h00","17h00 – 17h30","17h30 – 18h00"];
+const DIARY_SLOTS = ["07h00 \u2013 07h30","07h30 \u2013 08h00","08h00 \u2013 08h30","08h30 \u2013 09h00","09h00 \u2013 09h30","09h30 \u2013 10h00","10h00 \u2013 10h30","10h30 \u2013 11h00","11h00 \u2013 11h30","11h30 \u2013 12h00","12h00 \u2013 12h30","12h30 \u2013 13h00","13h00 \u2013 13h30","13h30 \u2013 14h00","14h00 \u2013 14h30","14h30 \u2013 15h00","15h00 \u2013 15h30","15h30 \u2013 16h00","16h00 \u2013 16h30","16h30 \u2013 17h00","17h00 \u2013 17h30","17h30 \u2013 18h00"];
+const DIARY_DAYS = ["Day 1", "Day 2", "Day 3", "Day 4", "Day 5"];
 function DiaryField({ value, onChange }) {
   let v = {};
   try { v = value ? JSON.parse(value) : {}; } catch (e) { v = {}; }
-  const set = (slot, val) => onChange(JSON.stringify({ ...v, [slot]: val }));
+  const [day, setDay] = useState("Day 1");
+  const dayData = (v[day] && typeof v[day] === "object") ? v[day] : {};
+  const set = (slot, val) => onChange(JSON.stringify({ ...v, [day]: { ...dayData, [slot]: val } }));
+  const dayHasData = (d) => v[d] && typeof v[d] === "object" && Object.values(v[d]).some((x) => String(x).trim());
   return (
-    <div style={{ overflowX: "auto" }}>
-      <table className="tw-tbl">
-        <thead><tr><th style={{ width: 130 }}>Time</th><th>Day 1</th></tr></thead>
-        <tbody>
-          {DIARY_SLOTS.map((s) => (
-            <tr key={s}>
-              <td style={{ whiteSpace: "nowrap", fontWeight: 600 }}>{s}</td>
-              <td style={{ padding: 4 }}>
-                <input className="tw-input" style={{ padding: "7px 10px" }} value={v[s] || ""} onChange={(e) => set(s, e.target.value)} placeholder="…" />
-              </td>
+    <div>
+      <div style={{ display: "flex", gap: 6, flexWrap: "wrap", marginBottom: 12 }}>
+        {DIARY_DAYS.map((d) => (
+          <button key={d} type="button" className="tw-seg" onClick={() => setDay(d)}
+            style={day === d
+              ? { background: "var(--accent-strong)", borderColor: "var(--accent-strong)", color: "#fff" }
+              : (dayHasData(d) ? { borderColor: "var(--accent-strong)" } : undefined)}>
+            {d}
+          </button>
+        ))}
+      </div>
+      <div style={{ overflowX: "auto" }}>
+        <table className="tw-tbl">
+          <thead><tr><th style={{ width: 130 }}>Time</th><th>Task</th></tr></thead>
+          <tbody>
+            {DIARY_SLOTS.map((sl) => (
+              <tr key={sl}>
+                <td style={{ whiteSpace: "nowrap", fontWeight: 600 }}>{sl}</td>
+                <td style={{ padding: 4 }}>
+                  <input className="tw-input" style={{ padding: "7px 10px" }} value={dayData[sl] || ""} onChange={(e) => set(sl, e.target.value)} placeholder="…" />
+                </td>
+              </tr>
+            ))}
+            <tr>
+              <td style={{ fontWeight: 600 }}>Notes</td>
+              <td style={{ padding: 4 }}><input className="tw-input" style={{ padding: "7px 10px" }} value={dayData["notes"] || ""} onChange={(e) => set("notes", e.target.value)} placeholder="…" /></td>
             </tr>
-          ))}
-          <tr>
-            <td style={{ fontWeight: 600 }}>Notes</td>
-            <td style={{ padding: 4 }}><input className="tw-input" style={{ padding: "7px 10px" }} value={v["notes"] || ""} onChange={(e) => set("notes", e.target.value)} placeholder="…" /></td>
-          </tr>
-        </tbody>
-      </table>
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 }
@@ -787,8 +794,24 @@ function ReadValue({ f, raw }) {
   }
   if (f.type === "diary") {
     let v = {}; try { v = JSON.parse(raw); } catch (e) {}
-    const filled = Object.entries(v).filter(([k, val]) => String(val).trim());
-    return <div className="tw-muted" style={{ fontSize: 13.5 }}>{filled.length ? filled.map(([k, val]) => <div key={k}>{k === "notes" ? "Notes" : k}: {val}</div>) : "—"}</div>;
+    const days = [];
+    Object.entries(v).forEach(([day, data]) => {
+      if (data && typeof data === "object") {
+        const filled = Object.entries(data).filter(([k, val]) => String(val).trim());
+        if (filled.length) days.push([day, filled]);
+      }
+    });
+    if (!days.length) return <div className="tw-muted" style={{ fontSize: 13.5 }}>—</div>;
+    return (
+      <div className="tw-muted" style={{ fontSize: 13.5 }}>
+        {days.map(([day, filled]) => (
+          <div key={day} style={{ marginBottom: 6 }}>
+            <b>{day}</b>
+            {filled.map(([k, val]) => <div key={k}>{k === "notes" ? "Notes" : k}: {val}</div>)}
+          </div>
+        ))}
+      </div>
+    );
   }
   if (f.type === "choice") return <div style={{ fontSize: 14 }}>{raw}</div>;
   if (f.type === "score") {
