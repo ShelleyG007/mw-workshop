@@ -232,7 +232,11 @@ const INBOUND_TRAVEL = {
           "id": "roleplay2",
           "kind": "score",
           "title": "Role-play: the Discovery Call \u00b7 Brief 1",
-          "body": "You are the travel designer qualifying an enthusiastic but budget-defensive traveller. Score yourself honestly after the role-play.",
+          "body": [
+            "Your role: an expert inbound travel agent.",
+            "The client: a fast speaking International traveller enquiring about a 10-day trip to Cape Town and Kruger. Enthusiastic, but defensive about sharing budget not sure where to go first and worried about safety.",
+            "Your job: uncover the true budget range, identify all decision-makers, and establish the emotional motivation using deep listening, backtracking, mirroring & pacing."
+          ],
           "fields": [
             {
               "id": "score",
@@ -241,7 +245,7 @@ const INBOUND_TRAVEL = {
                 "Uncovered \u201cWhy now?\u201d",
                 "Budget clarified smoothly",
                 "Identified all decision-makers",
-                "Deep listening, backtracking, pace and tone matching"
+                "Deep listening, Backtracking, Pace and tone matching"
               ]
             }
           ]
@@ -250,7 +254,11 @@ const INBOUND_TRAVEL = {
           "id": "roleplay2b",
           "kind": "score",
           "title": "Role-play: the Discovery Call \u00b7 Brief 2",
-          "body": "You are the travel designer qualifying a slow, laid-back traveller enquiring about a 15-day Botswana and Kruger trip. He is vague on dates and traveller numbers, has a budget of about R150k, and says he will call you back. Score yourself honestly after the role-play.",
+          "body": [
+            "Your role: an expert inbound travel agent.",
+            "The client: a slow laid back speaking International traveller enquiring about a 15-day trip to Botswana & Kruger. Not clear on travel dates or how many travellers, has budget of R150k. Says he will call you back.",
+            "Your job: uncover the true budget range, identify all decision-makers, and establish the emotional motivation using deep listening, backtracking, mirroring & pacing."
+          ],
           "fields": [
             {
               "id": "score",
@@ -259,7 +267,7 @@ const INBOUND_TRAVEL = {
                 "Uncovered \u201cWhy now?\u201d",
                 "Budget clarified smoothly",
                 "Identified all decision-makers",
-                "Deep listening, backtracking, pace and tone matching"
+                "Deep listening, Backtracking, Pace and tone matching"
               ]
             }
           ]
@@ -332,14 +340,18 @@ const INBOUND_TRAVEL = {
           "id": "roleplay3",
           "kind": "score",
           "title": "Role-play: the Itinerary Review \u00b7 Brief 1",
-          "body": "You presented a premium itinerary against a cheaper online quote, with a partner delay in play. Score yourself after the role-play.",
+          "body": [
+            "Your role: an inbound consultant presenting a premium, customised R150,000 itinerary.",
+            "The client: an international traveller who loves the plan but says they found a similar route online 15% cheaper, and wants to think it over with their partner.",
+            "Your job: defend your premium pricing, match their needs, expose the risks of shopping around, and secure a firm, scheduled date for the next conversation."
+          ],
           "fields": [
             {
               "id": "score",
               "type": "score",
               "criteria": [
                 "Avoided panic discounting",
-                "Uncovered hidden competitor gaps",
+                "Matched needs",
                 "Handled the partner objection",
                 "Maintained premium authority",
                 "Secured a firm next step"
@@ -351,14 +363,18 @@ const INBOUND_TRAVEL = {
           "id": "roleplay3b",
           "kind": "score",
           "title": "Role-play: the Itinerary Review \u00b7 Brief 2",
-          "body": "You are presenting a premium, customised R250,000 itinerary. The client loves the plan but thinks their partner will object that Africa is too hot, says they found a similar route online 15% cheaper, and wants to think it over with friends. Score yourself after the role-play.",
+          "body": [
+            "Your role: an inbound consultant presenting a premium, customised R250,000 itinerary.",
+            "The client: an international traveller who believes his partner will object because its to hot in Africa loves the plan but says they found a similar route online 15% cheaper, and wants to think it over with friends.",
+            "Your job: defend your premium pricing, match their needs, expose the risks of shopping around, and secure a firm, scheduled date for the next conversation."
+          ],
           "fields": [
             {
               "id": "score",
               "type": "score",
               "criteria": [
                 "Avoided panic discounting",
-                "Uncovered hidden competitor gaps",
+                "Matched needs",
                 "Handled the partner objection",
                 "Maintained premium authority",
                 "Secured a firm next step"
@@ -464,7 +480,11 @@ const INBOUND_TRAVEL = {
           "id": "roleplay4",
           "kind": "score",
           "title": "Role-play: the Ultimate Premium Pitch",
-          "body": "You are selling a high-margin package to an executive who says they can book the same hotels themselves. Score yourself after the role-play.",
+          "body": [
+            "Your role: a confident luxury travel advisor selling a high-margin premium safari package.",
+            "The client: a wealthy corporate executive challenging the price: \u201cI can book these identical hotels directly on Booking.com myself.\u201d",
+            "Your job: counter the objection without apologising for the price, shifting the conversation from hotel rates to an integrated, safe and stress-free experience."
+          ],
           "fields": [
             {
               "id": "score",
