@@ -1355,7 +1355,7 @@ function Dashboard({ session, theme, toggleTheme, onLeave }) {
             <button className="tw-ghost tw-btn tw-noprint" onClick={() => setSel(null)} style={{ marginBottom: 8, paddingLeft: 0 }}>
               <span style={{ display: "inline-flex", alignItems: "center", gap: 6 }}><ArrowLeft size={16} /> All participants</span>
             </button>
-            <h1 className="tw-serif" style={{ fontSize: 24, margin: "0 0 14px", fontWeight: 600 }}>{sel.name}</h1>
+            <h1 className="tw-serif tw-noprint" style={{ fontSize: 24, margin: "0 0 14px", fontWeight: 600 }}>{sel.name}</h1>
 
             <div className="tw-seg tw-noprint">
               <button className={tab === "answers" ? "on" : ""} onClick={() => setTab("answers")}>Their answers</button>
