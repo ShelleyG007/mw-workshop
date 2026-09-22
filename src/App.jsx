@@ -767,6 +767,7 @@ const CSS = `
 .tw-seg button{ flex:1; font:inherit; font-weight:600; font-size:14px; border:none; border-radius:9px;
   padding:9px; background:transparent; color:var(--muted); cursor:pointer; }
 .tw-seg button.on{ background:var(--surface); color:var(--ink); box-shadow:0 1px 2px var(--shadow); }
+@page{ size:A4; margin:14mm; }
 @media print{
   .tw-noprint{ display:none !important; }
   .tw-root{ background:#fff; color:#000; }
@@ -1451,7 +1452,7 @@ function Dashboard({ session, theme, toggleTheme, onLeave }) {
                 <button className="tw-btn tw-primary tw-noprint" style={{ marginBottom: 8 }} onClick={() => window.print()}>
                   <span style={{ display: "inline-flex", alignItems: "center", gap: 8 }}><Printer size={16} /> Print / save as PDF</span>
                 </button>
-                <p className="tw-muted tw-noprint" style={{ fontSize: 12, margin: "0 0 14px" }}>Tip: in the print dialog, open More settings and untick “Headers and footers” for a clean file.</p>
+                <p className="tw-muted tw-noprint" style={{ fontSize: 12, margin: "0 0 14px" }}>Tip: in the print dialog, set Paper size to A4 and untick “Headers and footers” (under More settings) for a clean file.</p>
                 <div className="tw-card" style={{ padding: 26 }}>
                   {/* cover page */}
                   <div style={{ breakAfter: "page", textAlign: "center" }}>
