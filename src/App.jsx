@@ -42,7 +42,6 @@ const INBOUND_TRAVEL = {
           "kind": "calc",
           "title": "Module 1.1 \u00b7 The Pipeline Math",
           "body": [
-            "WHERE DO THEY GO??",
             "To hit your financial targets you must know your own closing ratios. Fill in the blanks using your historical data, or the industry benchmarks in brackets if you don't have your own yet."
           ],
           "fields": [
@@ -703,7 +702,7 @@ const CSS = `
 .tw-primary{ background:var(--accent); border-color:var(--accent); color:var(--on-accent); }
 .tw-ghost{ background:transparent; border-color:transparent; color:var(--muted); padding:8px 12px; }
 .tw-ghost:hover{ color:var(--ink); }
-.tw-input, .tw-area{ width:100%; font:inherit; color:var(--ink); background:var(--surface2);
+.tw-input, .tw-area{ width:100%; box-sizing:border-box; font:inherit; color:var(--ink); background:var(--surface2);
   border:1px solid var(--line); border-radius:11px; padding:12px 13px; outline:none; transition:border-color .15s, box-shadow .15s; }
 .tw-input:focus, .tw-area:focus{ border-color:var(--accent-strong); box-shadow:0 0 0 3px var(--accent-soft); }
 .tw-area{ min-height:96px; resize:vertical; line-height:1.5; }
@@ -1150,7 +1149,7 @@ function Workbook({ session, theme, toggleTheme, onLeave }) {
           onChange={onChange}
           wi={wi}
           setWi={setWi}
-          codeLabel={labelForCode(session.code)}
+          codeLabel="Live workshop"
           welcomeName={session.name.split(" ")[0]}
           statusChip={status === "saving" ? "Saving…" : status === "saved" ? <><Check size={13} /> Saved for Mark</> : "Saves as you type"}
         />
@@ -1277,7 +1276,7 @@ function Dashboard({ session, theme, toggleTheme, onLeave }) {
     <div className="tw-root">
       <div className="tw-wrap">
         <TopBar theme={theme} toggleTheme={toggleTheme}
-          right={<button className="tw-ghost tw-btn" onClick={onLeave}><span style={{ display: "inline-flex", alignItems: "center", gap: 6 }}><LogOut size={15} /> Leave</span></button>} />
+          right={<button className="tw-ghost tw-btn" onClick={onLeave}><span style={{ display: "inline-flex", alignItems: "center", gap: 6 }}><ArrowLeft size={15} /> Back</span></button>} />
 
         {!sel && (
           <>
