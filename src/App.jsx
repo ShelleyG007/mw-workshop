@@ -83,8 +83,20 @@ const INBOUND_TRAVEL = {
         {
           id: "roleplay2",
           kind: "score",
-          title: "Role-play: the Discovery Call",
+          title: "Role-play: the Discovery Call · Brief 1",
           body: "You are the travel designer qualifying an enthusiastic but budget-defensive traveller. Score yourself honestly after the role-play.",
+          fields: [{ id: "score", type: "score", criteria: [
+            "Uncovered \u201CWhy now?\u201D",
+            "Budget clarified smoothly",
+            "Identified all decision-makers",
+            "Deep listening, backtracking, pace and tone matching",
+          ] }],
+        },
+        {
+          id: "roleplay2b",
+          kind: "score",
+          title: "Role-play: the Discovery Call · Brief 2",
+          body: "You are the travel designer qualifying a slow, laid-back traveller enquiring about a 15-day Botswana and Kruger trip. He is vague on dates and traveller numbers, has a budget of about R150k, and says he will call you back. Score yourself honestly after the role-play.",
           fields: [{ id: "score", type: "score", criteria: [
             "Uncovered \u201CWhy now?\u201D",
             "Budget clarified smoothly",
@@ -123,8 +135,21 @@ const INBOUND_TRAVEL = {
         {
           id: "roleplay3",
           kind: "score",
-          title: "Role-play: the Itinerary Review",
+          title: "Role-play: the Itinerary Review · Brief 1",
           body: "You presented a premium itinerary against a cheaper online quote, with a partner delay in play. Score yourself after the role-play.",
+          fields: [{ id: "score", type: "score", criteria: [
+            "Avoided panic discounting",
+            "Uncovered hidden competitor gaps",
+            "Handled the partner objection",
+            "Maintained premium authority",
+            "Secured a firm next step",
+          ] }],
+        },
+        {
+          id: "roleplay3b",
+          kind: "score",
+          title: "Role-play: the Itinerary Review · Brief 2",
+          body: "You are presenting a premium, customised R250,000 itinerary. The client loves the plan but thinks their partner will object that Africa is too hot, says they found a similar route online 15% cheaper, and wants to think it over with friends. Score yourself after the role-play.",
           fields: [{ id: "score", type: "score", criteria: [
             "Avoided panic discounting",
             "Uncovered hidden competitor gaps",
@@ -208,6 +233,16 @@ const CLASSES = {
   "ITSM-01": { course: "inbound-travel", label: "Inbound Travel · Cohort 1", facilitatorCode: "MW-VIEW-01" },
 };
 
+/* Mark's single master facilitator login. Entering this in the class-code box
+   opens the cohort manager, where he can view any cohort and create new ones.
+   Students never see it. */
+const MASTER_FACILITATOR_CODE = "MW-VIEW-01";
+const COHORT_PREFIX = "ITSM-";
+
+/* Runtime cohort registry: the seeded cohort(s) above plus any Mark has created
+   (loaded from Supabase at runtime). All the resolver helpers read from this. */
+const COHORTS = { ...CLASSES };
+
 /* Ratio dropdown options: 10% to 100% in 5% steps (matches the sheet). */
 const RATIOS = Array.from({ length: 19 }, (_, i) => 0.1 + i * 0.05);
 
@@ -220,14 +255,41 @@ import { store } from "./supabaseStore.js";
 const sanitizeCode = (s) => (s || "").trim().toUpperCase().replace(/[^A-Z0-9-]/g, "");
 const recordKey = (code, pid) => `resp:${code}:${pid}`;
 const assessKey = (code, pid) => `assess:${code}:${pid}`;
-const courseForCode = (code) => COURSES[(CLASSES[code] && CLASSES[code].course) || "inbound-travel"];
-const labelForCode = (code) => (CLASSES[code] && CLASSES[code].label) || code;
+const courseForCode = (code) => COURSES[(COHORTS[code] && COHORTS[code].course) || "inbound-travel"];
+const labelForCode = (code) => (COHORTS[code] && COHORTS[code].label) || code;
 function facilitatorClassFor(code) {
   for (const classCode of Object.keys(CLASSES)) {
     const fc = CLASSES[classCode].facilitatorCode;
     if (fc && sanitizeCode(fc) === code) return classCode;
   }
   return null;
+}
+
+/* ---- cohorts: Mark creates these himself; the list lives in Supabase ---- */
+const COHORTS_KEY = "cohorts";
+const cohortNum = (code) => { const m = String(code).match(/(\d+)\s*$/); return m ? parseInt(m[1], 10) : 0; };
+function nextCohortCode() {
+  let max = 0;
+  Object.keys(COHORTS).forEach((c) => { if (c.startsWith(COHORT_PREFIX)) max = Math.max(max, cohortNum(c)); });
+  return COHORT_PREFIX + String(max + 1).padStart(2, "0");
+}
+async function loadCohorts() {
+  try {
+    const raw = await store.get(COHORTS_KEY, true);
+    const list = raw ? JSON.parse(raw) : [];
+    list.forEach((c) => { if (c && c.code) COHORTS[c.code] = { course: c.course || "inbound-travel", label: c.label || c.code }; });
+    return list;
+  } catch (e) { return []; }
+}
+async function addCohort() {
+  const raw = await store.get(COHORTS_KEY, true);
+  const list = raw ? JSON.parse(raw) : [];
+  list.forEach((c) => { if (c && c.code) COHORTS[c.code] = { course: c.course || "inbound-travel", label: c.label || c.code }; });
+  const code = nextCohortCode();
+  const cohort = { code, course: "inbound-travel", label: "Inbound Travel · Cohort " + cohortNum(code), createdAt: Date.now() };
+  await store.set(COHORTS_KEY, JSON.stringify([...list, cohort]), true);
+  COHORTS[code] = { course: cohort.course, label: cohort.label };
+  return cohort;
 }
 
 /* ---- numbers ---- */
@@ -425,12 +487,21 @@ function Entry({ theme, toggleTheme, onEnter }) {
   const [name, setName] = useState("");
   const [code, setCode] = useState("");
   const [err, setErr] = useState("");
-  function go() {
+  const [checking, setChecking] = useState(false);
+  useEffect(() => { loadCohorts(); }, []); // warm the cohort list while they type
+  async function go() {
     const c = sanitizeCode(code);
     if (!c) return setErr("Enter the code you were given.");
+    if (c === sanitizeCode(MASTER_FACILITATOR_CODE)) { onEnter({ role: "facilitator", code: null, name: "Facilitator" }); return; }
     const fClass = facilitatorClassFor(c);
     if (fClass) { onEnter({ role: "facilitator", code: fClass, name: "Facilitator" }); return; }
     if (!name.trim()) return setErr("Enter your name so Mark knows whose answers these are.");
+    // Participant: the code must be a cohort Mark has created. Re-check against
+    // Supabase before rejecting, so a not-yet-loaded list can't lock anyone out.
+    setErr("");
+    let known = !!COHORTS[c];
+    if (!known) { setChecking(true); await loadCohorts(); known = !!COHORTS[c]; setChecking(false); }
+    if (!known) return setErr("That code isn't active. Check it with Mark.");
     onEnter({ role: "participant", code: c, name: name.trim() });
   }
   return (
@@ -450,7 +521,7 @@ function Entry({ theme, toggleTheme, onEnter }) {
           <label className="tw-label">Class code</label>
           <input className="tw-input" value={code} onChange={(e) => setCode(e.target.value)} onKeyDown={(e) => { if (e.key === "Enter") go(); }} placeholder="e.g. ITSM-01" style={{ textTransform: "uppercase" }} />
           {err && <p style={{ color: "#D9534F", fontSize: 13, marginTop: 14, marginBottom: 0 }}>{err}</p>}
-          <button className="tw-btn tw-primary" style={{ width: "100%", marginTop: 18 }} onClick={go}>Open my workbook</button>
+          <button className="tw-btn tw-primary" style={{ width: "100%", marginTop: 18 }} onClick={go} disabled={checking}>{checking ? "Checking\u2026" : "Open my workbook"}</button>
         </div>
         <p className="tw-muted" style={{ fontSize: 12.5, textAlign: "center", marginTop: 18 }}>
           Information without implementation is just information.
@@ -980,6 +1051,87 @@ function Dashboard({ session, theme, toggleTheme, onLeave }) {
 /* ============================================================
    Root
    ============================================================ */
+/* ============================================================
+   Facilitator home: cohort manager (master login).
+   Lists every cohort, opens one into the existing Dashboard,
+   and creates new cohorts with an auto-generated code.
+   ============================================================ */
+function FacilitatorHome({ session, theme, toggleTheme, onLeave }) {
+  const [cohorts, setCohorts] = useState([]);
+  const [active, setActive] = useState(session.code || null);
+  const [loading, setLoading] = useState(true);
+  const [adding, setAdding] = useState(false);
+  const [justAdded, setJustAdded] = useState("");
+
+  const refresh = useCallback(async () => {
+    setLoading(true);
+    await loadCohorts();
+    const list = Object.keys(COHORTS).map((code) => ({ code, label: COHORTS[code].label || code }));
+    list.sort((a, b) => cohortNum(a.code) - cohortNum(b.code) || a.code.localeCompare(b.code));
+    setCohorts(list);
+    setLoading(false);
+  }, []);
+  useEffect(() => { refresh(); }, [refresh]);
+
+  async function onAdd() {
+    setAdding(true);
+    try {
+      const c = await addCohort();
+      setJustAdded(c.code);
+      await refresh();
+      setTimeout(() => setJustAdded(""), 6000);
+    } finally { setAdding(false); }
+  }
+
+  if (active) {
+    return <Dashboard session={{ ...session, code: active }} theme={theme} toggleTheme={toggleTheme} onLeave={() => setActive(null)} />;
+  }
+
+  return (
+    <div className="tw-root">
+      <div className="tw-wrap">
+        <TopBar theme={theme} toggleTheme={toggleTheme}
+          right={<button className="tw-ghost tw-btn" onClick={onLeave}><span style={{ display: "inline-flex", alignItems: "center", gap: 6 }}><LogOut size={15} /> Sign out</span></button>} />
+        <div className="tw-row" style={{ marginBottom: 14 }}>
+          <div>
+            <div className="tw-eyebrow">Facilitator</div>
+            <h1 className="tw-serif" style={{ fontSize: 26, margin: "6px 0 2px", fontWeight: 600 }}>Your cohorts</h1>
+            <p className="tw-muted" style={{ margin: 0, fontSize: 13.5 }}>Open a cohort to see its responses, or start a new one.</p>
+          </div>
+          <button className="tw-iconbtn" onClick={refresh} aria-label="Refresh"><RefreshCw size={18} /></button>
+        </div>
+
+        {justAdded && (
+          <div className="tw-card" style={{ padding: 14, marginBottom: 12, borderColor: "var(--accent-strong)" }}>
+            <p style={{ margin: 0, fontWeight: 600 }}>New cohort created: {justAdded}</p>
+            <p className="tw-muted" style={{ margin: "4px 0 0", fontSize: 13.5 }}>Share this code with that group. It is their sign-in code.</p>
+          </div>
+        )}
+
+        {loading ? (
+          <div className="tw-card tw-muted" style={{ padding: 22, textAlign: "center" }}>Loading cohorts…</div>
+        ) : (
+          <div style={{ display: "grid", gap: 10 }}>
+            {cohorts.map((c) => (
+              <button key={c.code} className="tw-listitem" onClick={() => setActive(c.code)}>
+                <div className="tw-row"><span style={{ fontWeight: 600 }}>{c.label}</span><span className="tw-chip">{c.code}</span></div>
+                <div className="tw-muted" style={{ fontSize: 12, marginTop: 8 }}>Tap to view responses</div>
+              </button>
+            ))}
+          </div>
+        )}
+
+        <button className="tw-btn tw-primary" style={{ width: "100%", marginTop: 16 }} onClick={onAdd} disabled={adding || loading}>
+          {adding ? "Creating…" : "+ New cohort"}
+        </button>
+        <p className="tw-muted" style={{ fontSize: 12, textAlign: "center", marginTop: 12 }}>
+          Each new cohort gets the next code automatically. Students never see this screen.
+        </p>
+      </div>
+    </div>
+  );
+}
+
 export default function App() {
   const [theme, setTheme] = useState("light");
   const [screen, setScreen] = useState("welcome"); // welcome | entry | app
@@ -990,6 +1142,7 @@ export default function App() {
     (async () => {
       const t = await store.get("theme");
       if (t) setTheme(t);
+      loadCohorts();
       const s = await store.get("session");
       if (s) { try { const parsed = JSON.parse(s); setSession(parsed); setScreen("app"); } catch (e) {} }
     })();
@@ -1015,7 +1168,7 @@ export default function App() {
       <style>{CSS}</style>
       {screen === "welcome" && <Welcome theme={theme} toggleTheme={toggleTheme} onStart={() => setScreen("entry")} />}
       {screen === "entry" && <Entry theme={theme} toggleTheme={toggleTheme} onEnter={enter} />}
-      {screen === "app" && session && session.role === "facilitator" && <Dashboard session={session} theme={theme} toggleTheme={toggleTheme} onLeave={leave} />}
+      {screen === "app" && session && session.role === "facilitator" && <FacilitatorHome session={session} theme={theme} toggleTheme={toggleTheme} onLeave={leave} />}
       {screen === "app" && session && session.role === "participant" && <Workbook session={session} theme={theme} toggleTheme={toggleTheme} onLeave={leave} />}
     </div>
   );
