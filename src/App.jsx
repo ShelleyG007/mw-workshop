@@ -664,7 +664,7 @@ function fieldAnswered(f, raw) {
   return String(raw).trim() !== "";
 }
 function countFields(course) {
-  return course.weeks.reduce((n, w) => n + w.sections.reduce((m, s) => m + s.fields.length, 0), 0);
+  return course.weeks.reduce((n, w) => n + w.sections.reduce((m, s) => m + s.fields.filter((f) => f.type !== "score").length, 0), 0);
 }
 function countAnswered(course, answers) {
   let n = 0;
@@ -1022,7 +1022,12 @@ function Field({ f, value, onChange }) {
   if (f.type === "calc") return <CalcField value={value} onChange={onChange} />;
   if (f.type === "diary") return <DiaryField value={value} onChange={onChange} />;
   if (f.type === "choice") return <ChoiceField field={f} value={value} onChange={onChange} />;
-  if (f.type === "score") return <ScoreField field={f} value={value} onChange={onChange} />;
+  if (f.type === "score") return (
+    <div>
+      <p className="tw-muted" style={{ fontSize: 13, margin: "0 0 6px", fontWeight: 600 }}>Your facilitator will score this role-play on:</p>
+      <ul style={{ margin: 0, paddingLeft: 18 }}>{f.criteria.map((c, ci) => <li key={ci} className="tw-muted" style={{ fontSize: 13.5, marginBottom: 3, lineHeight: 1.5 }}>{c}</li>)}</ul>
+    </div>
+  );
   if (f.type === "numbered") return (<><label className="tw-label">{f.label}</label><NumberedField value={value} onChange={onChange} count={f.count || 12} /></>);
   return (
     <>
@@ -1222,7 +1227,7 @@ function Dashboard({ session, theme, toggleTheme, onLeave }) {
   const [sel, setSel] = useState(null);
   const [loading, setLoading] = useState(true);
   const [tab, setTab] = useState("answers"); // answers | assess | report
-  const [assess, setAssess] = useState({ weeks: {}, overall: "", company: "", manager: "", date: "", recommendation: "" });
+  const [assess, setAssess] = useState({ weeks: {}, scores: {}, overall: "", company: "", manager: "", date: "", recommendation: "" });
   const [aStatus, setAStatus] = useState("idle");
   const aTimer = useRef(null);
 
@@ -1261,9 +1266,14 @@ function Dashboard({ session, theme, toggleTheme, onLeave }) {
     setTimeout(() => setAStatus("idle"), 1400);
   }, [sel, session.code]);
 
+  function setScore(sid, crit, patch) {
+    const cur = (assess.scores && assess.scores[sid]) || {};
+    editAssess({ scores: { [sid]: { ...cur, [crit]: { ...(cur[crit] || {}), ...patch } } } });
+  }
+
   function editAssess(patch) {
     setAssess((prev) => {
-      const next = { ...prev, ...patch, weeks: { ...prev.weeks, ...(patch.weeks || {}) } };
+      const next = { ...prev, ...patch, weeks: { ...prev.weeks, ...(patch.weeks || {}) }, scores: { ...prev.scores, ...(patch.scores || {}) } };
       if (aTimer.current) clearTimeout(aTimer.current);
       aTimer.current = setTimeout(() => saveAssess(next), 900);
       return next;
@@ -1368,6 +1378,31 @@ function Dashboard({ session, theme, toggleTheme, onLeave }) {
                       onChange={(e) => editAssess({ weeks: { [w.id]: e.target.value } })} />
                   </div>
                 ))}
+                {course.weeks.some((w) => w.sections.some((se) => se.kind === "score")) && (
+                  <label className="tw-label" style={{ display: "block", margin: "6px 2px 8px" }}>Role-play scores</label>
+                )}
+                {course.weeks.map((w) => w.sections.filter((se) => se.kind === "score").map((se) => {
+                  const crits = (se.fields[0] && se.fields[0].criteria) || [];
+                  return (
+                    <div key={se.id} className="tw-card" style={{ padding: 16, marginBottom: 12 }}>
+                      <div style={{ fontWeight: 600, fontSize: 14.5, marginBottom: 10 }}>{se.title}</div>
+                      {crits.map((crit, ci) => {
+                        const cur = ((assess.scores || {})[se.id] || {})[crit] || {};
+                        return (
+                          <div key={ci} style={{ marginBottom: 12, paddingBottom: 10, borderBottom: ci < crits.length - 1 ? "1px solid var(--line)" : "none" }}>
+                            <div style={{ fontSize: 14, fontWeight: 600, marginBottom: 8 }}>{crit}</div>
+                            <div className="tw-scoredots" style={{ marginBottom: 8 }}>
+                              {[1, 2, 3, 4, 5].map((n) => (
+                                <button key={n} type="button" className={`tw-dot ${cur.score === n ? "on" : ""}`} onClick={() => setScore(se.id, crit, { score: n })}>{n}</button>
+                              ))}
+                            </div>
+                            <input className="tw-input" style={{ padding: "8px 11px" }} placeholder="Notes (optional)" value={cur.note || ""} onChange={(e) => setScore(se.id, crit, { note: e.target.value })} />
+                          </div>
+                        );
+                      })}
+                    </div>
+                  );
+                }))}
                 <div className="tw-card" style={{ padding: 16, marginBottom: 12, borderColor: "var(--accent-strong)" }}>
                   <label className="tw-label">Overall assessment</label>
                   <textarea className="tw-area" placeholder="Your overall view of this participant across the course." value={assess.overall || ""}
@@ -1426,6 +1461,27 @@ function Dashboard({ session, theme, toggleTheme, onLeave }) {
                       <div style={{ fontSize: 14, whiteSpace: "pre-wrap", lineHeight: 1.55 }}>{assess.weeks[w.id] || <span className="tw-muted">No specific notes recorded for this module.</span>}</div>
                     </div>
                   ))}
+
+                  {course.weeks.map((w) => w.sections.filter((se) => se.kind === "score")).flat().some((se) => Object.values((assess.scores || {})[se.id] || {}).some((x) => x && x.score)) && (
+                    <div style={{ marginTop: 16, paddingTop: 14, borderTop: "1px solid var(--line)", breakInside: "avoid" }}>
+                      <div style={{ fontWeight: 600, fontSize: 14.5, color: "var(--accent-ink)", marginBottom: 6 }}>Role-play scores</div>
+                      {course.weeks.map((w) => w.sections.filter((se) => se.kind === "score").map((se) => {
+                        const sc = (assess.scores || {})[se.id] || {};
+                        const rows = ((se.fields[0] && se.fields[0].criteria) || []).filter((c) => sc[c] && sc[c].score);
+                        if (!rows.length) return null;
+                        return (
+                          <div key={se.id} style={{ marginBottom: 9, breakInside: "avoid" }}>
+                            <div style={{ fontSize: 13.5, fontWeight: 600, marginBottom: 2 }}>{se.title}</div>
+                            {rows.map((c, ci) => (
+                              <div key={ci} style={{ fontSize: 13.5, display: "flex", justifyContent: "space-between", gap: 12 }}>
+                                <span>{c}{sc[c].note ? " \u2014 " + sc[c].note : ""}</span><span style={{ fontWeight: 600 }}>{sc[c].score}/5</span>
+                              </div>
+                            ))}
+                          </div>
+                        );
+                      }))}
+                    </div>
+                  )}
 
                   <div style={{ marginTop: 16, paddingTop: 14, borderTop: "1px solid var(--line)", breakInside: "avoid" }}>
                     <div style={{ fontWeight: 600, fontSize: 14.5, color: "var(--accent-ink)", marginBottom: 3 }}>Overall assessment</div>
