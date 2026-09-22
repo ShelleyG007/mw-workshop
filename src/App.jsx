@@ -16,204 +16,540 @@ import { Sun, Moon, ChevronRight, Check, Users, LogOut, RefreshCw, ArrowLeft, Ca
    Every kind still saves to Mark exactly like a normal answer.
    ============================================================ */
 const INBOUND_TRAVEL = {
-  id: "inbound-travel",
-  title: "Inbound Travel Sales Mastery",
-  subtitle: "Your live workshop workbook",
-  motto: "Information without implementation is just information.",
-  weeks: [
+  "id": "inbound-travel",
+  "title": "Inbound Travel Sales Mastery",
+  "subtitle": "Your live workshop workbook",
+  "motto": "Information without implementation is just information.",
+  "weeks": [
     {
-      id: "w1",
-      title: "Building Our Foundations",
-      intro: "Goal setting, diary discipline and the math of success.",
-      sections: [
+      "id": "w1",
+      "title": "Building Our Foundations",
+      "intro": "Goal setting, diary discipline and the math of success.",
+      "sections": [
         {
-          id: "pipeline-math",
-          kind: "calc",
-          title: "The Pipeline Math",
-          body: "Know your numbers. Enter your targets and your current ratios, then set the ratios you are aiming for after the workshop. Lead volume stays the same, so you can see exactly what sharper ratios are worth to you.",
-          fields: [{ id: "calc", type: "calc" }],
-        },
-        {
-          id: "time-block",
-          title: "Time & Diary Management",
-          body: "Time and diary management can lift your productivity 20 to 50%. First, acknowledge what is stealing your time. With discipline comes structure, and with structure comes freedom.",
-          fields: [
-            { id: "procrastination", label: "What do you acknowledge in regard to procrastination?", type: "long" },
-            { id: "todo", label: "Create a to do list for the next 5 days", type: "long" },
-            { id: "prioritise", label: "Now prioritise from most to least important", type: "long" },
-            { id: "chunk", label: "Chunk down your first task below (Element 1, Element 2, etc.)", type: "long" },
+          "id": "w1-obj",
+          "title": "By the end of this week",
+          "body": [
+            "Calculate our closing ratios, lead to quote, quote to sale.",
+            "Structure your day, hour by hour therefore increased productivity & sales.",
+            "See procrastination for what it is: a gap in your plan, not a flaw in you.",
+            "Effective prioritising."
           ],
+          "fields": []
         },
         {
-          id: "diary",
-          kind: "diary",
-          title: "Your 5-Day Diary",
-          body: "Complete your diary for the next 5 days with every appointment, meeting or personal time in its specific slot. Your diary is action-orientated, only time-lined tasks belong here. There is no grey area, it is black or white.",
-          fields: [{ id: "grid", type: "diary" }],
+          "id": "pipeline-math",
+          "kind": "calc",
+          "title": "Module 1.1 \u00b7 The Pipeline Math",
+          "body": [
+            "WHERE DO THEY GO??",
+            "To hit your financial targets you must know your own closing ratios. Fill in the blanks using your historical data, or the industry benchmarks in brackets if you don't have your own yet."
+          ],
+          "fields": [
+            {
+              "id": "calc",
+              "type": "calc"
+            }
+          ]
         },
         {
-          id: "commit1",
-          title: "My commitment this week",
-          body: "Information without implementation is just information. Write the one action you will take this week, then report back next session.",
-          fields: [{ id: "commit", label: "This week I will…", type: "long" }],
+          "id": "time-block",
+          "title": "Module 1.2 \u00b7 Time & Diary Management",
+          "body": [
+            "The most successful people are also the most productive! We have all heard the saying, \u201cfail to plan, plan to fail\u201d.",
+            "Time & diary management will increase your productivity between 20% to 50%.",
+            "First, we need to acknowledge what is stealing our time.",
+            "With discipline comes structure, with structure comes freedom.",
+            "Recognise what is stealing your time:",
+            "Acknowledge what is stealing your time is the first step towards eliminating procrastination.",
+            "If you do not have each task or meeting time lined in our diary, how will you tell where your pro-activeness towards your goals/targets will fit in to your day?",
+            "This is where procrastination comes in! If we do not have a plan for the day ahead we will ponder on which task to do first and let's face it, we all guilty of doing the easy tasks first and end up transferring those tasks to the next day over & over again.",
+            "Most people write their to do lists in their diary. Your diary is not called a to do list is it?",
+            "Your diary is action orientated and only time lined tasks, appointments, meetings or personal time should be listed.",
+            "You need to work with a to do list on one side and a diary on the other. You should be planning your day in advance before you leave the office. Have a look at your do to list for the next day and prioritise in order in your diary.",
+            "Chunking Down:",
+            "You need to chunk down how long you would need to complete each task (always allow a little more time) and diarise accordingly. We are taking one step back to take three steps forward. People say to me, \u201cI don't have the time to plan\u201d, I say you do not MAKE the time to plan!",
+            "Now take the most important task and bring it to one side. (this does not mean the other tasks are not important it just helps us to focus on one thing at a time).",
+            "Do you think professional sports people focus on a World cup or do they look at it game by game?",
+            "Chunking down allows you to focus on what is in front of you while eliminating being overwhelmed.",
+            "A house gets built one brick at a time!",
+            "Chunking down is to look at the task at hand and look at how many elements make up that task.",
+            "Now that we know the elements required to complete the task we need to diarise accordingly to achieve our task at the desired date & time.",
+            "I.e.; You have a task which needs to be completed by day 5 and there are 5 elements to do to complete the task by day 5. Diarise 1 every day to complete by day 5."
+          ],
+          "fields": [
+            {
+              "id": "procrastination",
+              "label": "What do you acknowledge in regard to procrastination?",
+              "type": "long"
+            },
+            {
+              "id": "todo",
+              "label": "Create a to do list for the next 5 days",
+              "type": "long",
+              "rows": 12
+            },
+            {
+              "id": "prioritise",
+              "label": "Now prioritise from most to least important",
+              "type": "numbered",
+              "count": 12
+            },
+            {
+              "id": "chunk",
+              "label": "Chunk down your first task below (Element 1, Element 2, etc.)",
+              "type": "long",
+              "rows": 12
+            }
+          ]
         },
-      ],
+        {
+          "id": "diary",
+          "kind": "diary",
+          "title": "Your 5-Day Diary",
+          "body": [
+            "Complete your diary below for the next 5 days with all the appointments, meetings or personal time in the specific times as booked. We can now identify the time we have available to be Pro-Active (towards our goals/big picture) and fulfil other duties. Having a plan leaves no time for procrastination.",
+            "Once you have all the elements clearly defined you need to diarise with a specific time and day.",
+            "There is no grey area here, it is black or white!"
+          ],
+          "fields": [
+            {
+              "id": "grid",
+              "type": "diary"
+            }
+          ]
+        },
+        {
+          "id": "commit1",
+          "title": "My commitment this week",
+          "body": "Information without implementation is just information. Write the one action you will take this week, then report back next session.",
+          "fields": [
+            {
+              "id": "commit",
+              "label": "This week I will\u2026",
+              "type": "long"
+            }
+          ]
+        }
+      ]
     },
     {
-      id: "w2",
-      title: "Lead Qualifying & Rapport",
-      intro: "Prospect vs suspect, the 4-core matrix, deep listening and backtracking.",
-      sections: [
+      "id": "w2",
+      "title": "Lead Qualifying & Rapport",
+      "intro": "Prospect vs suspect, deep listening, backtracking, mirroring and pacing.",
+      "sections": [
         {
-          id: "prospect-suspect",
-          title: "Prospect vs Suspect",
-          body: "A prospect has budget clarity, a real timeline, responds within 24 hours, and the decision-makers are present. A suspect is vague, ghosts you, and is just looking. If a lead fails 3 of those 4 within 72 hours, move them to nurture.",
-          fields: [],
+          "id": "w2-obj",
+          "title": "By the end of this week",
+          "body": [
+            "Tell a real prospect from a time-waster inside the first conversation.",
+            "Qualify every lead on affordability, timeline, authority and motivation.",
+            "Build rapport with your customers, meaning more sales!",
+            "Confirm the client's need in their own words before you quote."
+          ],
+          "fields": []
         },
         {
-          id: "backtracking",
-          title: "The Backtracking Framework",
-          body: "Never send a quote without repeating the client's needs back in their own words. For example: just to make sure I've captured your vision, you want to celebrate your 25th anniversary with a private safari, no crowds, avoiding long internal flights. Is that right?",
-          fields: [{ id: "summary", label: "Draft a backtracking summary for your most recent enquiry", type: "long" }],
+          "id": "prospect-suspect",
+          "title": "Module 2.1 \u00b7 Prospect vs Suspect",
+          "body": [
+            "A prospect has budget clarity, a real timeline, responds within 24 hours, and the decision-makers are present. A suspect is vague, ghosts you, and is just looking. If a lead fails 3 of those 4 within 72 hours, move them to nurture.",
+            "Qualify on emotional motivation, why Africa, and why now."
+          ],
+          "fields": []
         },
         {
-          id: "roleplay2",
-          kind: "score",
-          title: "Role-play: the Discovery Call \u00B7 Brief 1",
-          body: "You are the travel designer qualifying an enthusiastic but budget-defensive traveller. Score yourself honestly after the role-play.",
-          fields: [{ id: "score", type: "score", criteria: [
-            "Uncovered \u201CWhy now?\u201D",
-            "Budget clarified smoothly",
-            "Identified all decision-makers",
-            "Deep listening, backtracking, pace and tone matching",
-          ] }],
+          "id": "rapport",
+          "title": "Module 2.2 \u00b7 Building Rapport",
+          "body": [
+            "What is Rapport & why is it so important in Sales.",
+            "Sales are built on our ability to build relationships with customers and for this we need rapport. This is more than small talk. It is more like a common understanding between 2 or more people.",
+            "By establishing good rapport at the outset we can gain commitment from the other party, conscious or unconscious, to trust the process even when they do not fully understand how the process works and what the ultimate outcome will be.",
+            "Surprisingly, we make most business decisions based on rapport rather than technical merit. You are more likely to buy from, agree with, or support someone you can relate to than someone you can't.",
+            "People buy people!",
+            "Rapport is the ability to relate to others in a way that creates trust and understanding. It is the ability to see the other's point of view and get them to understand yours. You don't have to agree with their point of view or even like it. It makes any form of communication easier.",
+            "Have you ever had an experience where you were chatting with a person you had just met and you felt as if you had met them before or that you had known them your whole life?",
+            "Have you ever formed an instantaneous connection with another person for no particular reason other than you felt that they were your kind of person?",
+            "The chances are that you can answer Yes to at least one of these questions and if you can then you have experienced rapport.",
+            "To build strong customer relationships you must be in rapport.",
+            "PEOPLE LIKE PEOPLE LIKE THEMSELVES!",
+            "The different ways of building rapport can be grouped under these headings:",
+            "Deep Listening",
+            "Backtracking",
+            "Mirroring",
+            "Pacing",
+            "Deep Listening:",
+            "Most people do not listen at a very deep level, regardless of the context. There are three levels of active listening. What distinguishes them is where you focus as you listen to the person you're with.",
+            "Level I: Internal Listening. At Level I, our awareness is not focused on our customers, but rather on ourselves and our own agenda. Essentially, it's all about you. In Level I listening, you're physically present, but emotionally elsewhere, immersed in the self-absorbed chatter of your inner monologue. You might be wondering whether you left the coffee pot on, what's next on your 'to do' list. Whatever it is, you are the focus of your attention, not your customer. There are times when this superficial level of listening may be appropriate, but certainly not in the context of establishing a relationship.",
+            "Level II: Focused Listening. At Level II, you become very intensely focused on and fully aware of the other person; you listen sharply not only on their words, but how they say them, and what they don't say. Level II listen is the level of collaboration and empathy. Effective communication starts here.",
+            "Level III: Global Listening. As in Level II listening, Level III is also completely focused on the other person, but also includes a wider breadth. In addition to hearing your customer's spoken words, you're also tuned in to her non-verbal communication cues like energy level, inflections and tone of voice. You sense a push to avoid a painful topic, or alluding to some unspoken issue, and you have a sense of what that might be. As a Sales person, when you drop down into Level III listening, you become a successful sales star!",
+            "Listening at deeper levels is an art. Too often, when we communicate with another person, our own mind is preoccupied with our own thoughts, agendas, and assumptions. The quality and depth of our listening can have a profound impact in our conversations and indeed, the quality of all our relationships.",
+            "Backtracking:",
+            "Backtracking involves repeating or summarising what another person has just said to you, either the last few words, sentences word-for-word or a summary of information. It's a powerful technique to pace others and assures them that you have been listening attentively and have heard what they said. In this way, backtracking is an effective strategy for building trust and rapport. Backtracking is not paraphrasing; it's critical that you use the same key words in the same tones as were originally stated. When you substitute somebody else's words for your own, even in the spirit of goodwill, you diminish the importance of their own words and assume that your words carry the same meaning for them; very often, they do not. Backtracking has the added benefits of giving you time to consider what you're going to say next.",
+            "In a fast-paced world with so much competing for our attention, deep listening skills are an increasingly rare commodity. Human beings have an innate desire to be appreciated, validated, and understood. When people talk about themselves and someone listens with intent, it makes them feel important and connects them to you. Deep listening isn't a skill we're born with, it can be learned, but it does require practice, discipline, and intent.",
+            "\u201cNo one has ever listened to me before like you do.\u201d So said a potential client who is pouring the heart out on why they would like this holiday of a lifetime.",
+            "Do we have some magical gift that allows us to repeatedly get responses like this from our customers? No, we simply build such a deep level of rapport that people truly feel heard and experience a sense of security.",
+            "Mirroring & Pacing:",
+            "Pacing and Mirroring Speed (Tempo):",
+            "Telephonic pacing and mirroring is a communication technique where a salesperson subtly matches a caller's vocal traits and emotional tone to build fast rapport, reduce tension, and establish trust.",
+            "Matching how fast or slow a customer speaks prevents frustration and helps them process information comfortably.",
+            "Holidays in Africa are uniquely emotional, high-value, and often perceived as a \u201cbucket-list\u201d or logistically complex undertaking. Because travelers are investing significant time and money into an unfamiliar continent, pacing and mirroring are critical trust-building tools that bridge the cultural and geographical gap right over the phone.",
+            "Here are practical examples of how to apply pacing and mirroring across different dimensions of a phone call.",
+            "1. The High-Energy \u201cBucket List\u201d Adventurer",
+            "This caller is bursting with excitement about wildlife, photography, and tick-box experiences. They speak quickly and use highly visual, cinematic language.",
+            "The Caller: \u201cOh my gosh, I've wanted to see the Great Migration my entire life! I want to be right there in the Serengeti, seeing the wildebeest cross the river, taking tons of photos, just experiencing the raw wildness of Africa!\u201d",
+            "The Strategy: Match their fast tempo and infectious enthusiasm. Mirror their visual, high-impact vocabulary (Great Migration, raw wildness, experience).",
+            "2. The Anxious, Detail-Oriented \u201cFirst-Timer\u201d",
+            "This caller is likely booking a family holiday and is deeply concerned about logistics, malaria, safety, and comfort. They speak slowly, hesitantly, and focus on practicalities.",
+            "The Caller: \u201cUm, hello... we are looking at South Africa for the kids, but... well, I'm just a bit worried about the safety. And the malaria tablets. Is a safari really safe for an eight-year-old? We want to see animals, but comfort and safety are our top priorities.\u201d",
+            "The Strategy: Drop your volume slightly, slow your pace to match their cautious rhythm, and use reassuring, protective language. Never dismiss their fears; mirror their focus on safety and comfort.",
+            "3. The Ultra-Luxury \u201cExclusive\u201d Honeymooner",
+            "This caller speaks with a calm, measured, sophisticated tone. They are looking for exclusivity, romance, and flawless service, and they use refined language.",
+            "The Caller: \u201cGood afternoon. My fianc\u00e9e and I are planning our honeymoon for next September. We are looking for something truly exceptional, very private, intimate, with top-tier service. Perhaps a combination of a luxury lodge and a vineyard.\u201d",
+            "The Strategy: Adopt a polished, calm, and professional cadence. Eliminate casual slang (like \u201csuper cool\u201d or \u201cawesome\u201d). Mirror their sophisticated vocabulary (exceptional, private, intimate, luxury).",
+            "4. The Laid-Back \u201cAuthentic\u201d Backpacker / Eco-Traveler",
+            "This caller has a relaxed, easygoing voice. They care about sustainability, local culture, conservation, and \u201cgetting off the beaten track.\u201d They dislike corporate-sounding sales pitches.",
+            "The Caller: \u201cHey there, yeah, just looking to do a trip to Namibia. Nothing too touristy or flashy, you know? Just want to rent a 4x4, sleep under the stars, see the dunes, and support the local communities if we can.\u201d",
+            "The Strategy: Match their relaxed, conversational pace. Drop formal corporate jargon. Mirror their eco-conscious, grounded language (off the beaten track, under the stars, local communities)."
+          ],
+          "fields": []
         },
         {
-          id: "roleplay2b",
-          kind: "score",
-          title: "Role-play: the Discovery Call \u00B7 Brief 2",
-          body: "You are the travel designer qualifying a slow, laid-back traveller enquiring about a 15-day Botswana and Kruger trip. He is vague on dates and traveller numbers, has a budget of about R150k, and says he will call you back. Score yourself honestly after the role-play.",
-          fields: [{ id: "score", type: "score", criteria: [
-            "Uncovered \u201CWhy now?\u201D",
-            "Budget clarified smoothly",
-            "Identified all decision-makers",
-            "Deep listening, backtracking, pace and tone matching",
-          ] }],
+          "id": "backtracking",
+          "title": "The Backtracking Framework",
+          "body": [
+            "Never send a quote without repeating the client's needs back to them in their own words. Here is the structure in action:"
+          ],
+          "fields": [
+            {
+              "id": "summary",
+              "label": "Draft a backtracking summary for your most recent enquiry",
+              "type": "long",
+              "rows": 6
+            }
+          ]
         },
-        { id: "commit2", title: "My commitment this week", fields: [{ id: "commit", label: "This week I will\u2026", type: "long" }] },
-      ],
+        {
+          "id": "roleplay2",
+          "kind": "score",
+          "title": "Role-play: the Discovery Call \u00b7 Brief 1",
+          "body": "You are the travel designer qualifying an enthusiastic but budget-defensive traveller. Score yourself honestly after the role-play.",
+          "fields": [
+            {
+              "id": "score",
+              "type": "score",
+              "criteria": [
+                "Uncovered \u201cWhy now?\u201d",
+                "Budget clarified smoothly",
+                "Identified all decision-makers",
+                "Deep listening, backtracking, pace and tone matching"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "roleplay2b",
+          "kind": "score",
+          "title": "Role-play: the Discovery Call \u00b7 Brief 2",
+          "body": "You are the travel designer qualifying a slow, laid-back traveller enquiring about a 15-day Botswana and Kruger trip. He is vague on dates and traveller numbers, has a budget of about R150k, and says he will call you back. Score yourself honestly after the role-play.",
+          "fields": [
+            {
+              "id": "score",
+              "type": "score",
+              "criteria": [
+                "Uncovered \u201cWhy now?\u201d",
+                "Budget clarified smoothly",
+                "Identified all decision-makers",
+                "Deep listening, backtracking, pace and tone matching"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "commit2",
+          "title": "My commitment this week",
+          "fields": [
+            {
+              "id": "commit",
+              "label": "This week I will\u2026",
+              "type": "long"
+            }
+          ]
+        }
+      ]
     },
     {
-      id: "w3",
-      title: "Pipeline & Closing Mastery",
-      intro: "Natural closing and reframing local objections.",
-      sections: [
+      "id": "w3",
+      "title": "Pipeline & Closing Mastery",
+      "intro": "Closing naturally by matching the need, and reframing local objections.",
+      "sections": [
         {
-          id: "objections",
-          title: "The Objection Reframing Playbook",
-          body: "Do not dump your toolbox and do not discount on reflex. Reframe the partner delay, over-research, safety anxiety, and shopping around. Match the need and the close is natural.",
-          fields: [],
+          "id": "w3-obj",
+          "title": "By the end of this week",
+          "body": [
+            "Close naturally by matching the need, not dumping your toolbox.",
+            "Reframe the four objections that costs us the most bookings."
+          ],
+          "fields": []
         },
         {
-          id: "roleplay3",
-          kind: "score",
-          title: "Role-play: the Itinerary Review \u00B7 Brief 1",
-          body: "You presented a premium itinerary against a cheaper online quote, with a partner delay in play. Score yourself after the role-play.",
-          fields: [{ id: "score", type: "score", criteria: [
-            "Avoided panic discounting",
-            "Uncovered hidden competitor gaps",
-            "Handled the partner objection",
-            "Maintained premium authority",
-            "Secured a firm next step",
-          ] }],
+          "id": "objections",
+          "title": "Module 3.1 \u00b7 The Objection Reframing Playbook",
+          "body": [
+            "Do not dump your toolbox. An itinerary tailored to the client's core need is a natural close. Use your deep listening skills to match the clients needs.",
+            "Dumping your toolbox means throwing every lodge, itinerary, and activity you know at a client instead of listening to what they actually want. In South African inbound travel, this overwhelms international guests, dilutes your value as an expert, and ultimately kills the sale.",
+            "Matching client needs ensures you sell the right experience, build trust, and secure high-value bookings.",
+            "3 Examples of Needs-Matching vs. Toolbox Dumping",
+            "1. The Multi-Generational Family",
+            "The \u201cToolbox Dump\u201d Mistake: Sending a generic 10-day itinerary that includes a walking safari in Kruger, a packed winelands wine-tasting route, and a shark cage diving excursion in Gansbaai.",
+            "Why it fails: Toddlers can't go on walking safaris, grandparents might struggle with intense boat rides, and kids will get bored at wineries.",
+            "The Needs-Matched Solution: Proposing a malaria-free, family-friendly private reserve in the Eastern Cape (with junior tracker programs) paired with a relaxed stay at a Garden Route resort featuring a private chef and accessible activities.",
+            "2. The Ultra-Luxury Honeymooners",
+            "The \u201cToolbox Dump\u201d Mistake: Listing five different 5-star lodges across Madikwe, Sabi Sands, and Phinda, while bragging about every luxury transfer option, helicopter flip, and spa treatment available in South Africa.",
+            "Why it fails: It forces the clients to do the hard work of choosing. It feels transactional rather than romantic and curated.",
+            "The Needs-Matched Solution: Selecting one ultimate destination, like a specific ultra-luxury lodge in the Sabi Sand that offers private plunge pools and romantic star-bed sleepouts, paired with a boutique hotel in Franschhoek, focusing strictly on privacy and exclusivity.",
+            "3. The Budget-Conscious Adventure Backpackers",
+            "The \u201cToolbox Dump\u201d Mistake: Pitching a standard fly-in safari to a luxury lodge because \u201cit's the best way to see the Big Five,\u201d followed by a list of high-end car rentals and internal commercial flights.",
+            "Why it fails: It completely blows their budget, making them feel misunderstood. They will likely ghost you and book via an automated online platform instead.",
+            "The Needs-Matched Solution: Designing a self-drive or Baz Bus itinerary along the Wild Coast and Oudtshoorn, featuring eco-lodges, sea kayaking, and a self-drive safari in Addo Elephant National Park.",
+            "Why Matching Needs is Critical in Inbound Travel",
+            "When objections come, reframe rather than discount.",
+            "1. The \u201cI need to talk to my partner\u201d delay",
+            "The trap: Saying \u201cNo problem, let me know what they think!\u201d and losing all momentum.",
+            "The reframe: Validate the need for consensus while booking a firm follow-up window with both partners.",
+            "2. Over-researching & over-analysing (TripAdvisor, blogs)",
+            "The trap: Arguing with a forum review or getting defensive.",
+            "The reframe: Pivot from product supplier to trusted, on-the-ground local advisor.",
+            "3. Safety & logistic anxiety (driving on the left, flights with kids)",
+            "The trap: Minimising their fears with a simple \u201cDon't worry, it's fine.\u201d",
+            "The reframe: Share structured, operational safety protocols and private transit alternatives.",
+            "4. The itinerary \u201cshopping around\u201d (price matching)",
+            "The trap: Discounting immediately and cutting into your margin.",
+            "The reframe: Highlight the hidden costs, operational liabilities and your exclusive on-the-ground support."
+          ],
+          "fields": []
         },
         {
-          id: "roleplay3b",
-          kind: "score",
-          title: "Role-play: the Itinerary Review \u00B7 Brief 2",
-          body: "You are presenting a premium, customised R250,000 itinerary. The client loves the plan but thinks their partner will object that Africa is too hot, says they found a similar route online 15% cheaper, and wants to think it over with friends. Score yourself after the role-play.",
-          fields: [{ id: "score", type: "score", criteria: [
-            "Avoided panic discounting",
-            "Uncovered hidden competitor gaps",
-            "Handled the partner objection",
-            "Maintained premium authority",
-            "Secured a firm next step",
-          ] }],
+          "id": "roleplay3",
+          "kind": "score",
+          "title": "Role-play: the Itinerary Review \u00b7 Brief 1",
+          "body": "You presented a premium itinerary against a cheaper online quote, with a partner delay in play. Score yourself after the role-play.",
+          "fields": [
+            {
+              "id": "score",
+              "type": "score",
+              "criteria": [
+                "Avoided panic discounting",
+                "Uncovered hidden competitor gaps",
+                "Handled the partner objection",
+                "Maintained premium authority",
+                "Secured a firm next step"
+              ]
+            }
+          ]
         },
-        { id: "commit3", title: "My commitment this week", fields: [{ id: "commit", label: "This week I will\u2026", type: "long" }] },
-      ],
+        {
+          "id": "roleplay3b",
+          "kind": "score",
+          "title": "Role-play: the Itinerary Review \u00b7 Brief 2",
+          "body": "You are presenting a premium, customised R250,000 itinerary. The client loves the plan but thinks their partner will object that Africa is too hot, says they found a similar route online 15% cheaper, and wants to think it over with friends. Score yourself after the role-play.",
+          "fields": [
+            {
+              "id": "score",
+              "type": "score",
+              "criteria": [
+                "Avoided panic discounting",
+                "Uncovered hidden competitor gaps",
+                "Handled the partner objection",
+                "Maintained premium authority",
+                "Secured a firm next step"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "commit3",
+          "title": "My commitment this week",
+          "fields": [
+            {
+              "id": "commit",
+              "label": "This week I will\u2026",
+              "type": "long"
+            }
+          ]
+        }
+      ]
     },
     {
-      id: "w4",
-      title: "Mental Mastery & Follow-Up",
-      intro: "Selling premium value, resilience and high-conversion follow-up.",
-      sections: [
+      "id": "w4",
+      "title": "Mental Mastery & Follow-Up",
+      "intro": "Selling premium value, resilience and high-conversion follow-up.",
+      "sections": [
         {
-          id: "mirror-check",
-          kind: "choice",
-          title: "The Psychological Mirror",
-          body: "When you quote a room night at R25,000 (about $1,400), what is your honest first thought? In luxury travel a cheap price signals risk, not value. Stop projecting your own budget onto international buyers.",
-          fields: [{ id: "thought", type: "choice", options: [
-            "\u201CThat's incredible value for a high-end luxury safari experience.\u201D",
-            "\u201CThat's insane money, I need a cheaper alternative in case they push back.\u201D",
-          ] }],
-        },
-        {
-          id: "mirror",
-          title: "Rewrite your value",
-          body: "Stop saying I book hotels and safaris. Try: I design secure, end-to-end luxury travel experiences for families who want Southern Africa without any logistical stress.",
-          fields: [
-            { id: "valueprop", label: "Rewrite your value proposition", type: "long" },
-            { id: "beliefs", label: "Write your 3 top limiting beliefs below", type: "long" },
-            { id: "reframe", label: "Now re-frame those limiting beliefs positively", type: "long" },
-            { id: "writeclient", label: "Write to a client who has ONE of your 3 limiting beliefs above and reframe to overcome this client's limiting beliefs", type: "long" },
+          "id": "w4-obj",
+          "title": "By the end of this week",
+          "body": [
+            "Stop projecting your own limiting beliefs onto potential buyers.",
+            "Sell premium access, convenience and peace of mind, not beds and transfers.",
+            "Run a follow-up sequence that adds value instead of nagging."
           ],
+          "fields": []
         },
         {
-          id: "followup",
-          title: "The High-Conversion Follow-Up",
-          body: "Replace just checking in with value. Day 2: a genuine update, a lodge note or a local insight. Day 5: real scarcity, the final rooms over their dates.",
-          fields: [{ id: "day2", label: "Draft your own Day 2 value-add message for a live client", type: "long" }],
-        },
-        {
-          id: "roleplay4",
-          kind: "score",
-          title: "Role-play: the Ultimate Premium Pitch",
-          body: "You are selling a high-margin package to an executive who says they can book the same hotels themselves. Score yourself after the role-play.",
-          fields: [{ id: "score", type: "score", criteria: [
-            "Protected the margin with confidence",
-            "Shifted price to peace of mind",
-            "Avoided clich\u00E9 sales pitches",
-            "Secured firm next steps",
-          ] }],
-        },
-        {
-          id: "actionplan",
-          title: "My 90-Day Action Plan",
-          body: "This is your commitment to yourself. Keep it where you will see it every day.",
-          fields: [
-            { id: "learned", label: "Name 3 things you have learned from this workshop", type: "long" },
-            { id: "implement", label: "Now list how you intend to implement each of those 3 above", type: "long" },
-            { id: "target", label: "What is your monthly target?", type: "short" },
-            { id: "currentavg", label: "Write down your current sales per month average (YTD)", type: "short" },
-            { id: "shortfall", label: "What is your shortfall if any?", type: "short" },
-            { id: "habits", label: "What 3 new activities are you going to implement on a daily basis to increase your sales?", type: "long" },
-            { id: "routine", label: "When a proposal goes out, I will follow up on:", type: "long" },
+          "id": "mirror-check",
+          "kind": "choice",
+          "title": "Module 4.1 \u00b7 The Psychological Mirror",
+          "body": [
+            "Answer honestly. This is where you find out if you're projecting your own financial habits onto your clients.",
+            "When I quote a room night at R25,000 (about $1,400), my immediate internal thought is:"
           ],
+          "fields": [
+            {
+              "id": "thought",
+              "type": "choice",
+              "options": [
+                "\u201cThat's incredible value for a high-end luxury safari experience.\u201d",
+                "\u201cThat's insane money, I need a cheaper alternative in case they push back.\u201d"
+              ]
+            }
+          ]
         },
         {
-          id: "checkin90",
-          title: "My 90-Day Check-In",
-          body: "Come back to this 90 days after the workshop and fill it in honestly.",
-          fields: [
-            { id: "implemented", label: "Name 3 things you have implemented in the last 90 days", type: "long" },
-            { id: "changes", label: "What changes have you seen improved?", type: "long" },
-            { id: "avgsales", label: "My average monthly sales over the last 90 days are?", type: "short" },
+          "id": "mirror",
+          "title": "Module 4.1 \u00b7 Rewrite Your Value",
+          "body": [
+            "Rewrite your value proposition. Stop saying \u201cI book hotels and safaris.\u201d Model: \u201cI design secure, end-to-end luxury travel experiences for families who want Southern Africa without any logistical stress.\u201d"
           ],
+          "fields": [
+            {
+              "id": "valueprop",
+              "label": "Rewrite your value proposition",
+              "type": "long"
+            },
+            {
+              "id": "beliefs",
+              "label": "Write your 3 top limiting beliefs below",
+              "type": "long"
+            },
+            {
+              "id": "reframe",
+              "label": "Now re-frame those limiting beliefs positively",
+              "type": "long"
+            },
+            {
+              "id": "writeclient",
+              "label": "Write to a client who has ONE of your 3 limiting beliefs above and reframe to overcome this client's limiting beliefs",
+              "type": "long",
+              "rows": 6
+            }
+          ]
         },
-      ],
-    },
-  ],
+        {
+          "id": "followup",
+          "title": "Module 4.2 \u00b7 The High-Conversion Follow-Up",
+          "body": [
+            "Replace \u201cJust checking in to see if you've decided\u201d with a sequence that adds value at every touch.",
+            "Day 2 after the proposal: Value add",
+            "Day 5 after the proposal: Urgency & scarcity"
+          ],
+          "fields": [
+            {
+              "id": "day2",
+              "label": "Draft your own Day 2 value-add message for a live client",
+              "type": "long",
+              "rows": 6
+            }
+          ]
+        },
+        {
+          "id": "roleplay4",
+          "kind": "score",
+          "title": "Role-play: the Ultimate Premium Pitch",
+          "body": "You are selling a high-margin package to an executive who says they can book the same hotels themselves. Score yourself after the role-play.",
+          "fields": [
+            {
+              "id": "score",
+              "type": "score",
+              "criteria": [
+                "Protected the margin with confidence",
+                "Shifted price to peace of mind",
+                "Avoided clich\u00e9 sales pitches",
+                "Secured firm next steps"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "actionplan",
+          "title": "My 90-Day Action Plan",
+          "body": [
+            "Information without implementation is just information. This is your commitment to yourself. Fill it in on the final session and keep it where you'll see it every day."
+          ],
+          "fields": [
+            {
+              "id": "learned",
+              "label": "Name 3 things you have learned from this workshop",
+              "type": "long"
+            },
+            {
+              "id": "implement",
+              "label": "Now list how you intend to implement each of those 3 above",
+              "type": "long"
+            },
+            {
+              "id": "target",
+              "label": "What is your monthly target?",
+              "type": "short"
+            },
+            {
+              "id": "currentavg",
+              "label": "Write down your current sales per month average (YTD)",
+              "type": "short"
+            },
+            {
+              "id": "shortfall",
+              "label": "What is your shortfall if any?",
+              "type": "short"
+            },
+            {
+              "id": "habits",
+              "label": "What 3 new activities are you going to implement on a daily basis to increase your sales?",
+              "type": "long"
+            },
+            {
+              "id": "routine",
+              "label": "When a proposal goes out, I will follow up on:",
+              "type": "long"
+            }
+          ]
+        },
+        {
+          "id": "checkin90",
+          "title": "My 90-Day Check-In",
+          "body": [
+            "My accountability 90 day check-in. Come back to this 90 days after the workshop and fill it in honestly."
+          ],
+          "fields": [
+            {
+              "id": "implemented",
+              "label": "Name 3 things you have implemented in the last 90 days",
+              "type": "long"
+            },
+            {
+              "id": "changes",
+              "label": "What changes have you seen improved?",
+              "type": "long"
+            },
+            {
+              "id": "avgsales",
+              "label": "My average monthly sales over the last 90 days are?",
+              "type": "short"
+            }
+          ]
+        }
+      ]
+    }
+  ]
 };
 
 const COURSES = { "inbound-travel": INBOUND_TRAVEL };
@@ -668,17 +1004,95 @@ function ScoreField({ field, value, onChange }) {
   );
 }
 
+function NumberedField({ value, onChange, count }) {
+  let v = {}; try { v = value ? JSON.parse(value) : {}; } catch (e) { v = {}; }
+  const set = (n, val) => onChange(JSON.stringify({ ...v, [n]: val }));
+  return (
+    <div style={{ display: "grid", gap: 6 }}>
+      {Array.from({ length: count }, (_, i) => i + 1).map((n) => (
+        <div key={n} style={{ display: "flex", alignItems: "center", gap: 8 }}>
+          <span style={{ width: 24, textAlign: "right", fontWeight: 600, opacity: 0.6 }}>{n}.</span>
+          <input className="tw-input" style={{ flex: 1, padding: "7px 10px" }} value={v[n] || ""} onChange={(e) => set(n, e.target.value)} />
+        </div>
+      ))}
+    </div>
+  );
+}
+
 function Field({ f, value, onChange }) {
   if (f.type === "calc") return <CalcField value={value} onChange={onChange} />;
   if (f.type === "diary") return <DiaryField value={value} onChange={onChange} />;
   if (f.type === "choice") return <ChoiceField field={f} value={value} onChange={onChange} />;
   if (f.type === "score") return <ScoreField field={f} value={value} onChange={onChange} />;
+  if (f.type === "numbered") return (<><label className="tw-label">{f.label}</label><NumberedField value={value} onChange={onChange} count={f.count || 12} /></>);
   return (
     <>
       <label className="tw-label">{f.label}</label>
       {f.type === "short"
         ? <input className="tw-input" value={value || ""} onChange={(e) => onChange(e.target.value)} placeholder="Type your answer" />
-        : <textarea className="tw-area" value={value || ""} onChange={(e) => onChange(e.target.value)} placeholder="Type your answer" />}
+        : <textarea className="tw-area" rows={f.rows || undefined} style={f.rows ? { minHeight: (f.rows * 1.6) + "em" } : undefined} value={value || ""} onChange={(e) => onChange(e.target.value)} placeholder="Type your answer" />}
+    </>
+  );
+}
+
+/* ============================================================
+   Shared course rendering (used by the participant workbook and
+   by Mark's read/write sandbox). Answers are fully controlled by
+   the parent, so the same screen works saved or unsaved.
+   ============================================================ */
+function CourseContent({ course, answers, onChange, wi, setWi, codeLabel, welcomeName, statusChip }) {
+  const total = countFields(course);
+  const answered = countAnswered(course, answers);
+  const pct = total ? Math.round((answered / total) * 100) : 0;
+  const week = course.weeks[wi];
+  const weekDone = (w) => w.sections.every((s) => s.fields.every((f) => fieldAnswered(f, answers[`${w.id}.${s.id}.${f.id}`])));
+  return (
+    <>
+      <div style={{ marginBottom: 14 }}>
+        <div className="tw-eyebrow">{codeLabel}</div>
+        <h1 className="tw-serif" style={{ fontSize: 27, margin: "6px 0 2px", fontWeight: 600 }}>{course.title}</h1>
+        <div className="tw-row">
+          <span className="tw-muted" style={{ fontSize: 13.5 }}>{welcomeName ? "Welcome, " + welcomeName : ""}</span>
+          <span className="tw-muted" style={{ fontSize: 13 }}>{answered} of {total} answered</span>
+        </div>
+        <div className="tw-bar" style={{ marginTop: 8 }}><i style={{ width: pct + "%" }} /></div>
+      </div>
+      <div className="tw-weeks">
+        {course.weeks.map((w, i) => (
+          <button key={w.id} className={`tw-week ${i === wi ? "on" : ""} ${weekDone(w) ? "done" : ""}`} onClick={() => setWi(i)}>
+            {weekDone(w) && i !== wi ? <Check size={13} style={{ marginRight: 5, verticalAlign: "-2px" }} /> : null}
+            Week {i + 1}
+          </button>
+        ))}
+      </div>
+      <div className="tw-fade" key={week.id}>
+        <div style={{ margin: "14px 2px 16px" }}>
+          <h2 className="tw-serif" style={{ fontSize: 21, margin: "0 0 4px", fontWeight: 600 }}>{week.title}</h2>
+          <p className="tw-muted" style={{ margin: 0, fontSize: 14 }}>{week.intro}</p>
+        </div>
+        {week.sections.map((s) => (
+          <div key={s.id} className="tw-card" style={{ padding: 18, marginBottom: 14 }}>
+            <h3 style={{ margin: "0 0 8px", fontSize: 16.5, fontWeight: 600 }}>{s.title}</h3>
+            {s.body && (Array.isArray(s.body)
+              ? s.body.map((para, bi) => <p key={bi} className="tw-muted" style={{ margin: "0 0 11px", fontSize: 14, lineHeight: 1.6 }}>{para}</p>)
+              : <p className="tw-muted" style={{ margin: "0 0 15px", fontSize: 14, lineHeight: 1.55 }}>{s.body}</p>)}
+            {s.fields.map((f) => (
+              <div key={f.id} style={{ marginBottom: 14 }}>
+                <Field f={f} value={answers[`${week.id}.${s.id}.${f.id}`]} onChange={(val) => onChange(`${week.id}.${s.id}.${f.id}`, val)} />
+              </div>
+            ))}
+          </div>
+        ))}
+        <div className="tw-row" style={{ marginTop: 18 }}>
+          <button className="tw-btn" disabled={wi === 0} onClick={() => setWi(Math.max(0, wi - 1))}>
+            <span style={{ display: "inline-flex", alignItems: "center", gap: 6 }}><ArrowLeft size={16} /> Previous</span>
+          </button>
+          <span className="tw-chip">{statusChip}</span>
+          <button className="tw-btn tw-primary" disabled={wi === course.weeks.length - 1} onClick={() => setWi(Math.min(course.weeks.length - 1, wi + 1))}>
+            <span style={{ display: "inline-flex", alignItems: "center", gap: 6 }}>Next <ChevronRight size={16} /></span>
+          </button>
+        </div>
+      </div>
     </>
   );
 }
@@ -730,49 +1144,16 @@ function Workbook({ session, theme, toggleTheme, onLeave }) {
       <div className="tw-wrap">
         <TopBar theme={theme} toggleTheme={toggleTheme}
           right={<button className="tw-ghost tw-btn" onClick={onLeave}><span style={{ display: "inline-flex", alignItems: "center", gap: 6 }}><LogOut size={15} /> Leave</span></button>} />
-        <div style={{ marginBottom: 14 }}>
-          <div className="tw-eyebrow">{labelForCode(session.code)}</div>
-          <h1 className="tw-serif" style={{ fontSize: 27, margin: "6px 0 2px", fontWeight: 600 }}>{course.title}</h1>
-          <div className="tw-row">
-            <span className="tw-muted" style={{ fontSize: 13.5 }}>Welcome, {session.name.split(" ")[0]}</span>
-            <span className="tw-muted" style={{ fontSize: 13 }}>{answered} of {total} answered</span>
-          </div>
-          <div className="tw-bar" style={{ marginTop: 8 }}><i style={{ width: pct + "%" }} /></div>
-        </div>
-        <div className="tw-weeks">
-          {course.weeks.map((w, i) => (
-            <button key={w.id} className={`tw-week ${i === wi ? "on" : ""} ${weekDone(w) ? "done" : ""}`} onClick={() => setWi(i)}>
-              {weekDone(w) && i !== wi ? <Check size={13} style={{ marginRight: 5, verticalAlign: "-2px" }} /> : null}
-              Week {i + 1}
-            </button>
-          ))}
-        </div>
-        <div className="tw-fade" key={week.id}>
-          <div style={{ margin: "14px 2px 16px" }}>
-            <h2 className="tw-serif" style={{ fontSize: 21, margin: "0 0 4px", fontWeight: 600 }}>{week.title}</h2>
-            <p className="tw-muted" style={{ margin: 0, fontSize: 14 }}>{week.intro}</p>
-          </div>
-          {week.sections.map((s) => (
-            <div key={s.id} className="tw-card" style={{ padding: 18, marginBottom: 14 }}>
-              <h3 style={{ margin: "0 0 8px", fontSize: 16.5, fontWeight: 600 }}>{s.title}</h3>
-              {s.body && <p className="tw-muted" style={{ margin: "0 0 15px", fontSize: 14, lineHeight: 1.55 }}>{s.body}</p>}
-              {s.fields.map((f) => (
-                <div key={f.id} style={{ marginBottom: 14 }}>
-                  <Field f={f} value={answers[`${week.id}.${s.id}.${f.id}`]} onChange={(val) => onChange(`${week.id}.${s.id}.${f.id}`, val)} />
-                </div>
-              ))}
-            </div>
-          ))}
-          <div className="tw-row" style={{ marginTop: 18 }}>
-            <button className="tw-btn" disabled={wi === 0} onClick={() => setWi((n) => Math.max(0, n - 1))}>
-              <span style={{ display: "inline-flex", alignItems: "center", gap: 6 }}><ArrowLeft size={16} /> Previous</span>
-            </button>
-            <span className="tw-chip">{status === "saving" ? "Saving…" : status === "saved" ? <><Check size={13} /> Saved for Mark</> : "Saves as you type"}</span>
-            <button className="tw-btn tw-primary" disabled={wi === course.weeks.length - 1} onClick={() => setWi((n) => Math.min(course.weeks.length - 1, n + 1))}>
-              <span style={{ display: "inline-flex", alignItems: "center", gap: 6 }}>Next <ChevronRight size={16} /></span>
-            </button>
-          </div>
-        </div>
+<CourseContent
+          course={course}
+          answers={answers}
+          onChange={onChange}
+          wi={wi}
+          setWi={setWi}
+          codeLabel={labelForCode(session.code)}
+          welcomeName={session.name.split(" ")[0]}
+          statusChip={status === "saving" ? "Saving…" : status === "saved" ? <><Check size={13} /> Saved for Mark</> : "Saves as you type"}
+        />
       </div>
     </div>
   );
@@ -791,6 +1172,12 @@ function ReadValue({ f, raw }) {
         <br /><b>Current sales {fmtR(r.salesCur)} → after {fmtR(r.salesAft)}</b> ({fmtR(r.extra)}, {fmtPct(r.extraPct)}). {r.fewer} fewer leads/day needed.
       </div>
     );
+  }
+  if (f.type === "numbered") {
+    let v = {}; try { v = JSON.parse(raw); } catch (e) {}
+    const rows = Object.entries(v).filter(([k, val]) => String(val).trim());
+    if (!rows.length) return <div className="tw-muted" style={{ fontSize: 13.5 }}>\u2014</div>;
+    return <div className="tw-muted" style={{ fontSize: 13.5 }}>{rows.map(([k, val]) => <div key={k}>{k}. {val}</div>)}</div>;
   }
   if (f.type === "diary") {
     let v = {}; try { v = JSON.parse(raw); } catch (e) {}
@@ -1085,6 +1472,9 @@ function FacilitatorHome({ session, theme, toggleTheme, onLeave }) {
   const [loading, setLoading] = useState(true);
   const [adding, setAdding] = useState(false);
   const [justAdded, setJustAdded] = useState("");
+  const [view, setView] = useState("cohorts"); // "cohorts" | "material"
+  const [sandboxAnswers, setSandboxAnswers] = useState({});
+  const [sandboxWi, setSandboxWi] = useState(0);
 
   const refresh = useCallback(async () => {
     setLoading(true);
@@ -1115,6 +1505,13 @@ function FacilitatorHome({ session, theme, toggleTheme, onLeave }) {
       <div className="tw-wrap">
         <TopBar theme={theme} toggleTheme={toggleTheme}
           right={<button className="tw-ghost tw-btn" onClick={onLeave}><span style={{ display: "inline-flex", alignItems: "center", gap: 6 }}><LogOut size={15} /> Sign out</span></button>} />
+        <div className="tw-weeks" style={{ marginBottom: 16 }}>
+          <button className={`tw-week ${view === "cohorts" ? "on" : ""}`} onClick={() => setView("cohorts")}>Cohorts</button>
+          <button className={`tw-week ${view === "material" ? "on" : ""}`} onClick={() => setView("material")}>Course material</button>
+        </div>
+
+        {view === "cohorts" ? (
+          <>
         <div className="tw-row" style={{ marginBottom: 14 }}>
           <div>
             <div className="tw-eyebrow">Facilitator</div>
@@ -1150,6 +1547,25 @@ function FacilitatorHome({ session, theme, toggleTheme, onLeave }) {
         <p className="tw-muted" style={{ fontSize: 12, textAlign: "center", marginTop: 12 }}>
           Each new cohort gets the next code automatically. Students never see this screen.
         </p>
+          </>
+        ) : (
+          <>
+            <div className="tw-card" style={{ padding: "11px 14px", marginBottom: 14, borderColor: "var(--accent-strong)" }}>
+              <p style={{ margin: 0, fontWeight: 600, fontSize: 13.5 }}>Course material (sandbox)</p>
+              <p className="tw-muted" style={{ margin: "3px 0 0", fontSize: 12.5 }}>Exactly what participants see. Try anything you like, nothing here is saved.</p>
+            </div>
+            <CourseContent
+              course={COURSES["inbound-travel"]}
+              answers={sandboxAnswers}
+              onChange={(k, val) => setSandboxAnswers((prev) => ({ ...prev, [k]: val }))}
+              wi={sandboxWi}
+              setWi={setSandboxWi}
+              codeLabel="Course material"
+              welcomeName={null}
+              statusChip="Nothing is saved"
+            />
+          </>
+        )}
       </div>
     </div>
   );
