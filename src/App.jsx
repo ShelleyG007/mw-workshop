@@ -605,6 +605,7 @@ import { store } from "./supabaseStore.js";
 const sanitizeCode = (s) => (s || "").trim().toUpperCase().replace(/[^A-Z0-9-]/g, "");
 const recordKey = (code, pid) => `resp:${code}:${pid}`;
 const assessKey = (code, pid) => `assess:${code}:${pid}`;
+const locksKey = (code, pid) => `locks:${code}:${pid}`;
 const courseForCode = (code) => COURSES[(COHORTS[code] && COHORTS[code].course) || "inbound-travel"];
 const labelForCode = (code) => (COHORTS[code] && COHORTS[code].label) || code;
 function facilitatorClassFor(code) {
@@ -1069,11 +1070,12 @@ function Field({ f, value, onChange }) {
    by Mark's read/write sandbox). Answers are fully controlled by
    the parent, so the same screen works saved or unsaved.
    ============================================================ */
-function CourseContent({ course, answers, onChange, wi, setWi, codeLabel, welcomeName, statusChip }) {
+function CourseContent({ course, answers, onChange, wi, setWi, codeLabel, welcomeName, statusChip, locks }) {
   const total = countFields(course);
   const answered = countAnswered(course, answers);
   const pct = total ? Math.round((answered / total) * 100) : 0;
   const week = course.weeks[wi];
+  const lockedWeek = !!(locks && locks[week.id]);
   const weekDone = (w) => w.sections.every((s) => s.fields.every((f) => fieldAnswered(f, answers[`${w.id}.${s.id}.${f.id}`])));
   return (
     <>
@@ -1099,6 +1101,13 @@ function CourseContent({ course, answers, onChange, wi, setWi, codeLabel, welcom
           <h2 className="tw-serif" style={{ fontSize: 21, margin: "0 0 4px", fontWeight: 600 }}>{week.title}</h2>
           <p className="tw-muted" style={{ margin: 0, fontSize: 14 }}>{week.intro}</p>
         </div>
+        {lockedWeek && (
+          <div className="tw-card" style={{ padding: "12px 16px", marginBottom: 14, borderColor: "var(--accent-strong)" }}>
+            <p style={{ margin: 0, fontWeight: 600, fontSize: 13.5 }}>Locked by Mark</p>
+            <p className="tw-muted" style={{ margin: "3px 0 0", fontSize: 12.5 }}>This module is locked. Ask Mark to reopen it if you need to make changes.</p>
+          </div>
+        )}
+        <fieldset disabled={lockedWeek} style={{ border: 0, margin: 0, padding: 0, minWidth: 0, opacity: lockedWeek ? 0.6 : 1 }}>
         {week.sections.map((s) => (
           <div key={s.id} className="tw-card" style={{ padding: 18, marginBottom: 14 }}>
             <h3 style={{ margin: "0 0 8px", fontSize: 16.5, fontWeight: 600 }}>{s.title}</h3>
@@ -1112,6 +1121,7 @@ function CourseContent({ course, answers, onChange, wi, setWi, codeLabel, welcom
             ))}
           </div>
         ))}
+        </fieldset>
         <div className="tw-row" style={{ marginTop: 18 }}>
           <button className="tw-btn" disabled={wi === 0} onClick={() => setWi(Math.max(0, wi - 1))}>
             <span style={{ display: "inline-flex", alignItems: "center", gap: 6 }}><ArrowLeft size={16} /> Previous</span>
@@ -1136,11 +1146,14 @@ function Workbook({ session, theme, toggleTheme, onLeave }) {
   const [status, setStatus] = useState("idle");
   const [loaded, setLoaded] = useState(false);
   const timer = useRef(null);
+  const [locks, setLocks] = useState({});
 
   useEffect(() => {
     (async () => {
       const raw = await store.get(recordKey(session.code, session.pid), true);
       if (raw) { try { const rec = JSON.parse(raw); setAnswers(rec.answers || {}); } catch (e) {} }
+      const lraw = await store.get(locksKey(session.code, session.pid), true);
+      try { setLocks(lraw ? JSON.parse(lraw) : {}); } catch (e) { setLocks({}); }
       setLoaded(true);
     })();
   }, [session.code, session.pid]);
@@ -1179,6 +1192,7 @@ function Workbook({ session, theme, toggleTheme, onLeave }) {
           onChange={onChange}
           wi={wi}
           setWi={setWi}
+          locks={locks}
           codeLabel="Live workshop"
           welcomeName={session.name.split(" ")[0]}
           statusChip={status === "saving" ? "Saving…" : status === "saved" ? <><Check size={13} /> Saved for Mark</> : "Saves as you type"}
@@ -1253,6 +1267,7 @@ function Dashboard({ session, theme, toggleTheme, onLeave }) {
   const [loading, setLoading] = useState(true);
   const [tab, setTab] = useState("answers"); // answers | assess | report
   const [assess, setAssess] = useState({ weeks: {}, scores: {}, overall: "", company: "", manager: "", date: "", recommendation: "" });
+  const [locks, setLocks] = useState({});
   const [aStatus, setAStatus] = useState("idle");
   const aTimer = useRef(null);
 
@@ -1280,6 +1295,8 @@ function Dashboard({ session, theme, toggleTheme, onLeave }) {
       const blank = { weeks: {}, overall: "", company: "", manager: "", date: "", recommendation: "" };
       if (raw) { try { setAssess({ ...blank, ...JSON.parse(raw) }); } catch (e) { setAssess(blank); } }
       else setAssess(blank);
+      const lraw = await store.get(locksKey(session.code, sel.pid), true);
+      try { setLocks(lraw ? JSON.parse(lraw) : {}); } catch (e) { setLocks({}); }
     })();
   }, [sel, session.code]);
 
@@ -1290,6 +1307,13 @@ function Dashboard({ session, theme, toggleTheme, onLeave }) {
     setAStatus("saved");
     setTimeout(() => setAStatus("idle"), 1400);
   }, [sel, session.code]);
+
+  async function toggleLock(wid) {
+    if (!sel) return;
+    const next = { ...locks, [wid]: !locks[wid] };
+    setLocks(next);
+    await store.set(locksKey(session.code, sel.pid), JSON.stringify(next), true);
+  }
 
   function setScore(sid, crit, patch) {
     const cur = (assess.scores && assess.scores[sid]) || {};
@@ -1398,7 +1422,13 @@ function Dashboard({ session, theme, toggleTheme, onLeave }) {
                 </div>
                 {course.weeks.map((w, i) => (
                   <div key={w.id} className="tw-card" style={{ padding: 16, marginBottom: 12 }}>
-                    <label className="tw-label">Module {i + 1}: {w.title}</label>
+                    <div className="tw-row" style={{ marginBottom: 8 }}>
+                      <label className="tw-label" style={{ margin: 0 }}>Module {i + 1}: {w.title}</label>
+                      <label style={{ display: "inline-flex", alignItems: "center", gap: 6, fontSize: 13, cursor: "pointer", whiteSpace: "nowrap" }}>
+                        <input type="checkbox" checked={!!locks[w.id]} onChange={() => toggleLock(w.id)} />
+                        {locks[w.id] ? "Locked" : "Open"}
+                      </label>
+                    </div>
                     <textarea className="tw-area" placeholder="How did they do in this module?" value={assess.weeks[w.id] || ""}
                       onChange={(e) => editAssess({ weeks: { [w.id]: e.target.value } })} />
                   </div>
@@ -1558,6 +1588,8 @@ function Dashboard({ session, theme, toggleTheme, onLeave }) {
    ============================================================ */
 function FacilitatorHome({ session, theme, toggleTheme, onLeave }) {
   const [cohorts, setCohorts] = useState([]);
+  const [archived, setArchived] = useState([]);
+  const [showArchived, setShowArchived] = useState(false);
   const [active, setActive] = useState(session.code || null);
   const [loading, setLoading] = useState(true);
   const [adding, setAdding] = useState(false);
@@ -1569,12 +1601,21 @@ function FacilitatorHome({ session, theme, toggleTheme, onLeave }) {
   const refresh = useCallback(async () => {
     setLoading(true);
     await loadCohorts();
+    const araw = await store.get("archivedCohorts", true);
+    let arch = []; try { arch = araw ? JSON.parse(araw) : []; } catch (e) { arch = []; }
+    setArchived(arch);
     const list = Object.keys(COHORTS).map((code) => ({ code, label: COHORTS[code].label || code }));
-    list.sort((a, b) => cohortNum(a.code) - cohortNum(b.code) || a.code.localeCompare(b.code));
+    list.sort((a, b) => cohortNum(b.code) - cohortNum(a.code) || b.code.localeCompare(a.code));
     setCohorts(list);
     setLoading(false);
   }, []);
   useEffect(() => { refresh(); }, [refresh]);
+
+  async function toggleArchive(code) {
+    const next = archived.includes(code) ? archived.filter((c) => c !== code) : [...archived, code];
+    setArchived(next);
+    await store.set("archivedCohorts", JSON.stringify(next), true);
+  }
 
   async function onAdd() {
     setAdding(true);
@@ -1622,11 +1663,14 @@ function FacilitatorHome({ session, theme, toggleTheme, onLeave }) {
           <div className="tw-card tw-muted" style={{ padding: 22, textAlign: "center" }}>Loading cohorts…</div>
         ) : (
           <div style={{ display: "grid", gap: 10 }}>
-            {cohorts.map((c) => (
-              <button key={c.code} className="tw-listitem" onClick={() => setActive(c.code)}>
-                <div className="tw-row"><span style={{ fontWeight: 600 }}>{c.label}</span><span className="tw-chip">{c.code}</span></div>
-                <div className="tw-muted" style={{ fontSize: 12, marginTop: 8 }}>Tap to view responses</div>
-              </button>
+            {cohorts.filter((c) => !archived.includes(c.code)).map((c) => (
+              <div key={c.code} className="tw-listitem" style={{ display: "flex", alignItems: "center", gap: 10 }}>
+                <div style={{ flex: 1, cursor: "pointer", minWidth: 0 }} onClick={() => setActive(c.code)}>
+                  <div className="tw-row"><span style={{ fontWeight: 600 }}>{c.label}</span><span className="tw-chip">{c.code}</span></div>
+                  <div className="tw-muted" style={{ fontSize: 12, marginTop: 8 }}>Tap to view responses</div>
+                </div>
+                <button className="tw-ghost tw-btn" style={{ fontSize: 12, whiteSpace: "nowrap" }} onClick={() => toggleArchive(c.code)}>Archive</button>
+              </div>
             ))}
           </div>
         )}
@@ -1637,6 +1681,26 @@ function FacilitatorHome({ session, theme, toggleTheme, onLeave }) {
         <p className="tw-muted" style={{ fontSize: 12, textAlign: "center", marginTop: 12 }}>
           Each new cohort gets the next code automatically. Students never see this screen.
         </p>
+        {archived.length > 0 && (
+          <div style={{ marginTop: 20, borderTop: "1px solid var(--line)", paddingTop: 14 }}>
+            <button className="tw-ghost tw-btn" style={{ fontSize: 13 }} onClick={() => setShowArchived((v) => !v)}>
+              {showArchived ? "Hide" : "Show"} archived ({archived.length})
+            </button>
+            {showArchived && (
+              <div style={{ display: "grid", gap: 10, marginTop: 10 }}>
+                {cohorts.filter((c) => archived.includes(c.code)).map((c) => (
+                  <div key={c.code} className="tw-listitem" style={{ display: "flex", alignItems: "center", gap: 10, opacity: 0.7 }}>
+                    <div style={{ flex: 1, cursor: "pointer", minWidth: 0 }} onClick={() => setActive(c.code)}>
+                      <div className="tw-row"><span style={{ fontWeight: 600 }}>{c.label}</span><span className="tw-chip">{c.code}</span></div>
+                      <div className="tw-muted" style={{ fontSize: 12, marginTop: 8 }}>Archived · tap to view</div>
+                    </div>
+                    <button className="tw-ghost tw-btn" style={{ fontSize: 12, whiteSpace: "nowrap" }} onClick={() => toggleArchive(c.code)}>Unarchive</button>
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+        )}
           </>
         ) : (
           <>
