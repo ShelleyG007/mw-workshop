@@ -1106,14 +1106,15 @@ function DiaryField({ value, onChange }) {
 
       <div style={{ display: "flex", gap: 6, flexWrap: "wrap", marginBottom: 12 }}>
         {DIARY_DAYS.map((d) => {
-          const base = { display: "flex", flexDirection: "column", alignItems: "center", textAlign: "center", lineHeight: 1.2 };
+          const base = { display: "flex", flexDirection: "column", alignItems: "center", textAlign: "center", lineHeight: 1.3,
+            padding: "8px 16px", minWidth: 68, borderRadius: 12, border: "1px solid var(--line)", background: "var(--surface)", color: "var(--ink)", font: "inherit", cursor: "pointer" };
           const hi = day === d
             ? { background: "var(--accent-strong)", borderColor: "var(--accent-strong)", color: "#fff" }
             : (dayHasData(d) ? { borderColor: "var(--accent-strong)" } : null);
           return (
-            <button key={d} type="button" className="tw-seg" onClick={() => switchDay(d)} style={{ ...base, ...hi }}>
-              <span style={{ fontWeight: 600 }}>{d}</span>
-              {dates[d] ? <span style={{ fontSize: 10, fontWeight: 400, opacity: 0.85, marginTop: 1 }}>{fmtDate(dates[d])}</span> : null}
+            <button key={d} type="button" onClick={() => switchDay(d)} style={{ ...base, ...hi }}>
+              <span style={{ fontWeight: 600, fontSize: 14 }}>{d}</span>
+              {dates[d] ? <span style={{ fontSize: 11, fontWeight: 400, opacity: 0.85, marginTop: 2 }}>{fmtDate(dates[d])}</span> : null}
             </button>
           );
         })}
@@ -1142,12 +1143,12 @@ function DiaryField({ value, onChange }) {
                         onChange={(ev) => updateEntry(o.ei, { task: ev.target.value })}
                         onBlur={() => { if (!String(e.task || "").trim()) removeEntry(o.ei); }}
                         placeholder="Task" />
-                      <div style={{ display: "flex", gap: 8, alignItems: "flex-start", marginTop: 6 }}>
-                        <select className="tw-input" style={{ padding: "6px 8px", width: "auto" }} value={e.span}
+                      <div style={{ display: "flex", gap: 8, alignItems: "center", justifyContent: "flex-end", marginTop: 6 }}>
+                        <select className="tw-input" style={{ padding: "7px 10px", width: "auto" }} value={e.span}
                           onChange={(ev) => updateEntry(o.ei, { span: Math.min(+ev.target.value, cap) })}>
                           {Array.from({ length: cap }, (_, k) => k + 1).map((n) => <option key={n} value={n}>{durLabel(n)}</option>)}
                         </select>
-                        <button type="button" className="tw-btn" style={{ padding: "6px 14px", marginLeft: "auto" }} onClick={() => removeEntry(o.ei)}>Remove</button>
+                        <button type="button" className="tw-btn" style={{ padding: "7px 14px" }} onClick={() => removeEntry(o.ei)}>Remove</button>
                       </div>
                     </td>
                   </tr>
