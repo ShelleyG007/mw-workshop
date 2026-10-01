@@ -788,6 +788,8 @@ const CSS = `
 .tw-tbl th{ background:var(--accent-strong); color:#fff; text-align:left; padding:8px 10px; font-weight:600; font-size:13px; }
 .tw-tbl td{ border-bottom:1px solid var(--line); padding:7px 10px; vertical-align:middle; }
 .tw-tbl tr:nth-child(even) td{ background:var(--surface2); }
+.tw-tbl.tw-diary tr:nth-child(even) td{ background:transparent; }
+.tw-tbl.tw-diary td{ vertical-align:top; }
 .tw-calcgrid{ display:grid; grid-template-columns:1fr 1fr; gap:12px; }
 .tw-stat{ background:var(--accent-soft); border:1px solid var(--line); border-radius:12px; padding:12px 14px; }
 .tw-stat b{ font-size:22px; color:var(--accent-ink); display:block; }
@@ -1118,32 +1120,34 @@ function DiaryField({ value, onChange }) {
       </div>
 
       <h4 style={{ margin: "0 0 8px", fontSize: 14 }}>{day}{dates[day] ? " \u00b7 " + fmtDate(dates[day]) : ""}</h4>
-      <p className="tw-muted" style={{ fontSize: 12.5, margin: "0 0 10px" }}>Type a task once and set how long it runs. Each task shows as a single timed entry.</p>
+      <p className="tw-muted" style={{ fontSize: 12.5, margin: "0 0 10px" }}>Type a task once and set how long it runs. It fills the half-hour slots it covers.</p>
 
       <div style={{ overflowX: "auto" }}>
-        <table className="tw-tbl">
+        <table className="tw-tbl tw-diary">
           <thead><tr><th style={{ width: 120 }}>Time</th><th>Task</th></tr></thead>
           <tbody>
             {DIARY_SLOTS.map((sl, i) => {
               const o = occ[i];
-              if (o && !o.isStart) return null; // covered by the entry's single row above
+              if (o && !o.isStart) {
+                // a covered half-hour: show only its time label; the task block above spans over it
+                return <tr key={sl}><td style={{ whiteSpace: "nowrap", fontWeight: 600, color: "var(--muted)" }}>{sl}</td></tr>;
+              }
               if (o && o.isStart) {
                 const e = entries[o.ei], cap = maxSpanFrom(e.start, o.ei);
-                const range = slotTime(e.start, "start") + " \u2013 " + slotTime(e.start + e.span - 1, "end");
                 return (
                   <tr key={sl}>
-                    <td style={{ whiteSpace: "nowrap", fontWeight: 600 }}>{range}</td>
-                    <td style={{ padding: 4 }}>
-                      <div style={{ display: "flex", gap: 8, alignItems: "center" }}>
-                        <input className="tw-input" style={{ padding: "7px 10px", flex: 1, minWidth: 0 }} value={e.task}
-                          onChange={(ev) => updateEntry(o.ei, { task: ev.target.value })}
-                          onBlur={() => { if (!String(e.task || "").trim()) removeEntry(o.ei); }}
-                          placeholder="Task" />
-                        <select className="tw-input" style={{ padding: "5px 8px", width: "auto", flex: "0 0 auto" }} value={e.span}
+                    <td style={{ whiteSpace: "nowrap", fontWeight: 600 }}>{sl}</td>
+                    <td rowSpan={e.span} style={{ padding: 6 }}>
+                      <input className="tw-input" style={{ padding: "7px 10px" }} value={e.task}
+                        onChange={(ev) => updateEntry(o.ei, { task: ev.target.value })}
+                        onBlur={() => { if (!String(e.task || "").trim()) removeEntry(o.ei); }}
+                        placeholder="Task" />
+                      <div style={{ display: "flex", gap: 8, alignItems: "flex-start", marginTop: 6 }}>
+                        <select className="tw-input" style={{ padding: "6px 8px", width: "auto" }} value={e.span}
                           onChange={(ev) => updateEntry(o.ei, { span: Math.min(+ev.target.value, cap) })}>
                           {Array.from({ length: cap }, (_, k) => k + 1).map((n) => <option key={n} value={n}>{durLabel(n)}</option>)}
                         </select>
-                        <button type="button" className="tw-seg" style={{ padding: "6px 12px", flex: "0 0 auto" }} onClick={() => removeEntry(o.ei)}>Remove</button>
+                        <button type="button" className="tw-btn" style={{ padding: "6px 14px", marginLeft: "auto" }} onClick={() => removeEntry(o.ei)}>Remove</button>
                       </div>
                     </td>
                   </tr>
