@@ -1132,18 +1132,18 @@ function DiaryField({ value, onChange }) {
                 const range = slotTime(e.start, "start") + " \u2013 " + slotTime(e.start + e.span - 1, "end");
                 return (
                   <tr key={sl}>
-                    <td style={{ whiteSpace: "nowrap", fontWeight: 600, verticalAlign: "top", paddingTop: 13 }}>{range}</td>
-                    <td style={{ padding: 6 }}>
-                      <input className="tw-input" style={{ padding: "7px 10px" }} value={e.task}
-                        onChange={(ev) => updateEntry(o.ei, { task: ev.target.value })}
-                        onBlur={() => { if (!String(e.task || "").trim()) removeEntry(o.ei); }}
-                        placeholder="Task" />
-                      <div style={{ display: "flex", gap: 8, alignItems: "center", marginTop: 6 }}>
-                        <select className="tw-input" style={{ padding: "5px 8px", width: "auto" }} value={e.span}
+                    <td style={{ whiteSpace: "nowrap", fontWeight: 600 }}>{range}</td>
+                    <td style={{ padding: 4 }}>
+                      <div style={{ display: "flex", gap: 8, alignItems: "center" }}>
+                        <input className="tw-input" style={{ padding: "7px 10px", flex: 1, minWidth: 0 }} value={e.task}
+                          onChange={(ev) => updateEntry(o.ei, { task: ev.target.value })}
+                          onBlur={() => { if (!String(e.task || "").trim()) removeEntry(o.ei); }}
+                          placeholder="Task" />
+                        <select className="tw-input" style={{ padding: "5px 8px", width: "auto", flex: "0 0 auto" }} value={e.span}
                           onChange={(ev) => updateEntry(o.ei, { span: Math.min(+ev.target.value, cap) })}>
                           {Array.from({ length: cap }, (_, k) => k + 1).map((n) => <option key={n} value={n}>{durLabel(n)}</option>)}
                         </select>
-                        <button type="button" className="tw-seg" style={{ marginLeft: "auto", padding: "4px 9px" }} onClick={() => removeEntry(o.ei)}>Remove</button>
+                        <button type="button" className="tw-seg" style={{ padding: "6px 12px", flex: "0 0 auto" }} onClick={() => removeEntry(o.ei)}>Remove</button>
                       </div>
                     </td>
                   </tr>
