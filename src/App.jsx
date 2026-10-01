@@ -27,10 +27,22 @@ const INBOUND_TRAVEL = {
       "intro": "Goal setting, diary discipline and the math of success.",
       "sections": [
         {
+          "id": "w1-goal",
+          "title": "Before we begin",
+          "fields": [
+            {
+              "id": "goal",
+              "label": "What is the 1 goal you would like to achieve in this workshop?",
+              "type": "long",
+              "rows": 5
+            }
+          ]
+        },
+        {
           "id": "w1-obj",
           "title": "By the end of this week",
           "body": [
-            "Calculate our closing ratios, call to quote, quote to sale.",
+            "Calculate our closing ratios, calls to quote, quote to deal.",
             "Structure your day, hour by hour therefore increased productivity & sales.",
             "See procrastination for what it is: a gap in your plan, not a flaw in you.",
             "Effective prioritising."
@@ -119,14 +131,26 @@ const INBOUND_TRAVEL = {
           ]
         },
         {
+          "id": "commit-takeaways",
+          "title": "Information without implementation is just information",
+          "fields": [
+            {
+              "id": "takeaways",
+              "label": "Name 3 things you are taking with you from today?",
+              "type": "long",
+              "rows": 5
+            }
+          ]
+        },
+        {
           "id": "commit1",
           "title": "My commitment this week",
-          "body": "Information without implementation is just information. Write the one action you will take this week, then report back next session.",
           "fields": [
             {
               "id": "commit",
-              "label": "This week I will\u2026",
-              "type": "long"
+              "label": "How will I implement the above 3 things I learned into the next 5 working days?",
+              "type": "long",
+              "rows": 5
             }
           ]
         }
@@ -684,7 +708,14 @@ function fieldAnswered(f, raw) {
     try { const v = JSON.parse(raw); return !!(v.target && v.avg); } catch (e) { return false; }
   }
   if (f.type === "diary") {
-    try { const v = JSON.parse(raw); return Object.values(v).some((x) => String(x).trim()); } catch (e) { return false; }
+    try {
+      const v = JSON.parse(raw);
+      return Object.entries(v).some(([k, d]) => {
+        if (k === "startDate" || !d || typeof d !== "object") return false;
+        if (Array.isArray(d.entries)) return d.entries.some((e) => e && String(e.task || "").trim()) || !!(d.notes && String(d.notes).trim());
+        return Object.values(d).some((x) => String(x).trim()); // old slot-keyed format
+      });
+    } catch (e) { return false; }
   }
   if (f.type === "score") {
     try { const v = JSON.parse(raw); return Object.values(v).some((x) => x && x.score); } catch (e) { return false; }
@@ -951,43 +982,198 @@ function CalcField({ value, onChange }) {
 
 const DIARY_SLOTS = ["07h00 \u2013 07h30","07h30 \u2013 08h00","08h00 \u2013 08h30","08h30 \u2013 09h00","09h00 \u2013 09h30","09h30 \u2013 10h00","10h00 \u2013 10h30","10h30 \u2013 11h00","11h00 \u2013 11h30","11h30 \u2013 12h00","12h00 \u2013 12h30","12h30 \u2013 13h00","13h00 \u2013 13h30","13h30 \u2013 14h00","14h00 \u2013 14h30","14h30 \u2013 15h00","15h00 \u2013 15h30","15h30 \u2013 16h00","16h00 \u2013 16h30","16h30 \u2013 17h00","17h00 \u2013 17h30","17h30 \u2013 18h00"];
 const DIARY_DAYS = ["Day 1", "Day 2", "Day 3", "Day 4", "Day 5"];
+/* ---- diary helpers ---- */
+// Start/end label for slot index i. Grid starts at 07h00, 30 min per slot.
+function slotTime(i, which) {
+  const mins = 7 * 60 + i * 30 + (which === "end" ? 30 : 0);
+  const h = Math.floor(mins / 60), m = mins % 60;
+  return String(h).padStart(2, "0") + "h" + String(m).padStart(2, "0");
+}
+// Duration label for a span of n half-hour slots.
+function durLabel(n) {
+  const mins = n * 30, h = Math.floor(mins / 60), m = mins % 60, parts = [];
+  if (h) parts.push(h + " hr");
+  if (m) parts.push(m + " min");
+  return parts.join(" ");
+}
+function parseISO(s) {
+  if (!s) return null;
+  const p = String(s).split("-").map(Number);
+  if (p.length !== 3 || p.some((n) => !n)) return null;
+  return new Date(p[0], p[1] - 1, p[2], 12, 0, 0);
+}
+function fmtDate(dt) {
+  return dt.toLocaleDateString("en-ZA", { weekday: "short", day: "numeric", month: "short" });
+}
+// Day 1 = picked date; each later day is the next working day (weekends skipped).
+function diaryDates(startISO) {
+  const start = parseISO(startISO);
+  if (!start) return {};
+  const out = {}; const cur = new Date(start);
+  DIARY_DAYS.forEach((d, i) => {
+    if (i > 0) { do { cur.setDate(cur.getDate() + 1); } while (cur.getDay() === 0 || cur.getDay() === 6); }
+    out[d] = new Date(cur);
+  });
+  return out;
+}
+// Return a day as { entries:[{start,span,task}], notes }, migrating the old slot-keyed format.
+function normalizeDay(d) {
+  if (!d || typeof d !== "object") return { entries: [], notes: "" };
+  if (Array.isArray(d.entries)) return { entries: d.entries, notes: d.notes || "" };
+  const entries = [];
+  DIARY_SLOTS.forEach((sl, i) => { const t = d[sl]; if (t && String(t).trim()) entries.push({ start: i, span: 1, task: String(t) }); });
+  return { entries, notes: d.notes || "" };
+}
+
 function DiaryField({ value, onChange }) {
   let v = {};
   try { v = value ? JSON.parse(value) : {}; } catch (e) { v = {}; }
   const [day, setDay] = useState("Day 1");
-  const dayData = (v[day] && typeof v[day] === "object") ? v[day] : {};
-  const set = (slot, val) => onChange(JSON.stringify({ ...v, [day]: { ...dayData, [slot]: val } }));
-  const dayHasData = (d) => v[d] && typeof v[d] === "object" && Object.values(v[d]).some((x) => String(x).trim());
+  const [draft, setDraft] = useState({ slot: null, text: "" });
+  const dates = diaryDates(v.startDate);
+  const dayData = normalizeDay(v[day]);
+  const entries = dayData.entries;
+
+  const writeDay = (nextDay) => onChange(JSON.stringify({ ...v, [day]: nextDay }));
+  const setNotes = (val) => writeDay({ ...dayData, notes: val });
+  const dayHasData = (d) => {
+    const nd = normalizeDay(v[d]);
+    return nd.entries.some((e) => String(e.task || "").trim()) || !!(nd.notes && nd.notes.trim());
+  };
+
+  // occupancy: slot index -> { ei, isStart }
+  const occ = {};
+  entries.forEach((e, ei) => { for (let k = 0; k < e.span; k++) occ[e.start + k] = { ei, isStart: k === 0 }; });
+  // how far an entry (or a new entry at index) can extend before hitting another entry or day end
+  const maxSpanFrom = (startIdx, selfEi) => {
+    let m = 1;
+    for (let k = startIdx + 1; k < DIARY_SLOTS.length; k++) {
+      const o = occ[k];
+      if (o && o.ei !== selfEi) break;
+      m++;
+    }
+    return m;
+  };
+  const addEntry = (startIdx, task) => writeDay({ ...dayData, entries: [...entries, { start: startIdx, span: 1, task }] });
+  const updateEntry = (ei, patch) => writeDay({ ...dayData, entries: entries.map((e, i) => i === ei ? { ...e, ...patch } : e) });
+  const removeEntry = (ei) => writeDay({ ...dayData, entries: entries.filter((_, i) => i !== ei) });
+  const switchDay = (d) => { setDraft({ slot: null, text: "" }); setDay(d); };
+
+  /* ---- export ---- */
+  const download = (name, text, mime) => {
+    const blob = new Blob([text], { type: mime });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url; a.download = name; document.body.appendChild(a); a.click();
+    document.body.removeChild(a); URL.revokeObjectURL(url);
+  };
+  const sortedEntries = (nd) => [...nd.entries].filter((e) => String(e.task || "").trim()).sort((a, b) => a.start - b.start);
+  const exportTxt = () => {
+    let out = "My 5-Day Diary\n\n";
+    DIARY_DAYS.forEach((d) => {
+      const nd = normalizeDay(v[d]);
+      out += d + (dates[d] ? " \u2014 " + fmtDate(dates[d]) : "") + "\n";
+      const se = sortedEntries(nd);
+      if (!se.length && !(nd.notes && nd.notes.trim())) out += "  (nothing planned)\n";
+      se.forEach((e) => { out += "  " + slotTime(e.start, "start") + " \u2013 " + slotTime(e.start + e.span - 1, "end") + "  " + e.task + "\n"; });
+      if (nd.notes && nd.notes.trim()) out += "  Notes: " + nd.notes.trim() + "\n";
+      out += "\n";
+    });
+    out += "Now transfer this to your own diary.\n";
+    download("my-5-day-diary.txt", out, "text/plain;charset=utf-8");
+  };
+  const csvCell = (s) => '"' + String(s == null ? "" : s).replace(/"/g, '""') + '"';
+  const exportCsv = () => {
+    const lines = [["Day", "Date", "Start", "End", "Task"].map(csvCell).join(",")];
+    DIARY_DAYS.forEach((d) => {
+      const nd = normalizeDay(v[d]);
+      const dateStr = dates[d] ? fmtDate(dates[d]) : "";
+      sortedEntries(nd).forEach((e) => lines.push([d, dateStr, slotTime(e.start, "start"), slotTime(e.start + e.span - 1, "end"), e.task].map(csvCell).join(",")));
+      if (nd.notes && nd.notes.trim()) lines.push([d, dateStr, "", "", "Notes: " + nd.notes.trim()].map(csvCell).join(","));
+    });
+    download("my-5-day-diary.csv", "\uFEFF" + lines.join("\r\n"), "text/csv;charset=utf-8");
+  };
+
   return (
     <div>
+      <div style={{ marginBottom: 12 }}>
+        <label className="tw-label">Day 1 date</label>
+        <input type="date" className="tw-input" style={{ maxWidth: 210 }} value={v.startDate || ""}
+          onChange={(e) => onChange(JSON.stringify({ ...v, startDate: e.target.value }))} />
+      </div>
+
       <div style={{ display: "flex", gap: 6, flexWrap: "wrap", marginBottom: 12 }}>
         {DIARY_DAYS.map((d) => (
-          <button key={d} type="button" className="tw-seg" onClick={() => setDay(d)}
+          <button key={d} type="button" className="tw-seg" onClick={() => switchDay(d)}
             style={day === d
-              ? { background: "var(--accent-strong)", borderColor: "var(--accent-strong)", color: "#fff" }
-              : (dayHasData(d) ? { borderColor: "var(--accent-strong)" } : undefined)}>
+              ? { background: "var(--accent-strong)", borderColor: "var(--accent-strong)", color: "#fff", textAlign: "center" }
+              : (dayHasData(d) ? { borderColor: "var(--accent-strong)", textAlign: "center" } : { textAlign: "center" })}>
             {d}
+            {dates[d] ? <span style={{ display: "block", fontSize: 10, fontWeight: 400, opacity: 0.85 }}>{fmtDate(dates[d])}</span> : null}
           </button>
         ))}
       </div>
+
+      <h4 style={{ margin: "0 0 8px", fontSize: 14 }}>{day}{dates[day] ? " \u00b7 " + fmtDate(dates[day]) : ""}</h4>
+      <p className="tw-muted" style={{ fontSize: 12.5, margin: "0 0 10px" }}>Type a task once, then set how long it runs. It will show as one block across those times.</p>
+
       <div style={{ overflowX: "auto" }}>
         <table className="tw-tbl">
-          <thead><tr><th style={{ width: 130 }}>Time</th><th>Task</th></tr></thead>
+          <thead><tr><th style={{ width: 120 }}>Time</th><th>Task</th></tr></thead>
           <tbody>
-            {DIARY_SLOTS.map((sl) => (
-              <tr key={sl}>
-                <td style={{ whiteSpace: "nowrap", fontWeight: 600 }}>{sl}</td>
-                <td style={{ padding: 4 }}>
-                  <input className="tw-input" style={{ padding: "7px 10px" }} value={dayData[sl] || ""} onChange={(e) => set(sl, e.target.value)} placeholder="…" />
-                </td>
-              </tr>
-            ))}
+            {DIARY_SLOTS.map((sl, i) => {
+              const o = occ[i];
+              if (o && !o.isStart) {
+                return <tr key={sl}><td style={{ whiteSpace: "nowrap", fontWeight: 600, color: "var(--muted)" }}>{sl}</td></tr>;
+              }
+              if (o && o.isStart) {
+                const e = entries[o.ei], cap = maxSpanFrom(e.start, o.ei);
+                return (
+                  <tr key={sl}>
+                    <td style={{ whiteSpace: "nowrap", fontWeight: 600 }}>{sl}</td>
+                    <td rowSpan={e.span} style={{ padding: 6, verticalAlign: "top", background: "var(--accent-soft, rgba(0,0,0,0.02))" }}>
+                      <input className="tw-input" style={{ padding: "7px 10px" }} value={e.task}
+                        onChange={(ev) => updateEntry(o.ei, { task: ev.target.value })}
+                        onBlur={() => { if (!String(e.task || "").trim()) removeEntry(o.ei); }}
+                        placeholder="Task" />
+                      <div style={{ display: "flex", gap: 8, alignItems: "center", marginTop: 6, flexWrap: "wrap" }}>
+                        <select className="tw-input" style={{ padding: "5px 8px", width: "auto" }} value={e.span}
+                          onChange={(ev) => updateEntry(o.ei, { span: Math.min(+ev.target.value, cap) })}>
+                          {Array.from({ length: cap }, (_, k) => k + 1).map((n) => <option key={n} value={n}>{durLabel(n)}</option>)}
+                        </select>
+                        <span className="tw-muted" style={{ fontSize: 12 }}>{slotTime(e.start, "start") + " \u2013 " + slotTime(e.start + e.span - 1, "end")}</span>
+                        <button type="button" className="tw-seg" style={{ marginLeft: "auto", padding: "4px 9px" }} onClick={() => removeEntry(o.ei)}>Remove</button>
+                      </div>
+                    </td>
+                  </tr>
+                );
+              }
+              return (
+                <tr key={sl}>
+                  <td style={{ whiteSpace: "nowrap", fontWeight: 600 }}>{sl}</td>
+                  <td style={{ padding: 4 }}>
+                    <input className="tw-input" style={{ padding: "7px 10px" }}
+                      value={draft.slot === i ? draft.text : ""}
+                      onChange={(ev) => setDraft({ slot: i, text: ev.target.value })}
+                      onBlur={() => { if (draft.slot === i && draft.text.trim()) addEntry(i, draft.text.trim()); setDraft({ slot: null, text: "" }); }}
+                      placeholder="…" />
+                  </td>
+                </tr>
+              );
+            })}
             <tr>
               <td style={{ fontWeight: 600 }}>Notes</td>
-              <td style={{ padding: 4 }}><input className="tw-input" style={{ padding: "7px 10px" }} value={dayData["notes"] || ""} onChange={(e) => set("notes", e.target.value)} placeholder="…" /></td>
+              <td style={{ padding: 4 }}><input className="tw-input" style={{ padding: "7px 10px" }} value={dayData.notes || ""} onChange={(e) => setNotes(e.target.value)} placeholder="…" /></td>
             </tr>
           </tbody>
         </table>
+      </div>
+
+      <p className="tw-muted" style={{ fontSize: 13, margin: "12px 0 0", fontWeight: 600 }}>Now transfer this to your own diary.</p>
+
+      <div style={{ display: "flex", gap: 8, flexWrap: "wrap", marginTop: 12 }}>
+        <button type="button" className="tw-btn" onClick={exportTxt}>Export as text (.txt)</button>
+        <button type="button" className="tw-btn" onClick={exportCsv}>Export for Excel (.csv)</button>
       </div>
     </div>
   );
@@ -1223,20 +1409,21 @@ function ReadValue({ f, raw }) {
   }
   if (f.type === "diary") {
     let v = {}; try { v = JSON.parse(raw); } catch (e) {}
+    const dates = diaryDates(v.startDate);
     const days = [];
-    Object.entries(v).forEach(([day, data]) => {
-      if (data && typeof data === "object") {
-        const filled = Object.entries(data).filter(([k, val]) => String(val).trim());
-        if (filled.length) days.push([day, filled]);
-      }
+    DIARY_DAYS.forEach((day) => {
+      const nd = normalizeDay(v[day]);
+      const es = nd.entries.filter((e) => String(e.task || "").trim()).sort((a, b) => a.start - b.start);
+      if (es.length || (nd.notes && nd.notes.trim())) days.push([day, es, nd.notes, dates[day]]);
     });
     if (!days.length) return <div className="tw-muted" style={{ fontSize: 13.5 }}>—</div>;
     return (
       <div className="tw-muted" style={{ fontSize: 13.5 }}>
-        {days.map(([day, filled]) => (
+        {days.map(([day, es, notes, dt]) => (
           <div key={day} style={{ marginBottom: 6 }}>
-            <b>{day}</b>
-            {filled.map(([k, val]) => <div key={k}>{k === "notes" ? "Notes" : k}: {val}</div>)}
+            <b>{day}{dt ? " \u00b7 " + fmtDate(dt) : ""}</b>
+            {es.map((e, i) => <div key={i}>{slotTime(e.start, "start") + " \u2013 " + slotTime(e.start + e.span - 1, "end") + ": " + e.task}</div>)}
+            {notes && notes.trim() ? <div>Notes: {notes.trim()}</div> : null}
           </div>
         ))}
       </div>
