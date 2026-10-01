@@ -30,7 +30,7 @@ const INBOUND_TRAVEL = {
           "id": "w1-obj",
           "title": "By the end of this week",
           "body": [
-            "Calculate our closing ratios, lead to quote, quote to sale.",
+            "Calculate our closing ratios, call to quote, quote to sale.",
             "Structure your day, hour by hour therefore increased productivity & sales.",
             "See procrastination for what it is: a gap in your plan, not a flaw in you.",
             "Effective prioritising."
@@ -653,24 +653,27 @@ function fmtR(n) {
 }
 function fmtPct(x) { return Math.round(safe(x) * 100) + "%"; }
 
-/* Full Targets & Ratios computation, mirroring the spreadsheet. */
+/* Pipeline math from the participant's own current numbers.
+   Storage keys kept from the old version so answers already entered still load:
+   leadsDay = calls per day now, ltq = call-to-quote, qtc = quote-to-deal. */
 function computeCalc(v) {
-  const target = +v.target || 0, avg = +v.avg || 0, leadsDay = +v.leadsDay || 0;
-  const ltq = +v.ltq || 0, qtc = +v.qtc || 0, days = +v.days || 0;
-  const aLtq = +v.aLtq || ltq, aQtc = +v.aQtc || qtc;
-  const leadsMonth = rnd(leadsDay * days);
-  const quotesCur = rup(leadsMonth * ltq), quotesAft = rup(leadsMonth * aLtq);
-  const bookCur = rup(quotesCur * qtc), bookAft = rup(quotesAft * aQtc);
-  const salesCur = bookCur * avg, salesAft = bookAft * avg;
-  const extra = salesAft - salesCur;
-  const extraPct = salesCur ? (salesAft - salesCur) / salesCur : 0;
-  const bookNeeded = avg ? rup(target / avg) : 0;
-  const qNeedCur = qtc ? rup(bookNeeded / qtc) : 0, qNeedAft = aQtc ? rup(bookNeeded / aQtc) : 0;
-  const lNeedCur = ltq ? rup(qNeedCur / ltq) : 0, lNeedAft = aLtq ? rup(qNeedAft / aLtq) : 0;
-  const dailyCur = days ? rup(lNeedCur / days) : 0, dailyAft = days ? rup(lNeedAft / days) : 0;
+  const target = +v.target || 0, avg = +v.avg || 0, callsDay = +v.leadsDay || 0;
+  const ctq = +v.ltq || 0, qtd = +v.qtc || 0, days = +v.days || 0;
+  // Deals needed each month to hit the target
+  const dealsNeeded = avg ? rup(target / avg) : 0;
+  // Where you are now: a straight estimate off current calls and ratios
+  const callsMonth = rnd(callsDay * days);
+  const quotes = callsMonth * ctq;
+  const deals = quotes * qtd;
+  const salesCur = deals * avg;
+  // Calls per day needed to hit target (round up at each step so they aim high enough)
+  const quotesNeeded = qtd ? rup(dealsNeeded / qtd) : 0;
+  const callsNeeded = ctq ? rup(quotesNeeded / ctq) : 0;
+  const dailyCallTarget = days ? rup(callsNeeded / days) : 0;
+  const callGap = dailyCallTarget - callsDay;
   return {
-    leadsMonth, quotesCur, quotesAft, bookCur, bookAft, salesCur, salesAft, extra, extraPct,
-    bookNeeded, dailyCur, dailyAft, fewer: dailyCur - dailyAft,
+    dealsNeeded, callsMonth, quotes, deals, salesCur,
+    dailyCallTarget, callsDay, callGap,
   };
 }
 
@@ -905,46 +908,42 @@ function CalcField({ value, onChange }) {
     <div>
       <div className="tw-calcgrid">
         <div><label className="tw-label">Monthly sales / commission target (R)</label>{numInput("target", "e.g. 60000")}</div>
-        <div><label className="tw-label">Average booking value (R)</label>{numInput("avg", "e.g. 15000")}</div>
-        <div><label className="tw-label">Leads per day now</label>{numInput("leadsDay", "e.g. 3")}</div>
+        <div><label className="tw-label">Average deal value (R)</label>{numInput("avg", "e.g. 15000")}</div>
         <div><label className="tw-label">Working days per month</label>{numInput("days", "e.g. 20")}</div>
-        <div><label className="tw-label">Current lead-to-quote ratio</label>{ratioSel("ltq")}</div>
-        <div><label className="tw-label">Current quote-to-close ratio</label>{ratioSel("qtc")}</div>
-        <div><label className="tw-label">Target lead-to-quote (after workshop)</label>{ratioSel("aLtq")}</div>
-        <div><label className="tw-label">Target quote-to-close (after workshop)</label>{ratioSel("aQtc")}</div>
+        <div><label className="tw-label">How many calls do you currently make per day?</label>{numInput("leadsDay", "e.g. 3")}</div>
+        <div><label className="tw-label">Call to quote ratio</label>{ratioSel("ltq")}</div>
+        <div><label className="tw-label">Quote to deal ratio</label>{ratioSel("qtc")}</div>
       </div>
 
-      <h4 style={{ margin: "18px 0 8px", fontSize: 14 }}>Your sales: current vs after workshop</h4>
-      <p className="tw-muted" style={{ fontSize: 12.5, margin: "0 0 10px" }}>Lead volume stays the same. This is what sharper ratios are worth.</p>
-      <div style={{ overflowX: "auto" }}>
-        <table className="tw-tbl">
-          <thead><tr><th>Per month</th><th>Current</th><th>After</th></tr></thead>
-          <tbody>
-            <tr><td>Leads</td><td>{r.leadsMonth}</td><td>{r.leadsMonth}</td></tr>
-            <tr><td>Quotes</td><td>{r.quotesCur}</td><td>{r.quotesAft}</td></tr>
-            <tr><td>Bookings</td><td>{r.bookCur}</td><td>{r.bookAft}</td></tr>
-            <tr><td>Monthly sales</td><td>{fmtR(r.salesCur)}</td><td>{fmtR(r.salesAft)}</td></tr>
-          </tbody>
-        </table>
-      </div>
-      <div className="tw-calcgrid" style={{ marginTop: 12 }}>
-        <div className="tw-stat"><b>{fmtR(r.extra)}</b><span className="tw-muted" style={{ fontSize: 12.5 }}>Extra sales per month</span></div>
-        <div className="tw-stat"><b>{fmtPct(r.extraPct)}</b><span className="tw-muted" style={{ fontSize: 12.5 }}>Uplift on current sales</span></div>
+      <div className="tw-stat" style={{ marginTop: 14 }}>
+        <b>{r.dealsNeeded} deals / month</b>
+        <span className="tw-muted" style={{ fontSize: 12.5 }}>Deals needed per month to hit {fmtR(+v.target || 0)} at {fmtR(+v.avg || 0)} per deal</span>
       </div>
 
-      <h4 style={{ margin: "18px 0 8px", fontSize: 14 }}>What you need to hit target</h4>
+      <h4 style={{ margin: "18px 0 8px", fontSize: 14 }}>Where you are now</h4>
+      <p className="tw-muted" style={{ fontSize: 12.5, margin: "0 0 10px" }}>An estimate from your current calls and ratios.</p>
       <div style={{ overflowX: "auto" }}>
         <table className="tw-tbl">
-          <thead><tr><th></th><th>Current</th><th>After</th></tr></thead>
+          <thead><tr><th>Per month</th><th></th></tr></thead>
           <tbody>
-            <tr><td>Bookings needed / month</td><td>{r.bookNeeded}</td><td>{r.bookNeeded}</td></tr>
-            <tr><td>Daily lead target</td><td>{r.dailyCur}</td><td>{r.dailyAft}</td></tr>
+            <tr><td>Calls</td><td>{r.callsMonth}</td></tr>
+            <tr><td>Quotes</td><td>{rnd(r.quotes)}</td></tr>
+            <tr><td>Deals</td><td>{rnd(r.deals)}</td></tr>
           </tbody>
         </table>
       </div>
       <div className="tw-stat" style={{ marginTop: 12 }}>
-        <b>{r.fewer} fewer leads a day</b>
-        <span className="tw-muted" style={{ fontSize: 12.5 }}>What the workshop saves you in daily hustle to hit the same target</span>
+        <b>{fmtR(r.salesCur)}</b>
+        <span className="tw-muted" style={{ fontSize: 12.5 }}>Your current monthly sales (estimate)</span>
+      </div>
+
+      <h4 style={{ margin: "18px 0 8px", fontSize: 14 }}>What you need to hit target</h4>
+      <div className="tw-calcgrid">
+        <div className="tw-stat"><b>{r.dailyCallTarget} calls / day</b><span className="tw-muted" style={{ fontSize: 12.5 }}>Daily call target to hit {fmtR(+v.target || 0)}</span></div>
+        <div className="tw-stat">
+          <b>{r.callGap > 0 ? "+" + r.callGap + " calls / day" : "On track"}</b>
+          <span className="tw-muted" style={{ fontSize: 12.5 }}>{r.callGap > 0 ? "More than the " + (r.callsDay || 0) + " a day you make now" : "Your current calls already cover the target"}</span>
+        </div>
       </div>
     </div>
   );
@@ -1211,8 +1210,8 @@ function ReadValue({ f, raw }) {
     const r = computeCalc(v);
     return (
       <div className="tw-muted" style={{ fontSize: 13.5, lineHeight: 1.6 }}>
-        Target {fmtR(v.target)} · avg booking {fmtR(v.avg)} · {v.leadsDay || 0} leads/day · ratios {fmtPct(+v.ltq || 0)}→{fmtPct(+v.aLtq || +v.ltq || 0)} and {fmtPct(+v.qtc || 0)}→{fmtPct(+v.aQtc || +v.qtc || 0)}.
-        <br /><b>Current sales {fmtR(r.salesCur)} → after {fmtR(r.salesAft)}</b> ({fmtR(r.extra)}, {fmtPct(r.extraPct)}). {r.fewer} fewer leads/day needed.
+        Target {fmtR(v.target)} · avg deal {fmtR(v.avg)} · {v.leadsDay || 0} calls/day · ratios {fmtPct(+v.ltq || 0)} call-to-quote and {fmtPct(+v.qtc || 0)} quote-to-deal.
+        <br /><b>Current sales {fmtR(r.salesCur)} · needs {r.dailyCallTarget} calls/day to hit target</b> ({r.dealsNeeded} deals/month).
       </div>
     );
   }
