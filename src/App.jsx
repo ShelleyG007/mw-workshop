@@ -1103,19 +1103,22 @@ function DiaryField({ value, onChange }) {
       </div>
 
       <div style={{ display: "flex", gap: 6, flexWrap: "wrap", marginBottom: 12 }}>
-        {DIARY_DAYS.map((d) => (
-          <button key={d} type="button" className="tw-seg" onClick={() => switchDay(d)}
-            style={day === d
-              ? { background: "var(--accent-strong)", borderColor: "var(--accent-strong)", color: "#fff", textAlign: "center" }
-              : (dayHasData(d) ? { borderColor: "var(--accent-strong)", textAlign: "center" } : { textAlign: "center" })}>
-            {d}
-            {dates[d] ? <span style={{ display: "block", fontSize: 10, fontWeight: 400, opacity: 0.85 }}>{fmtDate(dates[d])}</span> : null}
-          </button>
-        ))}
+        {DIARY_DAYS.map((d) => {
+          const base = { display: "flex", flexDirection: "column", alignItems: "center", textAlign: "center", lineHeight: 1.2 };
+          const hi = day === d
+            ? { background: "var(--accent-strong)", borderColor: "var(--accent-strong)", color: "#fff" }
+            : (dayHasData(d) ? { borderColor: "var(--accent-strong)" } : null);
+          return (
+            <button key={d} type="button" className="tw-seg" onClick={() => switchDay(d)} style={{ ...base, ...hi }}>
+              <span style={{ fontWeight: 600 }}>{d}</span>
+              {dates[d] ? <span style={{ fontSize: 10, fontWeight: 400, opacity: 0.85, marginTop: 1 }}>{fmtDate(dates[d])}</span> : null}
+            </button>
+          );
+        })}
       </div>
 
       <h4 style={{ margin: "0 0 8px", fontSize: 14 }}>{day}{dates[day] ? " \u00b7 " + fmtDate(dates[day]) : ""}</h4>
-      <p className="tw-muted" style={{ fontSize: 12.5, margin: "0 0 10px" }}>Type a task once, then set how long it runs. It will show as one block across those times.</p>
+      <p className="tw-muted" style={{ fontSize: 12.5, margin: "0 0 10px" }}>Type a task once and set how long it runs. Each task shows as a single timed entry.</p>
 
       <div style={{ overflowX: "auto" }}>
         <table className="tw-tbl">
@@ -1123,25 +1126,23 @@ function DiaryField({ value, onChange }) {
           <tbody>
             {DIARY_SLOTS.map((sl, i) => {
               const o = occ[i];
-              if (o && !o.isStart) {
-                return <tr key={sl}><td style={{ whiteSpace: "nowrap", fontWeight: 600, color: "var(--muted)" }}>{sl}</td></tr>;
-              }
+              if (o && !o.isStart) return null; // covered by the entry's single row above
               if (o && o.isStart) {
                 const e = entries[o.ei], cap = maxSpanFrom(e.start, o.ei);
+                const range = slotTime(e.start, "start") + " \u2013 " + slotTime(e.start + e.span - 1, "end");
                 return (
                   <tr key={sl}>
-                    <td style={{ whiteSpace: "nowrap", fontWeight: 600 }}>{sl}</td>
-                    <td rowSpan={e.span} style={{ padding: 6, verticalAlign: "top", background: "var(--accent-soft, rgba(0,0,0,0.02))" }}>
+                    <td style={{ whiteSpace: "nowrap", fontWeight: 600, verticalAlign: "top", paddingTop: 13 }}>{range}</td>
+                    <td style={{ padding: 6 }}>
                       <input className="tw-input" style={{ padding: "7px 10px" }} value={e.task}
                         onChange={(ev) => updateEntry(o.ei, { task: ev.target.value })}
                         onBlur={() => { if (!String(e.task || "").trim()) removeEntry(o.ei); }}
                         placeholder="Task" />
-                      <div style={{ display: "flex", gap: 8, alignItems: "center", marginTop: 6, flexWrap: "wrap" }}>
+                      <div style={{ display: "flex", gap: 8, alignItems: "center", marginTop: 6 }}>
                         <select className="tw-input" style={{ padding: "5px 8px", width: "auto" }} value={e.span}
                           onChange={(ev) => updateEntry(o.ei, { span: Math.min(+ev.target.value, cap) })}>
                           {Array.from({ length: cap }, (_, k) => k + 1).map((n) => <option key={n} value={n}>{durLabel(n)}</option>)}
                         </select>
-                        <span className="tw-muted" style={{ fontSize: 12 }}>{slotTime(e.start, "start") + " \u2013 " + slotTime(e.start + e.span - 1, "end")}</span>
                         <button type="button" className="tw-seg" style={{ marginLeft: "auto", padding: "4px 9px" }} onClick={() => removeEntry(o.ei)}>Remove</button>
                       </div>
                     </td>
