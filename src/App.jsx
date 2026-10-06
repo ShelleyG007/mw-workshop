@@ -174,26 +174,29 @@ const INBOUND_TRAVEL = {
         },
         {
           "id": "prospect-suspect",
-          "title": "Module 2.1 \u00b7 Prospect vs Suspect",
+          "title": "Module 2.1 \u00b7 Prospect vs Suspect & Qualifying Matrix",
           "body": [
-            "A prospect has budget clarity, a real timeline, responds within 24 hours, and the decision-makers are present. A suspect is vague, ghosts you, and is just looking. If a lead fails 3 of those 4 within 72 hours, move them to nurture.",
-            "Qualify on emotional motivation, why Africa, and why now."
+            "Emotional Motivation, Why Africa, Why now?"
           ],
-          "fields": []
+          "fields": [
+            {
+              "id": "suspect-qs",
+              "label": "Write down 3 questions to ask a Suspect to identify whether they are a Prospect worth pursuing.",
+              "type": "long",
+              "rows": 5
+            }
+          ]
         },
         {
           "id": "rapport",
           "title": "Module 2.2 \u00b7 Building Rapport",
           "body": [
-            "What is Rapport & why is it so important in Sales.",
-            "Sales are built on our ability to build relationships with customers and for this we need rapport. This is more than small talk. It is more like a common understanding between 2 or more people.",
+            "What is Rapport & why is it so important in Sales?",
+            "Sales are built on our ability to build relationships with customers, and for this we need rapport. This is more than small talk. It is more like a common understanding between 2 or more people.",
             "By establishing good rapport at the outset we can gain commitment from the other party, conscious or unconscious, to trust the process even when they do not fully understand how the process works and what the ultimate outcome will be.",
             "Surprisingly, we make most business decisions based on rapport rather than technical merit. You are more likely to buy from, agree with, or support someone you can relate to than someone you can't.",
             "People buy people!",
-            "Rapport is the ability to relate to others in a way that creates trust and understanding. It is the ability to see the other's point of view and get them to understand yours. You don't have to agree with their point of view or even like it. It makes any form of communication easier.",
-            "Have you ever had an experience where you were chatting with a person you had just met and you felt as if you had met them before or that you had known them your whole life?",
-            "Have you ever formed an instantaneous connection with another person for no particular reason other than you felt that they were your kind of person?",
-            "The chances are that you can answer Yes to at least one of these questions and if you can then you have experienced rapport.",
+            "Have you ever had an experience where you were chatting with a person you had just met and you felt as if you had met them before, or that you had known them your whole life?",
             "To build strong customer relationships you must be in rapport.",
             "PEOPLE LIKE PEOPLE LIKE THEMSELVES!",
             "The different ways of building rapport can be grouped under these headings:",
@@ -203,62 +206,60 @@ const INBOUND_TRAVEL = {
             "Pacing",
             "Deep Listening:",
             "Most people do not listen at a very deep level, regardless of the context. There are three levels of active listening. What distinguishes them is where you focus as you listen to the person you're with.",
-            "Level I: Internal Listening. At Level I, our awareness is not focused on our customers, but rather on ourselves and our own agenda. Essentially, it's all about you. In Level I listening, you're physically present, but emotionally elsewhere, immersed in the self-absorbed chatter of your inner monologue. You might be wondering whether you left the coffee pot on, what's next on your 'to do' list. Whatever it is, you are the focus of your attention, not your customer. There are times when this superficial level of listening may be appropriate, but certainly not in the context of establishing a relationship.",
-            "Level II: Focused Listening. At Level II, you become very intensely focused on and fully aware of the other person; you listen sharply not only on their words, but how they say them, and what they don't say. Level II listen is the level of collaboration and empathy. Effective communication starts here.",
-            "Level III: Global Listening. As in Level II listening, Level III is also completely focused on the other person, but also includes a wider breadth. In addition to hearing your customer's spoken words, you're also tuned in to her non-verbal communication cues like energy level, inflections and tone of voice. You sense a push to avoid a painful topic, or alluding to some unspoken issue, and you have a sense of what that might be. As a Sales person, when you drop down into Level III listening, you become a successful sales star!",
-            "Listening at deeper levels is an art. Too often, when we communicate with another person, our own mind is preoccupied with our own thoughts, agendas, and assumptions. The quality and depth of our listening can have a profound impact in our conversations and indeed, the quality of all our relationships.",
+            "Level I: Internal Listening. At Level I, our awareness is not focused on our customers, but rather on ourselves and our own agenda. Essentially, it's all about you. In Level I listening, you're physically present, but emotionally elsewhere, immersed in the self-absorbed chatter of your inner monologue. You might be wondering whether you left the coffee pot on, or what's next on your 'to do' list. Whatever it is, you are the focus of your attention, not your customer. There are times when this superficial level of listening may be appropriate, but certainly not in the context of establishing a relationship.",
+            "Level II: Focused Listening. At Level II, you become very intensely focused on and fully aware of the other person; you listen sharply not only to their words, but how they say them, and what they don't say. Level II listening is the level of collaboration and empathy. Effective communication starts here.",
+            "Level III: Global Listening. As in Level II listening, Level III is also completely focused on the other person, but also includes a wider breadth. In addition to hearing your customer's spoken words, you're also tuned in to their non-verbal communication cues like energy level, inflections and tone of voice. You sense a push to avoid a painful topic, or an allusion to some unspoken issue, and you have a sense of what that might be. As a salesperson, when you drop down into Level III listening, you become a successful sales star!",
+            "Listening at deeper levels is an art. Too often, when we communicate with another person, our own mind is preoccupied with our own thoughts, agendas, and assumptions. The quality and depth of our listening can have a profound impact on our conversations and, indeed, the quality of all our relationships.",
             "Backtracking:",
-            "Backtracking involves repeating or summarising what another person has just said to you, either the last few words, sentences word-for-word or a summary of information. It's a powerful technique to pace others and assures them that you have been listening attentively and have heard what they said. In this way, backtracking is an effective strategy for building trust and rapport. Backtracking is not paraphrasing; it's critical that you use the same key words in the same tones as were originally stated. When you substitute somebody else's words for your own, even in the spirit of goodwill, you diminish the importance of their own words and assume that your words carry the same meaning for them; very often, they do not. Backtracking has the added benefits of giving you time to consider what you're going to say next.",
-            "In a fast-paced world with so much competing for our attention, deep listening skills are an increasingly rare commodity. Human beings have an innate desire to be appreciated, validated, and understood. When people talk about themselves and someone listens with intent, it makes them feel important and connects them to you. Deep listening isn't a skill we're born with, it can be learned, but it does require practice, discipline, and intent.",
-            "\u201cNo one has ever listened to me before like you do.\u201d So said a potential client who is pouring the heart out on why they would like this holiday of a lifetime.",
-            "Do we have some magical gift that allows us to repeatedly get responses like this from our customers? No, we simply build such a deep level of rapport that people truly feel heard and experience a sense of security.",
+            "Backtracking involves repeating or summarising what another person has just said to you, either the last few words, sentences word-for-word, or a summary of information. It's a powerful technique to pace others and assures them that you have been listening attentively and have heard what they said. In this way, backtracking is an effective strategy for building trust and rapport. Backtracking is not paraphrasing; it's critical that you use the same key words in the same tones as were originally stated. When you substitute somebody else's words for your own, even in the spirit of goodwill, you diminish the importance of their own words and assume that your words carry the same meaning for them; very often, they do not. Backtracking has the added benefit of giving you time to consider what you're going to say next.",
+            "So in summary, Mr Customer, you said \u2026, am I right?",
             "Mirroring & Pacing:",
             "Pacing and Mirroring Speed (Tempo):",
             "Telephonic pacing and mirroring is a communication technique where a salesperson subtly matches a caller's vocal traits and emotional tone to build fast rapport, reduce tension, and establish trust.",
             "Matching how fast or slow a customer speaks prevents frustration and helps them process information comfortably.",
-            "Holidays in Africa are uniquely emotional, high-value, and often perceived as a \u201cbucket-list\u201d or logistically complex undertaking. Because travelers are investing significant time and money into an unfamiliar continent, pacing and mirroring are critical trust-building tools that bridge the cultural and geographical gap right over the phone.",
+            "Pacing and mirroring are critical trust-building tools that bridge the cultural and geographical gap right over the phone.",
             "Here are practical examples of how to apply pacing and mirroring across different dimensions of a phone call.",
-            "1. The High-Energy \u201cBucket List\u201d Adventurer",
-            "This caller is bursting with excitement about wildlife, photography, and tick-box experiences. They speak quickly and use highly visual, cinematic language.",
-            "The Caller: \u201cOh my gosh, I've wanted to see the Great Migration my entire life! I want to be right there in the Serengeti, seeing the wildebeest cross the river, taking tons of photos, just experiencing the raw wildness of Africa!\u201d",
-            "The Strategy: Match their fast tempo and infectious enthusiasm. Mirror their visual, high-impact vocabulary (Great Migration, raw wildness, experience).",
-            "2. The Anxious, Detail-Oriented \u201cFirst-Timer\u201d",
-            "This caller is likely booking a family holiday and is deeply concerned about logistics, malaria, safety, and comfort. They speak slowly, hesitantly, and focus on practicalities.",
-            "The Caller: \u201cUm, hello... we are looking at South Africa for the kids, but... well, I'm just a bit worried about the safety. And the malaria tablets. Is a safari really safe for an eight-year-old? We want to see animals, but comfort and safety are our top priorities.\u201d",
-            "The Strategy: Drop your volume slightly, slow your pace to match their cautious rhythm, and use reassuring, protective language. Never dismiss their fears; mirror their focus on safety and comfort.",
-            "3. The Ultra-Luxury \u201cExclusive\u201d Honeymooner",
-            "This caller speaks with a calm, measured, sophisticated tone. They are looking for exclusivity, romance, and flawless service, and they use refined language.",
-            "The Caller: \u201cGood afternoon. My fianc\u00e9e and I are planning our honeymoon for next September. We are looking for something truly exceptional, very private, intimate, with top-tier service. Perhaps a combination of a luxury lodge and a vineyard.\u201d",
-            "The Strategy: Adopt a polished, calm, and professional cadence. Eliminate casual slang (like \u201csuper cool\u201d or \u201cawesome\u201d). Mirror their sophisticated vocabulary (exceptional, private, intimate, luxury).",
-            "4. The Laid-Back \u201cAuthentic\u201d Backpacker / Eco-Traveler",
-            "This caller has a relaxed, easygoing voice. They care about sustainability, local culture, conservation, and \u201cgetting off the beaten track.\u201d They dislike corporate-sounding sales pitches.",
-            "The Caller: \u201cHey there, yeah, just looking to do a trip to Namibia. Nothing too touristy or flashy, you know? Just want to rent a 4x4, sleep under the stars, see the dunes, and support the local communities if we can.\u201d",
-            "The Strategy: Match their relaxed, conversational pace. Drop formal corporate jargon. Mirror their eco-conscious, grounded language (off the beaten track, under the stars, local communities)."
+            "Call 1: The High-Velocity \u201cSkim & Scan\u201d Buyer",
+            "The Backtracking Objective: Deliver an ultra-fast, high-density summary that proves you captured their exact requirements without wasting a single second.",
+            "PROSPECT:",
+            "\u201cHey, this is Sarah. Look, I've only got two minutes before my next sync. I saw your tool online. Can it auto-export reports directly into Google Sheets without me having to manually download CSVs every morning? Give me the quick version.\u201d",
+            "SALESPERSON (Pacing, Mirroring & Backtracking):",
+            "\u201cHey Sarah, absolutely. Just to backtrack to your exact needs: you want to auto-export reports straight to Google Sheets and completely eliminate manually downloading CSVs every morning. Short answer: yes, we do exactly that. You connect your account once, it pushes at 6:00 AM, and you hit your next sync on time.\u201d",
+            "Workbook Callout for Reps:",
+            "The Backtrack Formula: \u201cJust to backtrack\u2026\u201d + [Exact Feature Required] + [Exact Manual Pain Point].",
+            "Why it works here: It proves to a hyper-impatient buyer that you can process information at their exact speed without needing them to repeat themselves.",
+            "Call 2: The Deliberate & Casual \u201cOld-School\u201d Manager",
+            "The Backtracking Objective: Slow down the conversation completely, anchor onto their emotional language, and validate their frustration before offering the solution.",
+            "PROSPECT:",
+            "\u201cWell\u2026 hello there. Yeah\u2026 we've been using the same inventory software for about ten years now. It's a bit of an old clunker, to be honest. It works, but it's just so clunky that it drives my floor staff up the wall when things get busy.\u201d",
+            "SALESPERSON (Pacing, Mirroring & Backtracking):",
+            "[Pauses for 1.5 seconds]",
+            "\u201cI completely hear you. Let me just backtrack to make sure I've got this right. You've had this software for ten years, and while it works, it's ultimately an old clunker that gets so clunky it drives your floor staff up the wall during peak hours. Did I capture that accurately?\u201d",
+            "PROSPECT:",
+            "\u201cYou hit the nail right on the head. That is exactly what's happening.\u201d",
+            "Workbook Callout for Reps:",
+            "The Backtrack Formula: [Pause] + \u201cLet me just backtrack\u2026\u201d + [Exact Metaphor] + [Exact Emotional Frustration] + \u201cDid I capture that accurately?\u201d",
+            "Why it works here: By ending with a verification question (\u201cDid I capture that accurately?\u201d), you force a slow-speaking prospect to actively agree with you, cementing psychological safety and rapport.",
+            "Call 3: The Formal & Analytical \u201cData-First\u201d Specialist",
+            "The Backtracking Objective: Mirror their precise, corporate taxonomy in a structured, logical sequence to demonstrate peer-level technical competency.",
+            "PROSPECT:",
+            "\u201cGood afternoon. We are currently evaluating vendors to optimize our data architecture. Our primary objective is to mitigate integration risks and ensure strict adherence to statutory compliance frameworks. We require a comprehensive breakdown of your encryption protocols.\u201d",
+            "SALESPERSON (Pacing, Mirroring & Backtracking):",
+            "\u201cGood afternoon. If I may backtrack to ensure complete alignment with your objectives: your primary focus is to optimize data architecture, specifically to mitigate integration risks and maintain strict adherence to statutory compliance frameworks. To satisfy that requirement, we utilize end-to-end AES 256-bit encryption. I will provide that comprehensive breakdown document immediately via email.\u201d",
+            "Workbook Callout for Reps:",
+            "The Backtrack Formula: \u201cIf I may backtrack to ensure complete alignment\u2026\u201d + [Objective A] + [Objective B].",
+            "Why it works here: Using formal transitional phrases like \u201censure complete alignment\u201d matches the corporate hierarchy. Backtracking their complex terms exactly shows you are qualified to handle their business.",
+            "Never send a quote without repeating the client's needs back to them in their own words."
           ],
           "fields": []
-        },
-        {
-          "id": "backtracking",
-          "title": "The Backtracking Framework",
-          "body": [
-            "Never send a quote without repeating the client's needs back to them in their own words. Here is the structure in action:"
-          ],
-          "fields": [
-            {
-              "id": "summary",
-              "label": "Draft a backtracking summary for your most recent enquiry",
-              "type": "long",
-              "rows": 6
-            }
-          ]
         },
         {
           "id": "roleplay2",
           "kind": "score",
           "title": "Role-play: the Discovery Call \u00b7 Brief 1",
           "body": [
-            "Your role: an expert inbound travel agent.",
-            "The client: a fast speaking International traveller enquiring about a 10-day trip to Cape Town and Kruger. Enthusiastic, but defensive about sharing budget not sure where to go first and worried about safety.",
+            "Your role: an expert sales professional.",
+            "The client: a fast-speaking international traveller enquiring about a 10-day trip to Cape Town and Kruger. Enthusiastic, but defensive about sharing budget, not sure where to go first and worried about safety.",
             "Your job: uncover the true budget range, identify all decision-makers, and establish the emotional motivation using deep listening, backtracking, mirroring & pacing."
           ],
           "fields": [
@@ -279,9 +280,9 @@ const INBOUND_TRAVEL = {
           "kind": "score",
           "title": "Role-play: the Discovery Call \u00b7 Brief 2",
           "body": [
-            "Your role: an expert inbound travel agent.",
-            "The client: a slow laid back speaking International traveller enquiring about a 15-day trip to Botswana & Kruger. Not clear on travel dates or how many travellers, has budget of R150k. Says he will call you back.",
-            "Your job: uncover the true budget range, identify all decision-makers, and establish the emotional motivation using deep listening, backtracking, mirroring & pacing."
+            "Your role: an expert sales professional.",
+            "The client: a slow, laid-back-speaking international buyer looking to buy a house in South Africa. Not clear on how many bedrooms are required or whether single or double storey, with a budget of up to R10 million. Says he will call you back as he needs to chat to his partner.",
+            "Your job: uncover the true budget range, identify all decision-makers, establish what they need in a house, and establish the emotional motivation using deep listening, backtracking, mirroring & pacing."
           ],
           "fields": [
             {
@@ -297,13 +298,26 @@ const INBOUND_TRAVEL = {
           ]
         },
         {
+          "id": "commit-takeaways2",
+          "title": "Information without implementation is just information",
+          "fields": [
+            {
+              "id": "takeaways",
+              "label": "Name 3 things you are taking with you from today",
+              "type": "long",
+              "rows": 5
+            }
+          ]
+        },
+        {
           "id": "commit2",
           "title": "My commitment this week",
           "fields": [
             {
               "id": "commit",
-              "label": "This week I will\u2026",
-              "type": "long"
+              "label": "How will I implement the above 3 things I learned into the next 5 working days?",
+              "type": "long",
+              "rows": 5
             }
           ]
         }
