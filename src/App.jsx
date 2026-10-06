@@ -1364,7 +1364,31 @@ const ICON_DUMP = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEgAAABICAMAAAB
 const ICON_MATCH = "data:image/png;base64,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";
 // A teaching-body line. Lines that state a "Toolbox Dump" or "Matching the Need / Reframed Response"
 // approach get Mark's cross / target icon in front of them.
+const BOLD_HEADINGS = new Set([
+  "Call 1: The High-Velocity \u201cSkim & Scan\u201d Buyer",
+  "Call 2: The Deliberate & Casual \u201cOld-School\u201d Manager",
+  "Call 3: The Formal & Analytical \u201cData-First\u201d Specialist",
+  "Workbook Callout for Reps:",
+  "Never send a quote without repeating the client's needs back to them in their own words.",
+  "We must always keep control of the sale!",
+  "1. The Summary Close",
+  "2. The 1-to-10 Scale Follow-Up",
+  "3. The Value-Add Follow-Up (After a No-Response)",
+  "1. Estate Agents (The \u201cUrgency & Priority\u201d Framework)",
+  "2. Inbound Travel Agents (The \u201cExperience Visualisation\u201d Framework)",
+  "3. Insurance (The \u201cRisk & Protection\u201d Framework)",
+  "The Direct Closes",
+  "The \u201cNow or Never\u201d Close",
+  "The Soft & Consultative Closes",
+  "The \u201cPuppy Dog\u201d Close",
+  "The Conditional Close",
+  "The Sharp Angle Close",
+]);
+
 function BodyLine({ text }) {
+  if (typeof text === "string" && BOLD_HEADINGS.has(text)) {
+    return <p style={{ margin: "15px 0 6px", fontSize: 14.5, fontWeight: 700, color: "var(--ink)", lineHeight: 1.4 }}>{text}</p>;
+  }
   const dump = typeof text === "string" && text.startsWith("The Toolbox Dump");
   const match = typeof text === "string" && (text.startsWith("Matching the Need") || text.startsWith("The Reframed Response"));
   if (dump || match) {
