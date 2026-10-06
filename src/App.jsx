@@ -158,8 +158,8 @@ const INBOUND_TRAVEL = {
     },
     {
       "id": "w2",
-      "title": "Lead Qualifying & Rapport",
-      "intro": "Prospect vs suspect, deep listening, backtracking, mirroring and pacing.",
+      "title": "Lead Qualifying & Advanced Rapport",
+      "intro": "Prospect vs suspect, the qualifying matrix, and deep rapport",
       "sections": [
         {
           "id": "w2-obj",
@@ -176,7 +176,21 @@ const INBOUND_TRAVEL = {
           "id": "prospect-suspect",
           "title": "Module 2.1 \u00b7 Prospect vs Suspect & Qualifying Matrix",
           "body": [
-            "Emotional Motivation, Why Africa, Why now?"
+            {
+              "table": {
+                "head": ["", "Suspect (time-waster)", "Prospect (high value)"],
+                "rows": [
+                  ["Budget clarity", "Vague, refuses to give a realistic range.", "Clear parameters, or open to advice on value tiers."],
+                  ["Timeline", "\u201cJust looking for ideas for sometime next year.\u201d", "Specific dates, milestone anniversary or flight windows."],
+                  ["Responsiveness", "Ghosts emails; ignores phone and Zoom requests.", "Schedules appointments; answers within 24 hours."],
+                  ["Authority", "\u201cChecking for a friend or relative group.\u201d", "Decision-makers present on the discovery call."]
+                ]
+              }
+            },
+            "Emotional Motivation, Why Africa, Why now?",
+            {
+              "callout": "Rule of thumb: if a lead fails 3 out of 4 prospect metrics within 72 hours of first contact, move them to an automated nurture cycle and clear them from your active pipeline."
+            }
           ],
           "fields": [
             {
@@ -1275,6 +1289,27 @@ function Field({ f, value, onChange }) {
    by Mark's read/write sandbox). Answers are fully controlled by
    the parent, so the same screen works saved or unsaved.
    ============================================================ */
+// Renders a non-text teaching block inside a section body: a table or a callout.
+function BodyBlock({ block }) {
+  if (block.table) {
+    const t = block.table;
+    return (
+      <div style={{ overflowX: "auto", margin: "0 0 12px" }}>
+        <table className="tw-tbl">
+          {t.head && <thead><tr>{t.head.map((h, i) => <th key={i}>{h}</th>)}</tr></thead>}
+          <tbody>
+            {t.rows.map((r, ri) => <tr key={ri}>{r.map((c, ci) => <td key={ci} style={ci === 0 ? { fontWeight: 600 } : undefined}>{c}</td>)}</tr>)}
+          </tbody>
+        </table>
+      </div>
+    );
+  }
+  if (block.callout) {
+    return <div style={{ margin: "0 0 12px", padding: "11px 14px", borderLeft: "3px solid var(--accent-strong)", background: "var(--accent-soft)", borderRadius: 8, fontSize: 14, lineHeight: 1.55 }}>{block.callout}</div>;
+  }
+  return null;
+}
+
 function CourseContent({ course, answers, onChange, wi, setWi, codeLabel, welcomeName, statusChip, locks }) {
   const total = countFields(course);
   const answered = countAnswered(course, answers);
@@ -1317,7 +1352,9 @@ function CourseContent({ course, answers, onChange, wi, setWi, codeLabel, welcom
           <div key={s.id} className="tw-card" style={{ padding: 18, marginBottom: 14 }}>
             <h3 style={{ margin: "0 0 8px", fontSize: 16.5, fontWeight: 600 }}>{s.title}</h3>
             {s.body && (Array.isArray(s.body)
-              ? s.body.map((para, bi) => <p key={bi} className="tw-muted" style={{ margin: "0 0 11px", fontSize: 14, lineHeight: 1.6 }}>{para}</p>)
+              ? s.body.map((para, bi) => (para && typeof para === "object"
+                  ? <BodyBlock key={bi} block={para} />
+                  : <p key={bi} className="tw-muted" style={{ margin: "0 0 11px", fontSize: 14, lineHeight: 1.6 }}>{para}</p>))
               : <p className="tw-muted" style={{ margin: "0 0 15px", fontSize: 14, lineHeight: 1.55 }}>{s.body}</p>)}
             {s.fields.map((f) => (
               <div key={f.id} style={{ marginBottom: 14 }}>
