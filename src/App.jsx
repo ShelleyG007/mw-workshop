@@ -339,52 +339,71 @@ const INBOUND_TRAVEL = {
     },
     {
       "id": "w3",
-      "title": "Pipeline & Closing Mastery",
-      "intro": "Closing naturally by matching the need, and reframing local objections.",
+      "title": "Matching the Need & Closing Mastery",
+      "intro": "Closing naturally by matching the need and reframing local objections.",
       "sections": [
         {
           "id": "w3-obj",
           "title": "By the end of this week",
           "body": [
             "Close naturally by matching the need, not dumping your toolbox.",
-            "Reframe the four objections that costs us the most bookings."
+            "Reframe the four objections that cost us the most sales."
           ],
           "fields": []
         },
         {
-          "id": "objections",
+          "id": "toolbox",
+          "title": "Module 3.0 \u00b7 The Not Dumping Our Toolbox Play",
+          "body": [
+            "Do not dump your toolbox. A solution sell which is tailored to the client's core need is a natural close. Use your deep listening skills to match the client's needs.",
+            "Dumping your toolbox means throwing every product or service you have at a client instead of listening to what they actually want. This overwhelms clients, dilutes your value as an expert, and ultimately kills the sale.",
+            "Matching client needs ensures you sell the right experience, build trust, and secure high-value bookings.",
+            "4 Examples of Needs-Matching vs. Toolbox Dumping",
+            "1. The Estate Agent (Residential Sales)",
+            "The Toolbox Dump: \u201cOur agency does it all! We list on 12 different property portals, run targeted Facebook and Instagram video ads, host twilight open houses, use drone photography, print 500 local glossy flyers, and feature your home in our monthly email newsletter.\u201d",
+            "Matching the Need: \u201cYou mentioned that your top priority is absolute privacy and minimizing foot traffic through your home because of your demanding work schedule. Instead of a traditional public marketing blitz, let's focus entirely on our off-market pocket listing strategy, where we only introduce your property to our pre-vetted, high-net-worth buyers.\u201d",
+            "2. The Inbound Travel Agent (Destination Management)",
+            "The Toolbox Dump: \u201cWe are a premier destination management company! We arrange private airport transfers, luxury sprinter vans, 5-star hotel bookings, certified multilingual guides, hot air balloon rides, winery tours, museum skip-the-line tickets, and traditional cooking classes across the entire region.\u201d",
+            "Matching the Need: \u201cYou mentioned that this trip is a 50th wedding anniversary for your parents, and because of your father's limited mobility, your absolute biggest fear is them getting exhausted or stuck walking up steep hills. Let's skip the fast-paced group excursions and focus entirely on our private chauffeured door-to-door itinerary, featuring step-free boutique properties and accessible, low-walking private tours.\u201d",
+            "3. The Insurance Broker (Commercial/B2B)",
+            "The Toolbox Dump: \u201cWe are a full-service brokerage. We write policies for General Liability, Commercial Property, Workers' Comp, Cyber Liability, Director & Officers (D&O) coverage, Inland Marine, and Commercial Auto.\u201d",
+            "Matching the Need: \u201cYou mentioned that your business just transitioned to a permanent work-from-home model, and your main worry is a data breach from employees using personal laptops. Let's bypass standard property coverages and focus specifically on a Cyber Liability policy with data restoration and ransomware coverage.\u201d",
+            "4. The Insurance Agent (Personal Lines)",
+            "The Toolbox Dump: \u201cWe can bundle everything for you today! We have comprehensive auto insurance with roadside assistance, homeowners insurance with flood riders, umbrella policies up to $5M, life insurance, boat insurance, and jewelry schedules.\u201d",
+            "Matching the Need: \u201cYou mentioned you just bought your first home and feel completely overwhelmed by the closing costs and upcoming mortgage. Rather than overloading you with every add-on, let's focus purely on a standard Homeowners policy with a high deductible to keep your monthly premium as low as possible while meeting your lender's requirements.\u201d"
+          ],
+          "fields": []
+        },
+        {
+          "id": "objection-playbook",
           "title": "Module 3.1 \u00b7 The Objection Reframing Playbook",
           "body": [
-            "Do not dump your toolbox. An itinerary tailored to the client's core need is a natural close. Use your deep listening skills to match the clients needs.",
-            "Dumping your toolbox means throwing every lodge, itinerary, and activity you know at a client instead of listening to what they actually want. In South African inbound travel, this overwhelms international guests, dilutes your value as an expert, and ultimately kills the sale.",
-            "Matching client needs ensures you sell the right experience, build trust, and secure high-value bookings.",
-            "3 Examples of Needs-Matching vs. Toolbox Dumping",
-            "1. The Multi-Generational Family",
-            "The \u201cToolbox Dump\u201d Mistake: Sending a generic 10-day itinerary that includes a walking safari in Kruger, a packed winelands wine-tasting route, and a shark cage diving excursion in Gansbaai.",
-            "Why it fails: Toddlers can't go on walking safaris, grandparents might struggle with intense boat rides, and kids will get bored at wineries.",
-            "The Needs-Matched Solution: Proposing a malaria-free, family-friendly private reserve in the Eastern Cape (with junior tracker programs) paired with a relaxed stay at a Garden Route resort featuring a private chef and accessible activities.",
-            "2. The Ultra-Luxury Honeymooners",
-            "The \u201cToolbox Dump\u201d Mistake: Listing five different 5-star lodges across Madikwe, Sabi Sands, and Phinda, while bragging about every luxury transfer option, helicopter flip, and spa treatment available in South Africa.",
-            "Why it fails: It forces the clients to do the hard work of choosing. It feels transactional rather than romantic and curated.",
-            "The Needs-Matched Solution: Selecting one ultimate destination, like a specific ultra-luxury lodge in the Sabi Sand that offers private plunge pools and romantic star-bed sleepouts, paired with a boutique hotel in Franschhoek, focusing strictly on privacy and exclusivity.",
-            "3. The Budget-Conscious Adventure Backpackers",
-            "The \u201cToolbox Dump\u201d Mistake: Pitching a standard fly-in safari to a luxury lodge because \u201cit's the best way to see the Big Five,\u201d followed by a list of high-end car rentals and internal commercial flights.",
-            "Why it fails: It completely blows their budget, making them feel misunderstood. They will likely ghost you and book via an automated online platform instead.",
-            "The Needs-Matched Solution: Designing a self-drive or Baz Bus itinerary along the Wild Coast and Oudtshoorn, featuring eco-lodges, sea kayaking, and a self-drive safari in Addo Elephant National Park.",
-            "Why Matching Needs is Critical in Inbound Travel",
-            "When objections come, reframe rather than discount.",
-            "1. The \u201cI need to talk to my partner\u201d delay",
-            "The trap: Saying \u201cNo problem, let me know what they think!\u201d and losing all momentum.",
-            "The reframe: Validate the need for consensus while booking a firm follow-up window with both partners.",
-            "2. Over-researching & over-analysing (TripAdvisor, blogs)",
-            "The trap: Arguing with a forum review or getting defensive.",
-            "The reframe: Pivot from product supplier to trusted, on-the-ground local advisor.",
-            "3. Safety & logistic anxiety (driving on the left, flights with kids)",
-            "The trap: Minimising their fears with a simple \u201cDon't worry, it's fine.\u201d",
-            "The reframe: Share structured, operational safety protocols and private transit alternatives.",
-            "4. The itinerary \u201cshopping around\u201d (price matching)",
-            "The trap: Discounting immediately and cutting into your margin.",
-            "The reframe: Highlight the hidden costs, operational liabilities and your exclusive on-the-ground support."
+            "To overcome objections and reframe effectively, you must shift the client's focus from cost or hesitation to the specific risk, pain point, or goal they mentioned earlier.",
+            "Here is how to reframe objections across different industries without dumping your toolbox:",
+            "1. Inbound Travel Agent",
+            "The Objection: \u201cI need to talk to my partner before booking.\u201d",
+            "The Toolbox Dump: \u201cNo problem! I'll email you the 15-page itinerary breakdown, our multi-currency payment options, the travel insurance premium tiers, our vehicle fleet specifications, and our full booking cancellation policy so you can pitch it to her tonight.\u201d",
+            "Matching the Need: \u201cI completely understand\u2014planning a holiday is a shared experience. What usually happens when clients hand over a massive itinerary at home is that the partner gets overwhelmed by the logistics and only focuses on the total cost. You mentioned earlier that your wife is the big foodie and art lover, while you just care about smooth transfers. Let's do a brief, casual 5-minute video call with her tomorrow; I will skip the flight connection details and show her the private vineyard lunch and VIP museum access we secured, so she can see the actual magic of the trip.\u201d",
+            "2. Real Estate (Estate Agent)",
+            "The Objection: \u201cI don't want to do an off-market listing. If we don't put it on the major property portals, we won't get the highest possible price.\u201d",
+            "The Toolbox Dump Response: \u201cWe have a database of 10,000 buyers, we send out a weekly newsletter, we do targeted social media ads, and we can still do open houses if you change your mind!\u201d",
+            "The Reframed Response: \u201cIt's natural to think more exposure always equals a higher price. But remember when you said your top priority was absolute privacy because of your high-profile job and demanding schedule? A public listing means dozens of strangers touring your home, public photos of your private spaces online, and endless disruptions. With our off-market pocket listing, we create exclusive scarcity. We only bring pre-vetted, highly motivated buyers who are willing to pay a premium specifically for the discretion and convenience of a quiet sale, protecting your time and your privacy.\u201d",
+            "3. Insurance Broker (Commercial/B2B)",
+            "The Objection: \u201cCyber liability insurance feels like an unnecessary extra expense right now. We already have standard IT firewalls and anti-virus software.\u201d",
+            "The Toolbox Dump Response: \u201cBut our policy covers data restoration, regulatory fines, business interruption, extortion, public relations management, and legal defense fees!\u201d",
+            "The Reframed Response: \u201cAn anti-virus system is a great first line of defense, but remember what you mentioned earlier: your entire workforce is now permanently remote, and your biggest anxiety is a human error like an employee clicking a phishing link on a home Wi-Fi network. Firewalls cannot stop an employee from accidentally handing over passwords. Instead of viewing cyber insurance as an IT cost, reframe it as a financial safety net for your cash flow. If a breach happens tomorrow, the firewall can't pay for the legal liability or the ransomware extortion\u2014this policy does.\u201d",
+            "We must always keep control of the sale!"
+          ],
+          "fields": []
+        },
+        {
+          "id": "reframe-formula",
+          "title": "The Core Formula for Reframing",
+          "body": [
+            "The three-step sequence:",
+            "Validate: Acknowledge their concern (usually price or effort) so they feel heard.",
+            "Anchor: Remind them of the exact emotional pain point or goal they confessed to earlier (\u201cBut remember when you said\u2026\u201d).",
+            "Isolate: Connect your specific, tailored solution directly to eliminating that pain point."
           ],
           "fields": []
         },
@@ -414,11 +433,11 @@ const INBOUND_TRAVEL = {
         {
           "id": "roleplay3b",
           "kind": "score",
-          "title": "Role-play: the Itinerary Review \u00b7 Brief 2",
+          "title": "Role-play: the Property Market is Too High \u00b7 Brief 2",
           "body": [
-            "Your role: an inbound consultant presenting a premium, customised R250,000 itinerary.",
-            "The client: an international traveller who believes his partner will object because its to hot in Africa loves the plan but says they found a similar route online 15% cheaper, and wants to think it over with friends.",
-            "Your job: defend your premium pricing, match their needs, expose the risks of shopping around, and secure a firm, scheduled date for the next conversation."
+            "Your role: an estate agent presenting a premium property.",
+            "The client: a cash buyer who thinks the market will fall to lower pricing and believes the market is too high right now and wants to wait.",
+            "Your job: defend the property market right now, match their needs, expose the risks of shopping around, and secure a firm, scheduled date for the next conversation."
           ],
           "fields": [
             {
@@ -435,13 +454,26 @@ const INBOUND_TRAVEL = {
           ]
         },
         {
+          "id": "commit-takeaways3",
+          "title": "Information without implementation is just information",
+          "fields": [
+            {
+              "id": "takeaways",
+              "label": "Name 3 things you are taking with you from today",
+              "type": "long",
+              "rows": 5
+            }
+          ]
+        },
+        {
           "id": "commit3",
           "title": "My commitment this week",
           "fields": [
             {
               "id": "commit",
-              "label": "This week I will\u2026",
-              "type": "long"
+              "label": "How will I implement the above 3 things I learned into the next 5 working days?",
+              "type": "long",
+              "rows": 5
             }
           ]
         }
@@ -449,7 +481,7 @@ const INBOUND_TRAVEL = {
     },
     {
       "id": "w4",
-      "title": "Mental Mastery & Follow-Up",
+      "title": "Mental Mastery & Follow-Up & Closing",
       "intro": "Selling premium value, resilience and high-conversion follow-up.",
       "sections": [
         {
@@ -457,7 +489,7 @@ const INBOUND_TRAVEL = {
           "title": "By the end of this week",
           "body": [
             "Stop projecting your own limiting beliefs onto potential buyers.",
-            "Sell premium access, convenience and peace of mind, not beds and transfers.",
+            "Sell premium access, convenience and peace of mind, not your product or services.",
             "Run a follow-up sequence that adds value instead of nagging."
           ],
           "fields": []
@@ -468,14 +500,14 @@ const INBOUND_TRAVEL = {
           "title": "Module 4.1 \u00b7 The Psychological Mirror",
           "body": [
             "Answer honestly. This is where you find out if you're projecting your own financial habits onto your clients.",
-            "When I quote a room night at R25,000 (about $1,400), my immediate internal thought is:"
+            "When I quote a room at R25,000 per night, my immediate internal thought is:"
           ],
           "fields": [
             {
               "id": "thought",
               "type": "choice",
               "options": [
-                "\u201cThat's incredible value for a high-end luxury safari experience.\u201d",
+                "\u201cThat's incredible value for a high-end luxury accommodation experience.\u201d",
                 "\u201cThat's insane money, I need a cheaper alternative in case they push back.\u201d"
               ]
             }
@@ -485,23 +517,26 @@ const INBOUND_TRAVEL = {
           "id": "mirror",
           "title": "Module 4.1 \u00b7 Rewrite Your Value",
           "body": [
-            "Rewrite your value proposition. Stop saying \u201cI book hotels and safaris.\u201d Model: \u201cI design secure, end-to-end luxury travel experiences for families who want Southern Africa without any logistical stress.\u201d"
+            "Rewrite your value proposition. Stop saying \u201cI sell assets, products or services.\u201d Model: \u201cI listen and match my client's needs, and I add value to their business or life.\u201d"
           ],
           "fields": [
             {
               "id": "valueprop",
               "label": "Rewrite your value proposition",
-              "type": "long"
+              "type": "long",
+              "rows": 5
             },
             {
               "id": "beliefs",
               "label": "Write your 3 top limiting beliefs below",
-              "type": "long"
+              "type": "long",
+              "rows": 5
             },
             {
               "id": "reframe",
-              "label": "Now re-frame those limiting beliefs positively",
-              "type": "long"
+              "label": "Now re-frame those limiting beliefs in a positive sentence",
+              "type": "long",
+              "rows": 5
             },
             {
               "id": "writeclient",
@@ -512,41 +547,76 @@ const INBOUND_TRAVEL = {
           ]
         },
         {
-          "id": "followup",
-          "title": "Module 4.2 \u00b7 The High-Conversion Follow-Up",
+          "id": "closing-followup",
+          "title": "Module 4.2 \u00b7 The High-Conversion Close & Follow-Up",
           "body": [
-            "Replace \u201cJust checking in to see if you've decided\u201d with a sequence that adds value at every touch.",
-            "Day 2 after the proposal: Value add",
-            "Day 5 after the proposal: Urgency & scarcity"
+            "1. The Summary Close",
+            "What it is: A technique where you recap the prospect's core pain points and confirmed benefits before asking for the business.",
+            "Example script: \u201cWe agreed that upgrading your software will cut customer wait times by 40% and save your team 10 hours a week. Based on those priorities, shall we go ahead and schedule the implementation for next Tuesday?\u201d",
+            "Why it works: It grounds the decision in agreed facts and shifts the focus naturally to next steps.",
+            "2. The 1-to-10 Scale Follow-Up",
+            "What it is: A soft follow-up question used when a prospect is hesitating or stalling a decision.",
+            "Example script: \u201cOn a scale of 1 to 10, where 1 is \u2018this isn't a fit at all\u2019 and 10 is \u2018let's sign today,\u2019 where do you feel we stand?\u201d",
+            "Why it works: If they answer \u201c7,\u201d you can follow up with: \u201cWhat would it take to get us to a 9 or 10?\u201d This uncovers hidden objections without pressure.",
+            "3. The Value-Add Follow-Up (After a No-Response)",
+            "What it is: A re-engagement technique used when a prospect goes quiet after a demo or proposal.",
+            "Example script: \u201cHi, I know timing is tight right now. I put together a quick case study showing how a company similar to yours automated their onboarding in two weeks. Thought this might help your team review the proposal. Worth a quick look?\u201d",
+            "Why it works: It adds new value instead of just asking \u201cDid you get my last email?\u201d, prompting a much higher response rate.",
+            "Here is how to adapt follow-up and closing techniques.",
+            "1. Estate Agents (The \u201cUrgency & Priority\u201d Framework)",
+            "Real estate sales are highly emotional and time-sensitive. Focus on securing physical commitments (viewings) or closing on the property's unique fit.",
+            "The Strategy: The \u201cNext Best Choice\u201d Close.",
+            "Example Script: \u201cWe looked at three properties today, but you mentioned the townhouse on 4th Street checked every box for your family's commute and budget. Someone else requested a second viewing for tomorrow morning. Shall we get our offer submitted this afternoon so you don't miss out on it?\u201d",
+            "The Follow-Up (If they go quiet): \u201cHi, a new property just hit the market in [Neighbourhood] that has the exact open-plan kitchen you wanted, and it's within your budget. I can get us in before the official weekend show house\u2014would tomorrow at 4:00 PM work for a quick look?\u201d",
+            "2. Inbound Travel Agents (The \u201cExperience Visualisation\u201d Framework)",
+            "Travel clients buy dreams, experiences, and peace of mind. Your follow-ups should make them feel like they are already on vacation while handling logistics seamlessly.",
+            "The Strategy: The \u201cAssumptive Itinerary\u201d Close.",
+            "Example Script: \u201cI've provisionally held the boutique safari lodge for your dates, as they only have two luxury suites left for the season. To make sure we lock in this exact routing and the internal flights before the prices increase, should I go ahead and send over the secure deposit link?\u201d",
+            "The Follow-Up (If they go quiet): \u201cHi, I know planning an international holiday takes time. I just received an updated itinerary guide from our local guide in Cape Town featuring a brand-new wine-tasting route. I've attached it here to help you visualise the trip. Have you had a chance to look over the day-by-day budget I sent?\u201d",
+            "3. Insurance (The \u201cRisk & Protection\u201d Framework)",
+            "Insurance is a grudge purchase based on risk mitigation. Closing requires making the abstract concept of \u201cprotection\u201d feel concrete and urgent without using scare tactics.",
+            "The Strategy: The \u201cAlternative Choice\u201d Close.",
+            "Example Script: \u201cBased on your business assets, leaving that gap in your public liability could cost you heavily if an accident happens. We can activate the comprehensive policy today, which covers everything we discussed, or we can start with the core liability package and add the vehicle fleet next month. Which option gives you better peace of mind to start with?\u201d",
+            "The Follow-Up (If they go quiet): \u201cHi, I wanted to let you know that the underwriter's rate quote I secured for your home policy expires this Friday. If we don't lock it in, we will have to re-submit the application, which might change the monthly premium. Do you have 5 minutes tomorrow morning to finalise the paperwork?\u201d",
+            "Here are 7 additional closing techniques used across diverse sales environments, grouped by their psychological approach.",
+            "The Direct Closes",
+            "These techniques work best when the prospect has shown strong buying signals and you want to move straight to the decision.",
+            "The Direct Close: Ask for the order plainly and confidently once value is established.",
+            "Example: \u201cIt sounds like this covers exactly what you need. Can I go ahead and set up your account today?\u201d",
+            "The \u201cNow or Never\u201d Close",
+            "Offer a limited-time incentive or highlight stock limitations to prompt immediate action.",
+            "Example: \u201cWe are running a 15% discount for sign-ups before Friday,\u201d or \u201cThis is the last available slot for this quarter's implementation.\u201d",
+            "The Soft & Consultative Closes",
+            "These techniques are highly effective for high-ticket items, complex B2B sales, or relationship-driven industries like real estate and travel.",
+            "The Assumptive Close: Act as if the prospect has already decided to buy, moving seamlessly into onboarding logistics.",
+            "Example: \u201cGreat, what email address should we use for invoicing, and when would you like the onboarding team to reach out?\u201d",
+            "The \u201cPuppy Dog\u201d Close",
+            "Offer a low-risk, trial-based entry point so the customer can experience the product before making a long-term commitment.",
+            "Example: \u201cLet's set you up with a 14-day trial. If it doesn't solve your data tracking issues, we will cancel it\u2014no strings attached.\u201d",
+            "The Conditional Close",
+            "Secure a commitment to buy on the condition that you can solve their final hurdle or objection.",
+            "Example: \u201cIf I can get approval from our legal team to adjust that specific contract clause by tomorrow morning, are you ready to sign the agreement?\u201d",
+            "The Sharp Angle Close",
+            "Use an unexpected, last-minute demand from the buyer to immediately close the deal.",
+            "Example: When the client asks, \u201cCan you expedite delivery to next Monday?\u201d you respond: \u201cIf I can guarantee delivery by Monday, will you sign the purchase order right now?\u201d"
           ],
-          "fields": [
-            {
-              "id": "day2",
-              "label": "Draft your own Day 2 value-add message for a live client",
-              "type": "long",
-              "rows": 6
-            }
-          ]
+          "fields": []
         },
         {
-          "id": "roleplay4",
-          "kind": "score",
-          "title": "Role-play: the Ultimate Premium Pitch",
-          "body": [
-            "Your role: a confident luxury travel advisor selling a high-margin premium safari package.",
-            "The client: a wealthy corporate executive challenging the price: \u201cI can book these identical hotels directly on Booking.com myself.\u201d",
-            "Your job: counter the objection without apologising for the price, shifting the conversation from hotel rates to an integrated, safe and stress-free experience."
-          ],
+          "id": "ultimate-close",
+          "title": "The Ultimate Follow-up & Close",
           "fields": [
             {
-              "id": "score",
-              "type": "score",
-              "criteria": [
-                "Protected the margin with confidence",
-                "Shifted price to peace of mind",
-                "Avoided clich\u00e9 sales pitches",
-                "Secured firm next steps"
-              ]
+              "id": "followemail",
+              "label": "Write below a 2-step follow-up email to a client who was concerned with the price but has gone quiet and is not returning your calls.",
+              "type": "long",
+              "rows": 7
+            },
+            {
+              "id": "teleclose",
+              "label": "Write below a telephonic conversation to a client who wants to know if there are other options, and close.",
+              "type": "long",
+              "rows": 7
             }
           ]
         },
@@ -560,12 +630,14 @@ const INBOUND_TRAVEL = {
             {
               "id": "learned",
               "label": "Name 3 things you have learned from this workshop",
-              "type": "long"
+              "type": "long",
+              "rows": 5
             },
             {
               "id": "implement",
               "label": "Now list how you intend to implement each of those 3 above",
-              "type": "long"
+              "type": "long",
+              "rows": 5
             },
             {
               "id": "target",
@@ -579,18 +651,14 @@ const INBOUND_TRAVEL = {
             },
             {
               "id": "shortfall",
-              "label": "What is your shortfall if any?",
+              "label": "What is your shortfall, if any?",
               "type": "short"
             },
             {
               "id": "habits",
               "label": "What 3 new activities are you going to implement on a daily basis to increase your sales?",
-              "type": "long"
-            },
-            {
-              "id": "routine",
-              "label": "When a proposal goes out, I will follow up on:",
-              "type": "long"
+              "type": "long",
+              "rows": 5
             }
           ]
         },
@@ -598,22 +666,24 @@ const INBOUND_TRAVEL = {
           "id": "checkin90",
           "title": "My 90-Day Check-In",
           "body": [
-            "My accountability 90 day check-in. Come back to this 90 days after the workshop and fill it in honestly."
+            "My accountability 90-day check-in. Come back to this 90 days after the workshop and fill it in honestly."
           ],
           "fields": [
             {
-              "id": "implemented",
+              "id": "implemented90",
               "label": "Name 3 things you have implemented in the last 90 days",
-              "type": "long"
+              "type": "long",
+              "rows": 5
             },
             {
-              "id": "changes",
-              "label": "What changes have you seen improved?",
-              "type": "long"
+              "id": "improved90",
+              "label": "What improvements have you seen?",
+              "type": "long",
+              "rows": 5
             },
             {
-              "id": "avgsales",
-              "label": "My average monthly sales over the last 90 days are?",
+              "id": "avg90",
+              "label": "What are your average monthly sales over the last 90 days?",
               "type": "short"
             }
           ]
