@@ -24,7 +24,7 @@ const INBOUND_TRAVEL = {
     {
       "id": "w1",
       "title": "Building Our Foundations",
-      "intro": "Goal setting, diary discipline and the math of success.",
+      "intro": "Diary management, prioritising and the math of success.",
       "sections": [
         {
           "id": "w1-goal",
@@ -52,7 +52,7 @@ const INBOUND_TRAVEL = {
         {
           "id": "pipeline-math",
           "kind": "calc",
-          "title": "Module 1.1 \u00b7 The Pipeline Math",
+          "title": "Module 1.1 · The Pipeline Math",
           "body": [
             "To hit your financial targets you must know your own closing ratios. Fill in the blanks using your historical data, or the industry benchmarks in brackets if you don't have your own yet."
           ],
@@ -65,29 +65,7 @@ const INBOUND_TRAVEL = {
         },
         {
           "id": "time-block",
-          "title": "Module 1.2 \u00b7 Time & Diary Management",
-          "body": [
-            "The most successful people are also the most productive! We have all heard the saying, \u201cfail to plan, plan to fail\u201d.",
-            "Time & diary management will increase your productivity between 20% to 50%.",
-            "First, we need to acknowledge what is stealing our time.",
-            "With discipline comes structure, with structure comes freedom.",
-            "Recognise what is stealing your time:",
-            "Acknowledge what is stealing your time is the first step towards eliminating procrastination.",
-            "If you do not have each task or meeting time lined in our diary, how will you tell where your pro-activeness towards your goals/targets will fit in to your day?",
-            "This is where procrastination comes in! If we do not have a plan for the day ahead we will ponder on which task to do first and let's face it, we all guilty of doing the easy tasks first and end up transferring those tasks to the next day over & over again.",
-            "Most people write their to do lists in their diary. Your diary is not called a to do list is it?",
-            "Your diary is action orientated and only time lined tasks, appointments, meetings or personal time should be listed.",
-            "You need to work with a to do list on one side and a diary on the other. You should be planning your day in advance before you leave the office. Have a look at your do to list for the next day and prioritise in order in your diary.",
-            "Chunking Down:",
-            "You need to chunk down how long you would need to complete each task (always allow a little more time) and diarise accordingly. We are taking one step back to take three steps forward. People say to me, \u201cI don't have the time to plan\u201d, I say you do not MAKE the time to plan!",
-            "Now take the most important task and bring it to one side. (this does not mean the other tasks are not important it just helps us to focus on one thing at a time).",
-            "Do you think professional sports people focus on a World cup or do they look at it game by game?",
-            "Chunking down allows you to focus on what is in front of you while eliminating being overwhelmed.",
-            "A house gets built one brick at a time!",
-            "Chunking down is to look at the task at hand and look at how many elements make up that task.",
-            "Now that we know the elements required to complete the task we need to diarise accordingly to achieve our task at the desired date & time.",
-            "I.e.; You have a task which needs to be completed by day 5 and there are 5 elements to do to complete the task by day 5. Diarise 1 every day to complete by day 5."
-          ],
+          "title": "Module 1.2 · Time & Diary Management",
           "fields": [
             {
               "id": "procrastination",
@@ -112,6 +90,33 @@ const INBOUND_TRAVEL = {
               "type": "long",
               "rows": 12
             }
+          ],
+          "blocks": [
+            "The most successful people are also the most productive! We have all heard the saying, “fail to plan, plan to fail”.",
+            "Time & diary management will increase your productivity between 20% to 50%.",
+            "Yes!, 20% to 50%!",
+            "First, we need to acknowledge what is stealing our time.",
+            "Acknowledge what is stealing your time is the first step towards eliminating procrastination.",
+            {
+              "field": "procrastination"
+            },
+            "Most people write their to do lists in their diary. Your diary is not called a to do list is it?",
+            "You need to work with a to do list on one side and a diary on the other. You should be planning your day in advance before you leave the office. Have a look at your do to list for the next day and prioritise in order in your diary.",
+            {
+              "field": "todo"
+            },
+            "Do you think professional sports people focus on a World Cup, or do they look at it game by game?",
+            {
+              "field": "prioritise"
+            },
+            "Now take the most important task and bring it to one side. (this does not mean the other tasks are not important it just helps us to focus on one thing at a time).",
+            "You need to chunk down how long you would need to complete each task (always allow a little more time) and diarise accordingly. We are taking one step back to take three steps forward. People say to me, “I don't have the time to plan”, I say you do not MAKE the time to plan!",
+            "Chunking down allows you to focus on what is in front of you while eliminating being overwhelmed.",
+            "A house gets built one brick at a time!",
+            "Chunking down is to look at the first task and look at how many elements make up that task.",
+            {
+              "field": "chunk"
+            }
           ]
         },
         {
@@ -120,8 +125,8 @@ const INBOUND_TRAVEL = {
           "title": "Your 5-Day Diary",
           "body": [
             "Complete your diary below for the next 5 days with all the appointments, meetings or personal time in the specific times as booked. We can now identify the time we have available to be Pro-Active (towards our goals/big picture) and fulfil other duties. Having a plan leaves no time for procrastination.",
-            "Once you have all the elements clearly defined you need to diarise with a specific time and day.",
-            "There is no grey area here, it is black or white!"
+            "Now that we know the elements required to complete the task we need to diarise accordingly to achieve our task at the desired date & time.",
+            "I.e.; You have a task which needs to be completed by day 5 and there are 5 elements to do to complete the task by day 5. Diarise 1 every day to complete by day 5."
           ],
           "fields": [
             {
@@ -168,22 +173,42 @@ const INBOUND_TRAVEL = {
             "Tell a real prospect from a time-waster inside the first conversation.",
             "Qualify every lead on affordability, timeline, authority and motivation.",
             "Build rapport with your customers, meaning more sales!",
-            "Confirm the client's need in their own words before you quote."
+            "Confirm the client's need in their own words before you quote or close."
           ],
           "fields": []
         },
         {
           "id": "prospect-suspect",
-          "title": "Module 2.1 \u00b7 Prospect vs Suspect & Qualifying Matrix",
+          "title": "Module 2.1 · Prospect vs Suspect & Qualifying Matrix",
           "body": [
             {
               "table": {
-                "head": ["", "Suspect (time-waster)", "Prospect (high value)"],
+                "head": [
+                  "",
+                  "Suspect (time-waster)",
+                  "Prospect (high value)"
+                ],
                 "rows": [
-                  ["Budget clarity", "Vague, refuses to give a realistic range.", "Clear parameters, or open to advice on value tiers."],
-                  ["Timeline", "\u201cJust looking for ideas for sometime next year.\u201d", "Specific dates, milestone anniversary or flight windows."],
-                  ["Responsiveness", "Ghosts emails; ignores phone and Zoom requests.", "Schedules appointments; answers within 24 hours."],
-                  ["Authority", "\u201cChecking for a friend or relative group.\u201d", "Decision-makers present on the discovery call."]
+                  [
+                    "Budget clarity",
+                    "Vague, refuses to give a realistic range.",
+                    "Clear parameters, or open to advice on value tiers."
+                  ],
+                  [
+                    "Timeline",
+                    "“Just looking for ideas for sometime next year.”",
+                    "Specific dates, milestone anniversary or flight windows."
+                  ],
+                  [
+                    "Responsiveness",
+                    "Ghosts emails; ignores phone and Zoom requests.",
+                    "Schedules appointments; answers within 24 hours."
+                  ],
+                  [
+                    "Authority",
+                    "“Checking for a friend or relative group.”",
+                    "Decision-makers present on the discovery call."
+                  ]
                 ]
               }
             },
@@ -203,14 +228,11 @@ const INBOUND_TRAVEL = {
         },
         {
           "id": "rapport",
-          "title": "Module 2.2 \u00b7 Building Rapport",
+          "title": "Module 2.2 · Building Rapport",
           "body": [
             "What is Rapport & why is it so important in Sales?",
-            "Sales are built on our ability to build relationships with customers, and for this we need rapport. This is more than small talk. It is more like a common understanding between 2 or more people.",
             "By establishing good rapport at the outset we can gain commitment from the other party, conscious or unconscious, to trust the process even when they do not fully understand how the process works and what the ultimate outcome will be.",
-            "Surprisingly, we make most business decisions based on rapport rather than technical merit. You are more likely to buy from, agree with, or support someone you can relate to than someone you can't.",
             "People buy people!",
-            "Have you ever had an experience where you were chatting with a person you had just met and you felt as if you had met them before, or that you had known them your whole life?",
             "To build strong customer relationships you must be in rapport.",
             "PEOPLE LIKE PEOPLE LIKE THEMSELVES!",
             "The different ways of building rapport can be grouped under these headings:",
@@ -219,58 +241,42 @@ const INBOUND_TRAVEL = {
             "Mirroring",
             "Pacing",
             "Deep Listening:",
-            "Most people do not listen at a very deep level, regardless of the context. There are three levels of active listening. What distinguishes them is where you focus as you listen to the person you're with.",
-            "Level I: Internal Listening. At Level I, our awareness is not focused on our customers, but rather on ourselves and our own agenda. Essentially, it's all about you. In Level I listening, you're physically present, but emotionally elsewhere, immersed in the self-absorbed chatter of your inner monologue. You might be wondering whether you left the coffee pot on, or what's next on your 'to do' list. Whatever it is, you are the focus of your attention, not your customer. There are times when this superficial level of listening may be appropriate, but certainly not in the context of establishing a relationship.",
+            "Most people do not listen at a very deep level, regardless of the context. There are three levels of active listening.",
+            "Level I: Internal Listening. At Level I, our awareness is not focused on our customers, but rather on ourselves and our own agenda. Essentially, it's all about you. In Level I listening, you're physically present, but you might be wondering whether you left the coffee pot on, or what's next on your 'to do' list. Whatever it is, you are the focus of your attention, not your customer. There are times when this superficial level of listening may be appropriate, but certainly not in the context of establishing a relationship.",
             "Level II: Focused Listening. At Level II, you become very intensely focused on and fully aware of the other person; you listen sharply not only to their words, but how they say them, and what they don't say. Level II listening is the level of collaboration and empathy. Effective communication starts here.",
-            "Level III: Global Listening. As in Level II listening, Level III is also completely focused on the other person, but also includes a wider breadth. In addition to hearing your customer's spoken words, you're also tuned in to their non-verbal communication cues like energy level, inflections and tone of voice. You sense a push to avoid a painful topic, or an allusion to some unspoken issue, and you have a sense of what that might be. As a salesperson, when you drop down into Level III listening, you become a successful sales star!",
-            "Listening at deeper levels is an art. Too often, when we communicate with another person, our own mind is preoccupied with our own thoughts, agendas, and assumptions. The quality and depth of our listening can have a profound impact on our conversations and, indeed, the quality of all our relationships.",
+            "Level III: Global Listening. As in Level II listening, Level III is also completely focused on the other person, but also includes a wider breadth. In addition to hearing your customer's spoken words, you're also tuned in to their non-verbal communication cues like energy level, inflections and tone of voice. As a salesperson, when you drop down into Level III listening, you become a successful sales star!",
+            "The quality and depth of our listening can have a profound impact on our conversations and, indeed, the quality of all our relationships.",
             "Backtracking:",
-            "Backtracking involves repeating or summarising what another person has just said to you, either the last few words, sentences word-for-word, or a summary of information. It's a powerful technique to pace others and assures them that you have been listening attentively and have heard what they said. In this way, backtracking is an effective strategy for building trust and rapport. Backtracking is not paraphrasing; it's critical that you use the same key words in the same tones as were originally stated. When you substitute somebody else's words for your own, even in the spirit of goodwill, you diminish the importance of their own words and assume that your words carry the same meaning for them; very often, they do not. Backtracking has the added benefit of giving you time to consider what you're going to say next.",
-            "So in summary, Mr Customer, you said \u2026, am I right?",
+            "Backtracking involves repeating or summarising what another person has just said to you, either the last few words, sentences word-for-word, or a summary of information. In this way, backtracking is an effective strategy for building trust and rapport. Backtracking is not paraphrasing; it's critical that you use the same key words in the same tones as were originally stated. When you substitute somebody else's words for your own, you diminish the importance of their own words and assume that your words carry the same meaning for them; very often, they do not. Backtracking has the added benefit of giving you time to consider what you're going to say next.",
+            "So in summary, Mr Customer, you said …, am I right?",
             "Mirroring & Pacing:",
             "Pacing and Mirroring Speed (Tempo):",
-            "Telephonic pacing and mirroring is a communication technique where a salesperson subtly matches a caller's vocal traits and emotional tone to build fast rapport, reduce tension, and establish trust.",
+            "Pacing and mirroring is a communication technique where a salesperson subtly matches a client's vocal traits and emotional tone to build fast rapport, reduce tension, and establish trust.",
             "Matching how fast or slow a customer speaks prevents frustration and helps them process information comfortably.",
-            "Pacing and mirroring are critical trust-building tools that bridge the cultural and geographical gap right over the phone.",
             "Here are practical examples of how to apply pacing and mirroring across different dimensions of a phone call.",
-            "Call 1: The High-Velocity \u201cSkim & Scan\u201d Buyer",
-            "The Backtracking Objective: Deliver an ultra-fast, high-density summary that proves you captured their exact requirements without wasting a single second.",
+            "Call 1: The High-Velocity “Skim & Scan” Buyer",
             "PROSPECT:",
-            "\u201cHey, this is Sarah. Look, I've only got two minutes before my next sync. I saw your tool online. Can it auto-export reports directly into Google Sheets without me having to manually download CSVs every morning? Give me the quick version.\u201d",
+            "“Hey, this is Sarah. Look, I've only got two minutes before my next sync. I saw your tool online. Can it auto-export reports directly into Google Sheets without me having to manually download CSVs every morning? Give me the quick version.”",
             "SALESPERSON (Pacing, Mirroring & Backtracking):",
-            "\u201cHey Sarah, absolutely. Just to backtrack to your exact needs: you want to auto-export reports straight to Google Sheets and completely eliminate manually downloading CSVs every morning. Short answer: yes, we do exactly that. You connect your account once, it pushes at 6:00 AM, and you hit your next sync on time.\u201d",
-            "Workbook Callout for Reps:",
-            "The Backtrack Formula: \u201cJust to backtrack\u2026\u201d + [Exact Feature Required] + [Exact Manual Pain Point].",
+            "“Hey Sarah, absolutely. Just to backtrack to your exact needs: you want to auto-export reports straight to Google Sheets and completely eliminate manually downloading CSVs every morning. Short answer: yes, we do exactly that. You connect your account once, it pushes at 6:00 AM, and you hit your next sync on time.”",
             "Why it works here: It proves to a hyper-impatient buyer that you can process information at their exact speed without needing them to repeat themselves.",
-            "Call 2: The Deliberate & Casual \u201cOld-School\u201d Manager",
-            "The Backtracking Objective: Slow down the conversation completely, anchor onto their emotional language, and validate their frustration before offering the solution.",
+            "Call 2: The Deliberate & Casual “Old-School” Manager",
             "PROSPECT:",
-            "\u201cWell\u2026 hello there. Yeah\u2026 we've been using the same inventory software for about ten years now. It's a bit of an old clunker, to be honest. It works, but it's just so clunky that it drives my floor staff up the wall when things get busy.\u201d",
+            "“Well… hello there. Yeah… we've been using the same inventory software for about ten years now. It's a bit of an old clunker, to be honest. It works, but it's just so clunky that it drives my floor staff up the wall when things get busy.”",
             "SALESPERSON (Pacing, Mirroring & Backtracking):",
             "[Pauses for 1.5 seconds]",
-            "\u201cI completely hear you. Let me just backtrack to make sure I've got this right. You've had this software for ten years, and while it works, it's ultimately an old clunker that gets so clunky it drives your floor staff up the wall during peak hours. Did I capture that accurately?\u201d",
+            "“I completely hear you. Let me just backtrack to make sure I've got this right. You've had this software for ten years, and while it works, it's ultimately an old clunker that gets so clunky it drives your floor staff up the wall during peak hours. Did I capture that accurately?”",
             "PROSPECT:",
-            "\u201cYou hit the nail right on the head. That is exactly what's happening.\u201d",
-            "Workbook Callout for Reps:",
-            "The Backtrack Formula: [Pause] + \u201cLet me just backtrack\u2026\u201d + [Exact Metaphor] + [Exact Emotional Frustration] + \u201cDid I capture that accurately?\u201d",
-            "Why it works here: By ending with a verification question (\u201cDid I capture that accurately?\u201d), you force a slow-speaking prospect to actively agree with you, cementing psychological safety and rapport.",
-            "Call 3: The Formal & Analytical \u201cData-First\u201d Specialist",
-            "The Backtracking Objective: Mirror their precise, corporate taxonomy in a structured, logical sequence to demonstrate peer-level technical competency.",
-            "PROSPECT:",
-            "\u201cGood afternoon. We are currently evaluating vendors to optimize our data architecture. Our primary objective is to mitigate integration risks and ensure strict adherence to statutory compliance frameworks. We require a comprehensive breakdown of your encryption protocols.\u201d",
-            "SALESPERSON (Pacing, Mirroring & Backtracking):",
-            "\u201cGood afternoon. If I may backtrack to ensure complete alignment with your objectives: your primary focus is to optimize data architecture, specifically to mitigate integration risks and maintain strict adherence to statutory compliance frameworks. To satisfy that requirement, we utilize end-to-end AES 256-bit encryption. I will provide that comprehensive breakdown document immediately via email.\u201d",
-            "Workbook Callout for Reps:",
-            "The Backtrack Formula: \u201cIf I may backtrack to ensure complete alignment\u2026\u201d + [Objective A] + [Objective B].",
-            "Why it works here: Using formal transitional phrases like \u201censure complete alignment\u201d matches the corporate hierarchy. Backtracking their complex terms exactly shows you are qualified to handle their business.",
-            "Never send a quote without repeating the client's needs back to them in their own words."
+            "“You hit the nail right on the head. That is exactly what's happening.”",
+            "Why it works here: By ending with a verification question (“Did I capture that accurately?”), you force a slow-speaking prospect to actively agree with you, cementing psychological safety and rapport.",
+            "Never send a quote or try close without repeating the client's needs back to them in their own words."
           ],
           "fields": []
         },
         {
           "id": "roleplay2",
           "kind": "score",
-          "title": "Role-play: the Discovery Call \u00b7 Brief 1",
+          "title": "Role-play: the Discovery Call · Brief 1",
           "body": [
             "Your role: an expert sales professional.",
             "The client: a fast-speaking international traveller enquiring about a 10-day trip to Cape Town and Kruger. Enthusiastic, but defensive about sharing budget, not sure where to go first and worried about safety.",
@@ -281,7 +287,7 @@ const INBOUND_TRAVEL = {
               "id": "score",
               "type": "score",
               "criteria": [
-                "Uncovered \u201cWhy now?\u201d",
+                "Uncovered “Why now?”",
                 "Budget clarified smoothly",
                 "Identified all decision-makers",
                 "Deep listening, Backtracking, Pace and tone matching"
@@ -292,7 +298,7 @@ const INBOUND_TRAVEL = {
         {
           "id": "roleplay2b",
           "kind": "score",
-          "title": "Role-play: the Discovery Call \u00b7 Brief 2",
+          "title": "Role-play: the Discovery Call · Brief 2",
           "body": [
             "Your role: an expert sales professional.",
             "The client: a slow, laid-back-speaking international buyer looking to buy a house in South Africa. Not clear on how many bedrooms are required or whether single or double storey, with a budget of up to R10 million. Says he will call you back as he needs to chat to his partner.",
@@ -303,7 +309,7 @@ const INBOUND_TRAVEL = {
               "id": "score",
               "type": "score",
               "criteria": [
-                "Uncovered \u201cWhy now?\u201d",
+                "Uncovered “Why now?”",
                 "Budget clarified smoothly",
                 "Identified all decision-makers",
                 "Deep listening, Backtracking, Pace and tone matching"
@@ -353,45 +359,46 @@ const INBOUND_TRAVEL = {
         },
         {
           "id": "toolbox",
-          "title": "Module 3.0 \u00b7 The Not Dumping Our Toolbox Play",
+          "title": "Module 3.0 · The Not Dumping Our Toolbox Play",
           "body": [
             "Do not dump your toolbox. A solution sell which is tailored to the client's core need is a natural close. Use your deep listening skills to match the client's needs.",
             "Dumping your toolbox means throwing every product or service you have at a client instead of listening to what they actually want. This overwhelms clients, dilutes your value as an expert, and ultimately kills the sale.",
-            "Matching client needs ensures you sell the right experience, build trust, and secure high-value bookings.",
-            "4 Examples of Needs-Matching vs. Toolbox Dumping",
+            "Matching client needs ensures you sell the right experience, build trust, and secure high-value deals.",
+            "3 Examples of Needs-Matching vs. Toolbox Dumping",
             "1. The Estate Agent (Residential Sales)",
-            "The Toolbox Dump: \u201cOur agency does it all! We list on 12 different property portals, run targeted Facebook and Instagram video ads, host twilight open houses, use drone photography, print 500 local glossy flyers, and feature your home in our monthly email newsletter.\u201d",
-            "Matching the Need: \u201cYou mentioned that your top priority is absolute privacy and minimizing foot traffic through your home because of your demanding work schedule. Instead of a traditional public marketing blitz, let's focus entirely on our off-market pocket listing strategy, where we only introduce your property to our pre-vetted, high-net-worth buyers.\u201d",
+            "Their top priority is absolute privacy and minimizing foot traffic:",
+            "The Toolbox Dump: “Our agency does it all! We list on 12 different property portals, run targeted Facebook and Instagram video ads, host twilight open houses, use drone photography, print 500 local glossy flyers, and feature your home in our monthly email newsletter.”",
+            "Matching the Need: “You mentioned that your top priority is absolute privacy and minimizing foot traffic through your home because of your demanding work schedule. Instead of a traditional public marketing blitz, let's focus entirely on our off-market pocket listing strategy, where we only introduce your property to our pre-vetted, high-net-worth buyers.”",
             "2. The Inbound Travel Agent (Destination Management)",
-            "The Toolbox Dump: \u201cWe are a premier destination management company! We arrange private airport transfers, luxury sprinter vans, 5-star hotel bookings, certified multilingual guides, hot air balloon rides, winery tours, museum skip-the-line tickets, and traditional cooking classes across the entire region.\u201d",
-            "Matching the Need: \u201cYou mentioned that this trip is a 50th wedding anniversary for your parents, and because of your father's limited mobility, your absolute biggest fear is them getting exhausted or stuck walking up steep hills. Let's skip the fast-paced group excursions and focus entirely on our private chauffeured door-to-door itinerary, featuring step-free boutique properties and accessible, low-walking private tours.\u201d",
+            "This trip is a 50th wedding anniversary for your elderly parents:",
+            "The Toolbox Dump: “We are a premier destination management company! We arrange private airport transfers, luxury sprinter vans, 5-star hotel bookings, certified multilingual guides, hot air balloon rides, winery tours, museum skip-the-line tickets, and traditional cooking classes across the entire region.”",
+            "Matching the Need: “You mentioned that this trip is a 50th wedding anniversary for your parents, and because of your father's limited mobility, your absolute biggest fear is them getting exhausted or stuck walking up steep hills. Let's skip the fast-paced group excursions and focus entirely on our private chauffeured door-to-door itinerary, featuring step-free boutique properties and accessible, low-walking private tours.”",
             "3. The Insurance Broker (Commercial/B2B)",
-            "The Toolbox Dump: \u201cWe are a full-service brokerage. We write policies for General Liability, Commercial Property, Workers' Comp, Cyber Liability, Director & Officers (D&O) coverage, Inland Marine, and Commercial Auto.\u201d",
-            "Matching the Need: \u201cYou mentioned that your business just transitioned to a permanent work-from-home model, and your main worry is a data breach from employees using personal laptops. Let's bypass standard property coverages and focus specifically on a Cyber Liability policy with data restoration and ransomware coverage.\u201d",
-            "4. The Insurance Agent (Personal Lines)",
-            "The Toolbox Dump: \u201cWe can bundle everything for you today! We have comprehensive auto insurance with roadside assistance, homeowners insurance with flood riders, umbrella policies up to $5M, life insurance, boat insurance, and jewelry schedules.\u201d",
-            "Matching the Need: \u201cYou mentioned you just bought your first home and feel completely overwhelmed by the closing costs and upcoming mortgage. Rather than overloading you with every add-on, let's focus purely on a standard Homeowners policy with a high deductible to keep your monthly premium as low as possible while meeting your lender's requirements.\u201d"
+            "Transitioned to home workers:",
+            "The Toolbox Dump: “We are a full-service brokerage. We write policies for General Liability, Commercial Property, Workers' Comp, Cyber Liability, Director & Officers (D&O) coverage, Inland Marine, and Commercial Auto.”",
+            "Matching the Need: “You mentioned that your business just transitioned to a permanent work-from-home model, and your main worry is a data breach from employees using personal laptops. Let's bypass standard property coverages and focus specifically on a Cyber Liability policy with data restoration and ransomware coverage.”"
           ],
           "fields": []
         },
         {
           "id": "objection-playbook",
-          "title": "Module 3.1 \u00b7 The Objection Reframing Playbook",
+          "title": "Module 3.1 · The Objection Reframing Playbook",
           "body": [
             "To overcome objections and reframe effectively, you must shift the client's focus from cost or hesitation to the specific risk, pain point, or goal they mentioned earlier.",
             "Here is how to reframe objections across different industries without dumping your toolbox:",
             "1. Inbound Travel Agent",
-            "The Objection: \u201cI need to talk to my partner before booking.\u201d",
-            "The Toolbox Dump: \u201cNo problem! I'll email you the 15-page itinerary breakdown, our multi-currency payment options, the travel insurance premium tiers, our vehicle fleet specifications, and our full booking cancellation policy so you can pitch it to her tonight.\u201d",
-            "Matching the Need: \u201cI completely understand\u2014planning a holiday is a shared experience. What usually happens when clients hand over a massive itinerary at home is that the partner gets overwhelmed by the logistics and only focuses on the total cost. You mentioned earlier that your wife is the big foodie and art lover, while you just care about smooth transfers. Let's do a brief, casual 5-minute video call with her tomorrow; I will skip the flight connection details and show her the private vineyard lunch and VIP museum access we secured, so she can see the actual magic of the trip.\u201d",
+            "The Objection: “I need to talk to my partner before booking.”",
+            "The Toolbox Dump: “No problem! I'll email you the 15-page itinerary breakdown, our multi-currency payment options, the travel insurance premium tiers, our vehicle fleet specifications, and our full booking cancellation policy so you can pitch it to her tonight.”",
+            "Matching the Need: “I completely understand—planning a holiday is a shared experience. What usually happens when clients hand over a massive itinerary at home is that the partner gets overwhelmed by the logistics and only focuses on the total cost.”",
+            "The Reframed Response: “You mentioned earlier that your wife is the big foodie and art lover, while you just care about smooth transfers. Let's do a brief, casual 5-minute video call with her tomorrow; I will skip the flight connection details and show her the private vineyard lunch and VIP museum access we secured, so she can see the actual magic of the trip.”",
             "2. Real Estate (Estate Agent)",
-            "The Objection: \u201cI don't want to do an off-market listing. If we don't put it on the major property portals, we won't get the highest possible price.\u201d",
-            "The Toolbox Dump Response: \u201cWe have a database of 10,000 buyers, we send out a weekly newsletter, we do targeted social media ads, and we can still do open houses if you change your mind!\u201d",
-            "The Reframed Response: \u201cIt's natural to think more exposure always equals a higher price. But remember when you said your top priority was absolute privacy because of your high-profile job and demanding schedule? A public listing means dozens of strangers touring your home, public photos of your private spaces online, and endless disruptions. With our off-market pocket listing, we create exclusive scarcity. We only bring pre-vetted, highly motivated buyers who are willing to pay a premium specifically for the discretion and convenience of a quiet sale, protecting your time and your privacy.\u201d",
+            "The Objection: “I don't want to do an off-market listing. If we don't put it on the major property portals, we won't get the highest possible price.”",
+            "The Toolbox Dump Response: “We have a database of 10,000 buyers, we send out a weekly newsletter, we do targeted social media ads, and we can still do open houses if you change your mind!”",
+            "The Reframed Response: “It's natural to think more exposure always equals a higher price. But remember when you said your top priority was absolute privacy because of your high-profile job and demanding schedule? A public listing means dozens of strangers touring your home, public photos of your private spaces online, and endless disruptions. With our off-market pocket listing, we create exclusive scarcity. We only bring pre-vetted, highly motivated buyers who are willing to pay a premium specifically for the discretion and convenience of a quiet sale, protecting your time and your privacy.”",
             "3. Insurance Broker (Commercial/B2B)",
-            "The Objection: \u201cCyber liability insurance feels like an unnecessary extra expense right now. We already have standard IT firewalls and anti-virus software.\u201d",
-            "The Toolbox Dump Response: \u201cBut our policy covers data restoration, regulatory fines, business interruption, extortion, public relations management, and legal defense fees!\u201d",
-            "The Reframed Response: \u201cAn anti-virus system is a great first line of defense, but remember what you mentioned earlier: your entire workforce is now permanently remote, and your biggest anxiety is a human error like an employee clicking a phishing link on a home Wi-Fi network. Firewalls cannot stop an employee from accidentally handing over passwords. Instead of viewing cyber insurance as an IT cost, reframe it as a financial safety net for your cash flow. If a breach happens tomorrow, the firewall can't pay for the legal liability or the ransomware extortion\u2014this policy does.\u201d",
+            "The Objection: “Cyber liability insurance feels like an unnecessary extra expense right now. We already have standard IT firewalls and anti-virus software.”",
+            "The Toolbox Dump Response: “But our policy covers data restoration, regulatory fines, business interruption, extortion, public relations management, and legal defense fees!”",
+            "The Reframed Response: “An anti-virus system is a great first line of defense, but remember what you mentioned earlier: your entire workforce is now permanently remote, and your biggest anxiety is a human error like an employee clicking a phishing link on a home Wi-Fi network. Firewalls cannot stop an employee from accidentally handing over passwords. Instead of viewing cyber insurance as an IT cost, reframe it as a financial safety net for your cash flow. If a breach happens tomorrow, the firewall can't pay for the legal liability or the ransomware extortion—this policy does.”",
             "We must always keep control of the sale!"
           ],
           "fields": []
@@ -402,7 +409,7 @@ const INBOUND_TRAVEL = {
           "body": [
             "The three-step sequence:",
             "Validate: Acknowledge their concern (usually price or effort) so they feel heard.",
-            "Anchor: Remind them of the exact emotional pain point or goal they confessed to earlier (\u201cBut remember when you said\u2026\u201d).",
+            "Anchor: Remind them of the exact emotional pain point or goal they confessed to earlier (“But remember when you said…”).",
             "Isolate: Connect your specific, tailored solution directly to eliminating that pain point."
           ],
           "fields": []
@@ -410,7 +417,7 @@ const INBOUND_TRAVEL = {
         {
           "id": "roleplay3",
           "kind": "score",
-          "title": "Role-play: the Itinerary Review \u00b7 Brief 1",
+          "title": "Role-play: the Itinerary Review · Brief 1",
           "body": [
             "Your role: an inbound consultant presenting a premium, customised R150,000 itinerary.",
             "The client: an international traveller who loves the plan but says they found a similar route online 15% cheaper, and wants to think it over with their partner.",
@@ -433,7 +440,7 @@ const INBOUND_TRAVEL = {
         {
           "id": "roleplay3b",
           "kind": "score",
-          "title": "Role-play: the Property Market is Too High \u00b7 Brief 2",
+          "title": "Role-play: the Property Market is Too High · Brief 2",
           "body": [
             "Your role: an estate agent presenting a premium property.",
             "The client: a cash buyer who thinks the market will fall to lower pricing and believes the market is too high right now and wants to wait.",
@@ -481,43 +488,42 @@ const INBOUND_TRAVEL = {
     },
     {
       "id": "w4",
-      "title": "Mental Mastery & Follow-Up & Closing",
-      "intro": "Selling premium value, resilience and high-conversion follow-up.",
+      "title": "Limiting beliefs and Goal Setting",
+      "intro": "Selling premium value, and ICANDO",
       "sections": [
         {
           "id": "w4-obj",
           "title": "By the end of this week",
           "body": [
             "Stop projecting your own limiting beliefs onto potential buyers.",
-            "Sell premium access, convenience and peace of mind, not your product or services.",
-            "Run a follow-up sequence that adds value instead of nagging."
+            "Learn to set structured and specific Goals."
           ],
           "fields": []
         },
         {
           "id": "mirror-check",
           "kind": "choice",
-          "title": "Module 4.1 \u00b7 The Psychological Mirror",
+          "title": "Module 4.1 · The Psychological Mirror",
           "body": [
-            "Answer honestly. This is where you find out if you're projecting your own financial habits onto your clients.",
-            "When I quote a room at R25,000 per night, my immediate internal thought is:"
+            "Answer honestly. This is where you find out if you’re projecting your own financial habits onto your clients.",
+            "When I quote my top end product or service at a premium price, my immediate internal thought is:"
           ],
           "fields": [
             {
               "id": "thought",
               "type": "choice",
               "options": [
-                "\u201cThat's incredible value for a high-end luxury accommodation experience.\u201d",
-                "\u201cThat's insane money, I need a cheaper alternative in case they push back.\u201d"
+                "“That’s incredible value for a high-end product or service.”",
+                "“That’s insane money, I need a cheaper alternative in case they push back.”"
               ]
             }
           ]
         },
         {
           "id": "mirror",
-          "title": "Module 4.1 \u00b7 Rewrite Your Value",
+          "title": "Module 4.1 · Rewrite Your Value",
           "body": [
-            "Rewrite your value proposition. Stop saying \u201cI sell assets, products or services.\u201d Model: \u201cI listen and match my client's needs, and I add value to their business or life.\u201d"
+            "Rewrite your value proposition. Stop saying “I sell assets, products or services.” Model: “I listen and match my client's needs, and I add value to their business or life.”"
           ],
           "fields": [
             {
@@ -547,76 +553,157 @@ const INBOUND_TRAVEL = {
           ]
         },
         {
-          "id": "closing-followup",
-          "title": "Module 4.2 \u00b7 The High-Conversion Close & Follow-Up",
+          "id": "icando",
+          "title": "Module 4.2 · ICANDO",
           "body": [
-            "1. The Summary Close",
-            "What it is: A technique where you recap the prospect's core pain points and confirmed benefits before asking for the business.",
-            "Example script: \u201cWe agreed that upgrading your software will cut customer wait times by 40% and save your team 10 hours a week. Based on those priorities, shall we go ahead and schedule the implementation for next Tuesday?\u201d",
-            "Why it works: It grounds the decision in agreed facts and shifts the focus naturally to next steps.",
-            "2. The 1-to-10 Scale Follow-Up",
-            "What it is: A soft follow-up question used when a prospect is hesitating or stalling a decision.",
-            "Example script: \u201cOn a scale of 1 to 10, where 1 is \u2018this isn't a fit at all\u2019 and 10 is \u2018let's sign today,\u2019 where do you feel we stand?\u201d",
-            "Why it works: If they answer \u201c7,\u201d you can follow up with: \u201cWhat would it take to get us to a 9 or 10?\u201d This uncovers hidden objections without pressure.",
-            "3. The Value-Add Follow-Up (After a No-Response)",
-            "What it is: A re-engagement technique used when a prospect goes quiet after a demo or proposal.",
-            "Example script: \u201cHi, I know timing is tight right now. I put together a quick case study showing how a company similar to yours automated their onboarding in two weeks. Thought this might help your team review the proposal. Worth a quick look?\u201d",
-            "Why it works: It adds new value instead of just asking \u201cDid you get my last email?\u201d, prompting a much higher response rate.",
-            "Here is how to adapt follow-up and closing techniques.",
-            "1. Estate Agents (The \u201cUrgency & Priority\u201d Framework)",
-            "Real estate sales are highly emotional and time-sensitive. Focus on securing physical commitments (viewings) or closing on the property's unique fit.",
-            "The Strategy: The \u201cNext Best Choice\u201d Close.",
-            "Example Script: \u201cWe looked at three properties today, but you mentioned the townhouse on 4th Street checked every box for your family's commute and budget. Someone else requested a second viewing for tomorrow morning. Shall we get our offer submitted this afternoon so you don't miss out on it?\u201d",
-            "The Follow-Up (If they go quiet): \u201cHi, a new property just hit the market in [Neighbourhood] that has the exact open-plan kitchen you wanted, and it's within your budget. I can get us in before the official weekend show house\u2014would tomorrow at 4:00 PM work for a quick look?\u201d",
-            "2. Inbound Travel Agents (The \u201cExperience Visualisation\u201d Framework)",
-            "Travel clients buy dreams, experiences, and peace of mind. Your follow-ups should make them feel like they are already on vacation while handling logistics seamlessly.",
-            "The Strategy: The \u201cAssumptive Itinerary\u201d Close.",
-            "Example Script: \u201cI've provisionally held the boutique safari lodge for your dates, as they only have two luxury suites left for the season. To make sure we lock in this exact routing and the internal flights before the prices increase, should I go ahead and send over the secure deposit link?\u201d",
-            "The Follow-Up (If they go quiet): \u201cHi, I know planning an international holiday takes time. I just received an updated itinerary guide from our local guide in Cape Town featuring a brand-new wine-tasting route. I've attached it here to help you visualise the trip. Have you had a chance to look over the day-by-day budget I sent?\u201d",
-            "3. Insurance (The \u201cRisk & Protection\u201d Framework)",
-            "Insurance is a grudge purchase based on risk mitigation. Closing requires making the abstract concept of \u201cprotection\u201d feel concrete and urgent without using scare tactics.",
-            "The Strategy: The \u201cAlternative Choice\u201d Close.",
-            "Example Script: \u201cBased on your business assets, leaving that gap in your public liability could cost you heavily if an accident happens. We can activate the comprehensive policy today, which covers everything we discussed, or we can start with the core liability package and add the vehicle fleet next month. Which option gives you better peace of mind to start with?\u201d",
-            "The Follow-Up (If they go quiet): \u201cHi, I wanted to let you know that the underwriter's rate quote I secured for your home policy expires this Friday. If we don't lock it in, we will have to re-submit the application, which might change the monthly premium. Do you have 5 minutes tomorrow morning to finalise the paperwork?\u201d",
-            "Here are 7 additional closing techniques used across diverse sales environments, grouped by their psychological approach.",
-            "The Direct Closes",
-            "These techniques work best when the prospect has shown strong buying signals and you want to move straight to the decision.",
-            "The Direct Close: Ask for the order plainly and confidently once value is established.",
-            "Example: \u201cIt sounds like this covers exactly what you need. Can I go ahead and set up your account today?\u201d",
-            "The \u201cNow or Never\u201d Close",
-            "Offer a limited-time incentive or highlight stock limitations to prompt immediate action.",
-            "Example: \u201cWe are running a 15% discount for sign-ups before Friday,\u201d or \u201cThis is the last available slot for this quarter's implementation.\u201d",
-            "The Soft & Consultative Closes",
-            "These techniques are highly effective for high-ticket items, complex B2B sales, or relationship-driven industries like real estate and travel.",
-            "The Assumptive Close: Act as if the prospect has already decided to buy, moving seamlessly into onboarding logistics.",
-            "Example: \u201cGreat, what email address should we use for invoicing, and when would you like the onboarding team to reach out?\u201d",
-            "The \u201cPuppy Dog\u201d Close",
-            "Offer a low-risk, trial-based entry point so the customer can experience the product before making a long-term commitment.",
-            "Example: \u201cLet's set you up with a 14-day trial. If it doesn't solve your data tracking issues, we will cancel it\u2014no strings attached.\u201d",
-            "The Conditional Close",
-            "Secure a commitment to buy on the condition that you can solve their final hurdle or objection.",
-            "Example: \u201cIf I can get approval from our legal team to adjust that specific contract clause by tomorrow morning, are you ready to sign the agreement?\u201d",
-            "The Sharp Angle Close",
-            "Use an unexpected, last-minute demand from the buyer to immediately close the deal.",
-            "Example: When the client asks, \u201cCan you expedite delivery to next Monday?\u201d you respond: \u201cIf I can guarantee delivery by Monday, will you sign the purchase order right now?\u201d"
+            "What is GOAL SETTING?",
+            "Goal setting is a powerful process for thinking about your ideal future, and for motivating yourself to turn your vision of this future into reality. The process of setting goals helps you choose where you want to go in life.",
+            "Goal Setting can be done effectively using the ICANDO method:",
+            "I – Investigate",
+            "C – Current",
+            "A – Aim",
+            "N – Number of Ways",
+            "D – Date",
+            "O – Outcomes",
+            "Investigate what your goal is?",
+            "What is the Current situation of your goal? Where are you with this goal right now?",
+            "What is the Aim of your goal? Why do you want to achieve this goal? What does it mean to you?",
+            "What are the Number of ways for you to achieve this goal? There are always more than 1 way to achieve our goals.",
+            "By what Date do you want to achieve this goal? Use a specific Date.",
+            "What does the Outcome of this goal look, feel, sound like? How will you know once you have reached your goal?",
+            "Are your Goals SMART:",
+            "S – Specific",
+            "M – Measurable",
+            "A – Attainable",
+            "R – Realistic",
+            "T – Time Framed",
+            "Are you in control?"
           ],
           "fields": []
         },
         {
-          "id": "ultimate-close",
-          "title": "The Ultimate Follow-up & Close",
+          "id": "goal1",
+          "title": "List a short-term Business goal you would like to achieve in the next 30 days through ICANDO:",
           "fields": [
             {
-              "id": "followemail",
-              "label": "Write below a 2-step follow-up email to a client who was concerned with the price but has gone quiet and is not returning your calls.",
+              "id": "g1_i",
+              "label": "I – Investigate",
               "type": "long",
-              "rows": 7
+              "rows": 3
             },
             {
-              "id": "teleclose",
-              "label": "Write below a telephonic conversation to a client who wants to know if there are other options, and close.",
+              "id": "g1_c",
+              "label": "C – Current",
               "type": "long",
-              "rows": 7
+              "rows": 3
+            },
+            {
+              "id": "g1_a",
+              "label": "A – Aims",
+              "type": "long",
+              "rows": 3
+            },
+            {
+              "id": "g1_n",
+              "label": "N – Number of Ways",
+              "type": "long",
+              "rows": 3
+            },
+            {
+              "id": "g1_d",
+              "label": "D – Date",
+              "type": "long",
+              "rows": 3
+            },
+            {
+              "id": "g1_o",
+              "label": "O – Outcomes",
+              "type": "long",
+              "rows": 3
+            }
+          ]
+        },
+        {
+          "id": "goal2",
+          "title": "List a medium-term Business goal you would like to achieve in the next 60 days through ICANDO:",
+          "fields": [
+            {
+              "id": "g2_i",
+              "label": "I – Investigate",
+              "type": "long",
+              "rows": 3
+            },
+            {
+              "id": "g2_c",
+              "label": "C – Current",
+              "type": "long",
+              "rows": 3
+            },
+            {
+              "id": "g2_a",
+              "label": "A – Aims",
+              "type": "long",
+              "rows": 3
+            },
+            {
+              "id": "g2_n",
+              "label": "N – Number of Ways",
+              "type": "long",
+              "rows": 3
+            },
+            {
+              "id": "g2_d",
+              "label": "D – Date",
+              "type": "long",
+              "rows": 3
+            },
+            {
+              "id": "g2_o",
+              "label": "O – Outcomes",
+              "type": "long",
+              "rows": 3
+            }
+          ]
+        },
+        {
+          "id": "goal3",
+          "title": "List a short term Personal goal you would like to achieve in the next 60 days through ICANDO:",
+          "fields": [
+            {
+              "id": "g3_i",
+              "label": "I – Investigate",
+              "type": "long",
+              "rows": 3
+            },
+            {
+              "id": "g3_c",
+              "label": "C – Current",
+              "type": "long",
+              "rows": 3
+            },
+            {
+              "id": "g3_a",
+              "label": "A – Aims",
+              "type": "long",
+              "rows": 3
+            },
+            {
+              "id": "g3_n",
+              "label": "N – Number of Ways",
+              "type": "long",
+              "rows": 3
+            },
+            {
+              "id": "g3_d",
+              "label": "D – Date",
+              "type": "long",
+              "rows": 3
+            },
+            {
+              "id": "g3_o",
+              "label": "O – Outcomes",
+              "type": "long",
+              "rows": 3
             }
           ]
         },
@@ -687,6 +774,11 @@ const INBOUND_TRAVEL = {
               "type": "short"
             }
           ]
+        },
+        {
+          "id": "congrats",
+          "title": "CONGRATULATIONS, YOU HAVE COMPLETED THE SALES MASTERY WORKSHOP.",
+          "fields": []
         }
       ]
     }
@@ -1463,16 +1555,32 @@ function CourseContent({ course, answers, onChange, wi, setWi, codeLabel, welcom
         {week.sections.map((s) => (
           <div key={s.id} className="tw-card" style={{ padding: 18, marginBottom: 14 }}>
             <h3 style={{ margin: "0 0 8px", fontSize: 16.5, fontWeight: 600 }}>{s.title}</h3>
-            {s.body && (Array.isArray(s.body)
-              ? s.body.map((para, bi) => (para && typeof para === "object"
-                  ? <BodyBlock key={bi} block={para} />
-                  : <BodyLine key={bi} text={para} />))
-              : <p className="tw-muted" style={{ margin: "0 0 15px", fontSize: 14, lineHeight: 1.55 }}>{s.body}</p>)}
-            {s.fields.map((f) => (
-              <div key={f.id} style={{ marginBottom: 14 }}>
-                <Field f={f} value={answers[`${week.id}.${s.id}.${f.id}`]} onChange={(val) => onChange(`${week.id}.${s.id}.${f.id}`, val)} />
-              </div>
-            ))}
+            {Array.isArray(s.blocks)
+              ? s.blocks.map((blk, bi) => {
+                  if (blk && typeof blk === "object" && blk.field) {
+                    const f = s.fields.find((x) => x.id === blk.field);
+                    return f ? (
+                      <div key={f.id} style={{ marginBottom: 14 }}>
+                        <Field f={f} value={answers[`${week.id}.${s.id}.${f.id}`]} onChange={(val) => onChange(`${week.id}.${s.id}.${f.id}`, val)} />
+                      </div>
+                    ) : null;
+                  }
+                  return (blk && typeof blk === "object")
+                    ? <BodyBlock key={bi} block={blk} />
+                    : <BodyLine key={bi} text={blk} />;
+                })
+              : (<>
+                  {s.body && (Array.isArray(s.body)
+                    ? s.body.map((para, bi) => (para && typeof para === "object"
+                        ? <BodyBlock key={bi} block={para} />
+                        : <BodyLine key={bi} text={para} />))
+                    : <p className="tw-muted" style={{ margin: "0 0 15px", fontSize: 14, lineHeight: 1.55 }}>{s.body}</p>)}
+                  {s.fields.map((f) => (
+                    <div key={f.id} style={{ marginBottom: 14 }}>
+                      <Field f={f} value={answers[`${week.id}.${s.id}.${f.id}`]} onChange={(val) => onChange(`${week.id}.${s.id}.${f.id}`, val)} />
+                    </div>
+                  ))}
+                </>)}
           </div>
         ))}
         </fieldset>
