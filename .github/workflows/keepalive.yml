@@ -1,0 +1,18 @@
+name: Supabase keep-alive
+
+# Pings the Workshop-App database once a day so Supabase never pauses it.
+on:
+  schedule:
+    - cron: "0 6 * * *"   # every day at 06:00 UTC (08:00 South Africa)
+  workflow_dispatch:       # also lets you run it by hand from the Actions tab
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ping the database
+        run: |
+          curl --fail --silent --show-error \
+            "https://adttfbbjymnntkgnjzcd.supabase.co/rest/v1/kv?select=k&limit=1" \
+            -H "apikey: sb_publishable_V-FaeZBm69-Xd4e19V3QdA_uMLRxQDP" \
+            -H "Authorization: Bearer sb_publishable_V-FaeZBm69-Xd4e19V3QdA_uMLRxQDP"
