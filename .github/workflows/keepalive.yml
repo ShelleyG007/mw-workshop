@@ -1,18 +1,25 @@
 name: Supabase keep-alive
 
-# Pings the Workshop-App database once a day so Supabase never pauses it.
+# Pings both of Mark's databases once a day so neither Supabase project ever pauses.
 on:
   schedule:
-    - cron: "0 6 * * *"   # every day at 06:00 UTC (08:00 South Africa)
-  workflow_dispatch:       # also lets you run it by hand from the Actions tab
+    - cron: "30 6 * * *"   # every day at 06:30 UTC (08:30 South Africa)
+  workflow_dispatch:        # also lets you run it by hand from the Actions tab
 
 jobs:
   ping:
     runs-on: ubuntu-latest
     steps:
-      - name: Ping the database
+      - name: Ping the Workshop database
         run: |
           curl --fail --silent --show-error \
             "https://adttfbbjymnntkgnjzcd.supabase.co/rest/v1/kv?select=k&limit=1" \
             -H "apikey: sb_publishable_V-FaeZBm69-Xd4e19V3QdA_uMLRxQDP" \
             -H "Authorization: Bearer sb_publishable_V-FaeZBm69-Xd4e19V3QdA_uMLRxQDP"
+
+      - name: Ping the Guesthouse-Experience database
+        run: |
+          curl --fail --silent --show-error \
+            "https://kqthkngsxlhnvbkuvlrz.supabase.co/rest/v1/bookings?select=*&limit=1" \
+            -H "apikey: sb_publishable_WfUQYdRcKuCJGxFbt6vb9g_skhH-vV1" \
+            -H "Authorization: Bearer sb_publishable_WfUQYdRcKuCJGxFbt6vb9g_skhH-vV1"
